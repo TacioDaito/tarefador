@@ -1,8 +1,11 @@
 <?php
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Task extends Model
 {
@@ -17,18 +20,34 @@ class Task extends Model
         'title',
         'description',
         'created_by',
+        'completed',
+        'completed_at',
     ];
 
-    // Task.php
+    protected $casts = [
+        'created_by' => 'integer',
+        'completed' => 'boolean',
+        'completed_at' => 'datetime',
+    ];
 
-    public function users()
+    public function users(): BelongsToMany
     {
         return $this->belongsToMany(User::class)->withTimestamps();
     }
 
-    public function creator()
+    public function creator(): BelongsTo
     {
         return $this->belongsTo(User::class, 'created_by');
     }
 
+    public function scopeAssignedOrOwnedBy($query, User $user): Builder
+    {
+        return $query->where('completed', false)
+            ->where(function ($query1) use ($user) {
+                $query1->where('created_by', $user->id)
+                    ->orWhereHas('users', function ($query2) use ($user) {
+                        $query2->where('users.id', $user->id);
+                    });
+            });
+    }
 }
