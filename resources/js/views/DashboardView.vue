@@ -1,15 +1,25 @@
 <script setup>
-import { onMounted } from 'vue'
+import { ref, onMounted } from 'vue'
 import Card from 'primevue/card'
 import Message from 'primevue/message'
 import Paginator from 'primevue/paginator'
+import Accordion from 'primevue/accordion'
+import Divider from 'primevue/divider'
+import Button from 'primevue/button'
 import NavBar from '../components/NavBar.vue'
-import TaskCard from '../components/TaskCard.vue'
+import TaskPanel from '../components/TaskPanel.vue'
 import taskAction from '../composables/taskAction'
 import responsivePagination from '../composables/responsivePagination'
 
 const { tasks, getTasks } = taskAction()
 const { first, rows, pagedItems: pagedTasks, updateRows } = responsivePagination(tasks)
+
+const openPanel = ref(null)
+
+function createTask() {
+    // Implement your create logic here (open dialog, route, etc)
+    alert('Criar tarefa!')
+}
 
 onMounted(() => {
     getTasks()
@@ -22,15 +32,27 @@ onMounted(() => {
 
         <NavBar />
 
-        <Card class="w-xs md:w-4xl h-auto mt-28 mb-10">
+        <Card class="w-sm md:w-4xl h-auto mt-28 mb-10">
 
             <template #title>
-                <h1 class="mb-4 text-lg md:text-xl">Minhas Tarefas</h1>
+                <div class="flex justify-between items-center mb-4">
+                    <h1 class="text-lg md:text-xl">Minhas Tarefas</h1>
+                    <Button label="Criar" icon="pi pi-plus" class="p-button-success" @click="createTask" />
+                </div>
+                <Divider/>
             </template>
 
             <template #content>
                 <div v-if="tasks.length">
-                    <TaskCard v-for="task in pagedTasks" :key="task.id" :task="task" />
+                    <Accordion v-model:value="openPanel">
+                        <TaskPanel
+                            v-for="task in pagedTasks"
+                            :key="task.id"
+                            :task="task"
+                            :value="task.id"
+                            :openPanel="openPanel"
+                        />
+                    </Accordion>
                 </div>
                 <Message v-else severity="warn">Sem informações</Message>
             </template>
