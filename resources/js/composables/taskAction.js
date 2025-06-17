@@ -1,19 +1,17 @@
 import axios from 'axios'
-// import clientState from '../stores/clientState'
-// import router from '../router'
 import { ref } from 'vue'
 
-const tasks = ref()
-const get = async () => {
+const tasks = ref([])
+
+const getTasks = async () => {
     try {
         const response = await axios.get('/api/tasks')
         tasks.value = response.data.tasks
-        console.log(tasks)
     } catch (error) {
+        tasks.value = []
     }
 }
 
-get()
-
-
-export default tasks
+export default function taskAction() {
+    return { tasks, getTasks }
+}
