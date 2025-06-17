@@ -2,31 +2,29 @@
 import { computed } from 'vue'
 import Card from 'primevue/card'
 import Message from 'primevue/message'
-import clientState from '../stores/clientState'
 import NavBar from '../components/NavBar.vue'
 
-const user = computed(() => clientState.user)
+import tasks from '../composables/taskAction'
+
+
 </script>
 
 <template>
     <div class="flex justify-center items-center h-screen">
         <NavBar/>
-        <Card class="w-2xs md:w-sm">
+        <Card class="w-2xs md:w-4xl">
             <template #title>
-                <div v-if="user" class="mb-4">Welacome, {{ user.name }}</div>
+                <div class="mb-4">Minhas Tarefas</div>
             </template>
             <template #content>
-                <div v-if="user">
-                    <span v-if="user.email_verified_at">
-                        Your email is verified
-                        <i class="pi pi-check ml-2" style="color: aquamarine"></i>
-                    </span>
-                    <span v-else>
-                        Your email is unverified
-                        <i class="pi pi-exclamation-triangle ml-2" style="color: salmon"></i>
-                    </span>
+                <div v-if="tasks">
+                    <div v-for="task in tasks" :key="task.id" class="mb-4">
+                        <h3 class="text-lg font-semibold">{{ task.title }}</h3>
+                        <p>{{ task.description }}</p>
+                        <p class="text-sm text-gray-500">Status: {{ task.completed }}</p>
+                    </div>
                 </div>
-                <Message v-else severity="warn">No user information available.</Message>
+                <Message v-else severity="warn">Sem informações</Message>
             </template>
         </Card>
     </div>

@@ -15,7 +15,7 @@ const login = async (email, password) => {
     } catch (error) {
         clientState.user = null
         clientState.isAuthenticated = false
-        clientState.message = error.response?.data?.message || 'Login failed. Please try again.'
+        clientState.message = error.response?.data?.message || 'Login falhou. Tente novamente.'
         return false
     } finally {
         clientState.loading = false

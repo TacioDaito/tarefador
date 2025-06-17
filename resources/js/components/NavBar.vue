@@ -21,7 +21,7 @@ const items = ref([
     <div class="fixed top-6 w-2xs md:w-xl">
         <Menubar :model="items" :breakpoint="'768px'">
             <template #end>
-                <Button label="Logout" icon="pi pi-sign-out" class="p-button-secondary p-button-sm" :loading="loading"
+                <Button label="Sair" icon="pi pi-sign-out" class="p-button-secondary p-button-sm" :loading="loading"
                     @click="logout" />
             </template>
         </Menubar>

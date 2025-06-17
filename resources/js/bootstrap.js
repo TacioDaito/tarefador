@@ -1,28 +1,28 @@
-import '../css/app.css';
-import Root from './Root.vue';
-import router from './router';
-import PrimeVue from 'primevue/config';
-import Aura from '@primeuix/themes/aura';
-import 'primeicons/primeicons.css';
-
+import '../css/app.css'
+import 'primeicons/primeicons.css'
+import Root from './Root.vue'
+import router from './router'
+import PrimeVue from 'primevue/config'
+import Aura from '@primeuix/themes/aura'
+import restoreAuth from './composables/restoreAuth'
 import { createApp } from 'vue';
 
-const app = createApp(Root);
-
-app.use(router);
-
-app.use(PrimeVue, {
-    theme: {
-        preset: Aura,
-        options: {
-            prefix: 'p',
-            darkModeSelector: 'system',
-            cssLayer: false
+restoreAuth().then(() => {
+    const app = createApp(Root);
+    app.use(router);
+    app.use(PrimeVue, {
+        theme: {
+            preset: Aura,
+            options: {
+                prefix: 'p',
+                darkModeSelector: 'system',
+                cssLayer: false
+            }
         }
-    }
-});
+    });
 
-app.mount('#app');
+    app.mount('#app')
+})
 
 
 /**

@@ -1,4 +1,4 @@
-import { createMemoryHistory, createRouter } from 'vue-router'
+import { createWebHistory, createRouter } from 'vue-router'
 import clientState from './stores/clientState'
 import LoginView from './views/LoginView.vue'
 import DashboardView from './views/DashboardView.vue'
@@ -9,13 +9,15 @@ const routes = [
 ]
 
 const router = createRouter({
-    history: createMemoryHistory(),
+    history: createWebHistory(),
     routes,
 })
 
 router.beforeEach((to, from, next) => {
     if (to.meta.requiresAuth && !clientState.isAuthenticated) {
         next({ name: 'login' })
+    } else if (to.name === 'login' && clientState.isAuthenticated) {
+        next({ name: 'dashboard' })
     } else {
         next()
     }

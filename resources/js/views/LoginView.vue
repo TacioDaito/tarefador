@@ -29,7 +29,7 @@ const onSubmit = async () => {
           </FloatLabel>
           <FloatLabel variant="on" class="mb-6 mt-6">
             <Password id="password" v-model="password" inputId="password" toggleMask :feedback="false" fluid required />
-            <label for="password">Password</label>
+            <label for="password">Senha</label>
           </FloatLabel>
           <Button label="Login" type="submit" fluid :loading="loading" />
         </form>

@@ -20,6 +20,9 @@ use App\Http\Controllers\TaskController;
 Route::post('/login', [AuthController::class, 'login']);
 
 Route::middleware(['auth:sanctum'])->group(function () {
+    Route::get('/user', function () {
+        return auth()->user();
+    });
     Route::get('/logout', [AuthController::class, 'logout']);
     Route::apiResource('tasks', TaskController::class);
 });

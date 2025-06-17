@@ -10,7 +10,6 @@ const logout = async () => {
         router.push({ name: 'login' })
         clientState.user = null
         clientState.isAuthenticated = false
-        clientState.message = 'Logout successful'
     } catch (error) {
 
     } finally {
@@ -21,7 +20,6 @@ const logout = async () => {
 export default function logoutAction() {
     return {
         loading: computed(() => clientState.loading),
-        message: computed(() => clientState.message),
         logout,
     }
 }
