@@ -48,19 +48,29 @@ class TaskController extends Controller
      */
     public function update(UpdateTaskRequest $request, Task $task)
     {
-        $this->authorize('update', $task);
+        $this->authorize('modify', $task);
 
         $task = $this->taskService->updateTask($task, $request->validated());
 
         return jsonResponse(['task' => $task]);
     }
 
+    public function updateUsers(UpdateTaskRequest $request, Task $task)
+    {
+        $task = $this->taskService->updateTaskUsers($task, $request->validated());
+
+        if ($task === false) {
+            return jsonResponse(['message' => 'No users updated'], 204);
+        }
+
+        return jsonResponse(['task' => $task]);
+    }
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(Task $task)
     {
-        $this->authorize('delete', $task);
+        $this->authorize('modify', $task);
 
         $task->delete();
 

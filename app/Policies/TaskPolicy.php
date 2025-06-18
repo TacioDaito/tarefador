@@ -6,15 +6,9 @@ use App\Models\User;
 
 class TaskPolicy
 {
-    public function update(User $user, Task $task)
+    public function modify(User $user, Task $task)
     {
-        // return $task->users->contains($user)
-        // || $user->id === $task->created_by;
-        return true;
-    }
-
-    public function delete(User $user, Task $task)
-    {
-        return $user->id === $task->created_by;
+        return $user->id === $task->created_by
+        || $user->isAdmin();
     }
 }

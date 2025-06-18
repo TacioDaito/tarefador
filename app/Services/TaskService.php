@@ -3,6 +3,7 @@ namespace App\Services;
 
 use App\Models\Task;
 use App\Models\User;
+use Exception;
 use Illuminate\Database\Eloquent\Collection;
 
 class TaskService
@@ -19,9 +20,7 @@ class TaskService
     {
         $task = Task::create($validatedData + ['created_by' => $creatorUser->id]);
 
-        if (isset($validatedData['users'])) {
-            $userIds = array_column($validatedData['users'], 'id');
-            $task->users()->sync($userIds);
+            if ($this->updateTaskUsers($task, $validatedData)) {
             $task->load('users');
         }
 
@@ -30,17 +29,12 @@ class TaskService
 
     public function updateTask(Task $task, array $validatedData): Task
     {
-        if (isset($validatedData['completed'])) {
-            $task->completed_at = $validatedData['completed'] ? now() : null;
+        if ($this->updateTaskUsers($task, $validatedData)) {
+            unset($validatedData['users']);
         }
 
-        if (array_key_exists('users', $validatedData)) {
-            $userIds = collect($validatedData['users'])->map(function ($user) {
-                return is_array($user) ? $user['id'] : $user;
-            })->all();
-            $userIds = array_column($validatedData['users'], 'id');
-            $task->users()->sync($userIds);
-            unset($validatedData['users']);
+        if (isset($validatedData['completed'])) {
+            $task->completed_at = $validatedData['completed'] ? now() : null;
         }
 
         $task->update($validatedData);
@@ -48,4 +42,17 @@ class TaskService
 
         return $task;
     }
+
+    public function updateTaskUsers(Task $task, array $validatedData): Task|bool
+    {
+        if (array_key_exists('users', $validatedData)) {
+            $userIds = array_column($validatedData['users'], 'id');
+            $task->users()->sync($userIds);
+            return $task;
+        }
+        else {
+            return false;
+        }
+    }
+
 }

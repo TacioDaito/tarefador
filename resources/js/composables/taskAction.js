@@ -38,6 +38,15 @@ export default function taskAction(emit) {
         }
     }
 
+    const editTaskUsers = async (task) => {
+        try {
+            const response = await axios.put(`/api/tasks/${task.id}/users`, toRaw(task))
+            emit('refreshTasks')
+        } catch (error) {
+            console.error('Erro:', error)
+        }
+    }
+
     const deleteTask = async (task) => {
         try {
             await axios.delete(`/api/tasks/${task.id}`)
@@ -53,9 +62,9 @@ export default function taskAction(emit) {
         if (!task.users.some(u => u.id === clientState.user.id)) {
             const updatedUsers = [
                 ...task.users,
-                { id: clientState.user.id, name: clientState.user.name }
+                { id: clientState.user.id }
             ]
-            editTask({ ...task, users: updatedUsers })
+            editTaskUsers({ ...task, users: updatedUsers })
         }
     }
 
@@ -63,7 +72,7 @@ export default function taskAction(emit) {
         if (!clientState.user) return
 
         const updatedUsers = task.users.filter(u => u.id !== clientState.user.id)
-        editTask({ ...task, users: updatedUsers })
+        editTaskUsers({ ...task, users: updatedUsers })
     }
 
     return {
