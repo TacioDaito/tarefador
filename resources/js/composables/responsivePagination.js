@@ -5,7 +5,6 @@ export default function responsivePagination(itemsRef) {
     const rows = ref()
 
     function updateRows() {
-        const width = window.innerWidth
         const height = window.innerHeight
         if (height < 600) {
             rows.value = 1

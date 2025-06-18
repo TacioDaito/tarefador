@@ -5,7 +5,6 @@ import Message from 'primevue/message'
 import Paginator from 'primevue/paginator'
 import Accordion from 'primevue/accordion'
 import Divider from 'primevue/divider'
-import Button from 'primevue/button'
 import Skeleton from 'primevue/skeleton'
 import NavBar from '../components/NavBar.vue'
 import TaskPanel from '../components/TaskPanel.vue'
@@ -13,12 +12,12 @@ import taskAction from '../composables/taskAction'
 import responsivePagination from '../composables/responsivePagination'
 
 const emit = defineEmits(['refreshTasks'])
-const { tasks, loading, getTasks, createTask } = taskAction(emit)
+const { tasks, loading, getFilteredTasks } = taskAction(emit)
 const { first, rows, pagedItems: pagedTasks, updateRows } = responsivePagination(tasks)
 const openPanel = ref(null)
 
 onMounted(() => {
-    getTasks()
+    getFilteredTasks()
     updateRows()
 })
 </script>
@@ -32,8 +31,7 @@ onMounted(() => {
 
             <template #title>
                 <div class="flex justify-between items-center mb-4">
-                    <h1 class="text-lg md:text-xl">Minhas Tarefas</h1>
-                    <Button label="Criar" icon="pi pi-plus" class="p-button-success" @click="createTask" />
+                    <h1 class="text-lg md:text-xl">Outras Tarefas</h1>
                 </div>
                 <Divider/>
             </template>
@@ -50,7 +48,7 @@ onMounted(() => {
                             :task="task"
                             :value="task.id"
                             :openPanel="openPanel"
-                            @refreshTasks="getTasks"
+                            @refreshTasks="getFilteredTasks"
                         />
                     </Accordion>
                 </div>

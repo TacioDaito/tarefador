@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Task\StoreTaskRequest;
 use App\Http\Requests\Task\UpdateTaskRequest;
+use App\Http\Requests\Task\GetTaskRequest;
 use App\Services\TaskService;
 use App\Models\Task;
 
@@ -21,6 +22,13 @@ class TaskController extends Controller
     public function index()
     {
         $tasks = $this->taskService->getUserTasks(auth()->user());
+
+        return jsonResponse(['tasks' => $tasks]);
+    }
+
+    public function filteredIndex(GetTaskRequest $request)
+    {
+        $tasks = $this->taskService->getFilteredTasks($request->validated());
 
         return jsonResponse(['tasks' => $tasks]);
     }

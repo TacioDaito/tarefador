@@ -34,10 +34,6 @@ const isOwner = computed(() => {
     return clientState.user && props.task.created_by === clientState.user.id
 })
 
-const isAdmin = computed(() => {
-    return clientState.user.role === 'admin'
-})
-
 </script>
 
 <template>
@@ -103,16 +99,16 @@ const isAdmin = computed(() => {
 
                 <div class="flex justify-between mt-6">
                     <div class="flex gap-2">
-                        <Button v-if="isOwner || isAdmin && !isEditing" label="Editar" @click="startEdit"
+                        <Button v-if="isOwner || clientState.isAdmin && !isEditing" label="Editar" @click="startEdit"
                             class="p-button-secondary p-button-sm" icon="pi pi-pencil" />
-                        <template v-else-if="isOwner || isAdmin && isEditing">
+                        <template v-else-if="isOwner || clientState.isAdmin && isEditing">
                             <Button label="Salvar" @click="editTask(task)" :disabled="!task.title"
                                 class="p-button-Info p-button-sm" icon="pi pi-save" />
                             <Button label="Cancelar" @click="cancelEdit" class="p-button-secondary p-button-sm"
                                 icon="pi pi-times" />
                         </template>
                     </div>
-                    <Button v-if="isOwner || isAdmin && !isEditing" label="Deletar" @click="deleteTask(task)"
+                    <Button v-if="isOwner || clientState.isAdmin && !isEditing" label="Deletar" @click="deleteTask(task)"
                         class="p-button-danger p-button-sm" icon="pi pi-trash" />
                 </div>
 
