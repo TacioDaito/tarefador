@@ -1,5 +1,5 @@
 <script setup>
-import { defineProps, defineEmits, ref } from 'vue'
+import { defineProps, defineEmits, ref, watch } from 'vue'
 import AccordionPanel from 'primevue/accordionpanel'
 import AccordionHeader from 'primevue/accordionheader'
 import AccordionContent from 'primevue/accordioncontent'
@@ -27,16 +27,23 @@ const props = defineProps({
 
 const emit = defineEmits(['refreshTasks'])
 const { isEditing, startEdit, cancelEdit } = taskPanelHelper(props, emit)
-const { editTask, deleteTask } = taskAction(emit)
+const { editTask, deleteTask, handleAssign, handleUnassign } = taskAction(emit)
+
+const isAssigned = ref(false)
 
 
-const hasParticipated = ref(false)
-function handleParticipar() {
-    hasParticipated.value = true
-}
-function handleUnparticipar() {
-    hasParticipated.value = false
-}
+
+watch(
+    () => [props.task.users, clientState.user],
+    () => {
+        if (clientState.user) {
+            isAssigned.value = props.task.users.some(u => u.id === clientState.user.id)
+        } else {
+            isAssigned.value = false
+        }
+    },
+    { immediate: true, deep: true }
+)
 </script>
 
 <template>
@@ -79,25 +86,23 @@ function handleUnparticipar() {
                 </FloatLabel>
 
                 <Fieldset legend="Participantes" class="text-xs font-bold" :toggleable="false">
-                    <template v-if="!hasParticipated">
-                        <Chip label="Participar" class="cursor-pointer" @click="handleParticipar" style="background-color: darkcyan"/>
+                    <template v-if="!isAssigned">
+                        <Button label="Participar" class="p-button-sm" @click="handleAssign(task)" />
                     </template>
                     <template v-else>
-                        <Chip class="cursor-pointer pr-2" @click="handleUnparticipar" style="background-color: darkred">
-                            <span class="flex items-center">
-                                <span>{{ clientState.user?.name || 'Você' }}</span>
-                                <i class="pi pi-times ml-2 text-xs" />
-                            </span>
-                        </Chip>
+                        <Button label="Abandonar" class="p-button-sm p-button-warn" @click="handleUnassign(task)" />
                     </template>
-                    <span v-if="task.users.length" class="space-x-1 text-sm">
+                    <span v-if="task.users.length" class="ml-2 text-sm">
                         <Chip v-for="user in task.users" :key="user.id">
                             {{ user.name }}
                         </Chip>
                     </span>
+                    <span v-else class="text-xs ml-2 text-gray-500">
+                        Nenhum participante
+                    </span>
                 </Fieldset>
 
-                <div class="flex justify-between mt-2">
+                <div class="flex justify-between mt-6">
                     <div class="flex gap-2">
                         <Button v-if="!isEditing" label="Editar" @click="startEdit"
                             class="p-button-secondary p-button-sm" icon="pi pi-pencil" />

@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { ref, toRaw } from 'vue'
+import clientState from '../stores/clientState'
 
 export default function taskAction(emit) {
 
@@ -46,12 +47,33 @@ export default function taskAction(emit) {
         }
     }
 
+    function handleAssign(task) {
+        if (!clientState.user) return
+
+        if (!task.users.some(u => u.id === clientState.user.id)) {
+            const updatedUsers = [
+                ...task.users,
+                { id: clientState.user.id, name: clientState.user.name }
+            ]
+            editTask({ ...task, users: updatedUsers })
+        }
+    }
+
+    function handleUnassign(task) {
+        if (!clientState.user) return
+
+        const updatedUsers = task.users.filter(u => u.id !== clientState.user.id)
+        editTask({ ...task, users: updatedUsers })
+    }
+
     return {
         tasks,
         getTasks,
         createTask,
         editTask,
-        deleteTask
+        deleteTask,
+        handleAssign,
+        handleUnassign
     }
 }
 
