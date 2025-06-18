@@ -11,10 +11,10 @@ export default function responsivePagination(itemsRef) {
             rows.value = 1
         } else if (height < 760) {
             rows.value = 2
-        } else if (height < 920 || width < 768) {
-            rows.value = 3
+        } else if (height < 950) {
+            rows.value = 2
         } else {
-            rows.value = 4
+            rows.value = 3
         }
     }
 

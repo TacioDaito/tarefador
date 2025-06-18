@@ -42,11 +42,10 @@ class Task extends Model
 
     public function scopeAssignedOrOwnedBy($query, User $user): Builder
     {
-        return $query->where('completed', false)
-            ->where(function ($query1) use ($user) {
-                $query1->where('created_by', $user->id)
-                    ->orWhereHas('users', function ($query2) use ($user) {
-                        $query2->where('users.id', $user->id);
+        return $query->where(function ($query2) use ($user) {
+                $query2->where('created_by', $user->id)
+                    ->orWhereHas('users', function ($query3) use ($user) {
+                        $query3->where('users.id', $user->id);
                     });
             });
     }

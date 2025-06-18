@@ -9,9 +9,9 @@ import FloatLabel from 'primevue/floatlabel'
 import InputText from 'primevue/inputtext'
 import Textarea from 'primevue/textarea'
 import Fieldset from 'primevue/fieldset'
+import Checkbox from 'primevue/checkbox'
 import taskAction from '../composables/taskAction'
 import taskPanelHelper from '../composables/taskPanelHelper'
-import clientState from '../stores/clientState'
 
 const props = defineProps({
     task: {
@@ -26,24 +26,9 @@ const props = defineProps({
 })
 
 const emit = defineEmits(['refreshTasks'])
-const { isEditing, startEdit, cancelEdit } = taskPanelHelper(props, emit)
+const { isEditing, startEdit, cancelEdit, isAssigned } = taskPanelHelper(props, emit)
 const { editTask, deleteTask, handleAssign, handleUnassign } = taskAction(emit)
 
-const isAssigned = ref(false)
-
-
-
-watch(
-    () => [props.task.users, clientState.user],
-    () => {
-        if (clientState.user) {
-            isAssigned.value = props.task.users.some(u => u.id === clientState.user.id)
-        } else {
-            isAssigned.value = false
-        }
-    },
-    { immediate: true, deep: true }
-)
 </script>
 
 <template>
@@ -73,7 +58,6 @@ watch(
 
         <AccordionContent>
             <div class="pt-4">
-
                 <FloatLabel variant="on" class="mb-6">
                     <InputText id="title" v-model="task.title" class="w-full" :readonly="!isEditing" />
                     <label for="title">Título</label>
@@ -102,12 +86,17 @@ watch(
                     </span>
                 </Fieldset>
 
+                <div class="my-8 flex items-center">
+                    <Checkbox v-model="task.completed" :binary="true" inputId="completed" :disabled="!isEditing"/>
+                    <label for="completed" class="ml-2">Completada</label>
+                </div>
+
                 <div class="flex justify-between mt-6">
                     <div class="flex gap-2">
                         <Button v-if="!isEditing" label="Editar" @click="startEdit"
                             class="p-button-secondary p-button-sm" icon="pi pi-pencil" />
                         <template v-else>
-                            <Button label="Salvar" @click="editTask(task)" :disabled="!task.title || !task.description"
+                            <Button label="Salvar" @click="editTask(task)" :disabled="!task.title"
                                 class="p-button-Info p-button-sm" icon="pi pi-save" />
                             <Button label="Cancelar" @click="cancelEdit" class="p-button-secondary p-button-sm"
                                 icon="pi pi-times" />
