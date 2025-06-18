@@ -40,33 +40,28 @@ class Task extends Model
         return $this->belongsTo(User::class, 'created_by');
     }
 
-    public function scopeAssignedOrOwnedBy($query, User $user): Builder
+    public function scopeAssignedOrOwnedByUser($query, $userId): Builder
     {
-        return $query->where(function ($query2) use ($user) {
-            $query2->where('created_by', $user->id)
-                ->orWhereHas('users', function ($query3) use ($user) {
-                    $query3->where('users.id', $user->id);
+        return $query->where(function ($query2) use ($userId) {
+            $query2->where('created_by', $userId)
+                ->orWhereHas('users', function ($query3) use ($userId) {
+                    $query3->where('users.id', $userId);
                 });
         });
     }
 
-    public function scopeCompleted($query, $completed = true)
+    public function scopeCompleted($query, $completed = true): Builder
     {
         return $query->where('completed', $completed);
     }
 
-    public function scopeWithDescription($query, $withDescription = true)
+    public function scopeWithDescription($query, $withDescription = true): Builder
     {
         return $withDescription ? $query->whereNotNull('description') : $query->whereNull('description');
     }
 
-    public function scopeHasUsers($query, $withUsers = true)
+    public function scopeHasUsers($query, $withUsers = true): Builder
     {
         return $withUsers ? $query->whereHas('users') : $query->whereDoesntHave('users');
-    }
-
-    public function scopeOrderByCreatedAt($query, $orderByCreatedAt = true)
-    {
-        return $orderByCreatedAt ? $query->orderBy('created_at') : $query->orderByDesc('created_at');
     }
 }

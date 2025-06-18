@@ -1,30 +1,17 @@
 import axios from 'axios'
 import { ref, computed, toRaw } from 'vue'
-import clientState from '../stores/clientState'
+import { clientState } from '../stores/clientStateStore'
 
 export default function taskAction(emit) {
 
     const tasks = ref([])
 
-    const getTasks = async () => {
+    const getTasks = async (params = []) => {
         clientState.loading = true
         try {
-            const response = await axios.get('/api/tasks')
-            tasks.value = response.data.tasks
-        } catch (error) {
-            tasks.value = []
-            clientState.message = error.response?.data?.message
-        } finally {
-            clientState.loading = false
-        }
-    }
-
-    const getFilteredTasks = async (filters = []) => {
-        clientState.loading = true
-        try {
-            const response = await axios.get('/api/filteredTasks', {
-                headers: {
-                    'Filters': JSON.stringify(filters)
+            const response = await axios.get('/api/tasks', {
+                params: {
+                    ...params
                 }
             })
             tasks.value = response.data.tasks
@@ -111,7 +98,6 @@ export default function taskAction(emit) {
     return {
         tasks,
         getTasks,
-        getFilteredTasks,
         createTask,
         editTask,
         deleteTask,

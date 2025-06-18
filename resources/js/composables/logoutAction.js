@@ -1,9 +1,8 @@
 import axios from 'axios'
-import clientState from '../stores/clientState'
+import { clientState } from '../stores/clientStateStore'
 import router from '../router'
-import { computed } from 'vue'
 
-const logout = async () => {
+export default async function logout() {
     clientState.loading = true
     try {
         await axios.get('/api/logout')
@@ -14,12 +13,5 @@ const logout = async () => {
 
     } finally {
         clientState.loading = false
-    }
-}
-
-export default function logoutAction() {
-    return {
-        loading: computed(() => clientState.loading),
-        logout,
     }
 }

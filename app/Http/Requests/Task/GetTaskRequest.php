@@ -17,10 +17,7 @@ class GetTaskRequest extends FormRequest
             'completed' => 'sometimes|nullable|boolean',
             'withDescription' => 'sometimes|nullable|boolean',
             'withUsers' => 'sometimes|nullable|boolean',
-            // 'orderByCreatedAt' => 'sometimes|nullable|boolean',
-            // 'limit' => 'sometimes|nullable|array',
-            // 'limit.min' => 'integer|min:1|max:100',
-            // 'limit.max' => 'integer|min:1|max:100',
+            'assignedOrOwnedByUser' => 'sometimes|nullable|integer',
         ];
     }
 }

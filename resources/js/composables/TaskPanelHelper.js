@@ -1,5 +1,5 @@
 import { ref, watch } from 'vue'
-import clientState from '../stores/clientState'
+import { clientState } from '../stores/clientStateStore'
 
 export default function taskPanelHelper(props, emit) {
 

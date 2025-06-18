@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
+use Illuminate\Http\JsonResponse;
 use App\Http\Requests\Task\StoreTaskRequest;
 use App\Http\Requests\Task\UpdateTaskRequest;
 use App\Http\Requests\Task\GetTaskRequest;
@@ -19,16 +20,9 @@ class TaskController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(GetTaskRequest $request): JsonResponse
     {
-        $tasks = $this->taskService->getUserTasks(auth()->user());
-
-        return jsonResponse(['tasks' => $tasks]);
-    }
-
-    public function filteredIndex(GetTaskRequest $request)
-    {
-        $tasks = $this->taskService->getFilteredTasks($request->validated());
+        $tasks = $this->taskService->getUserTasks($request->validated());
 
         return jsonResponse(['tasks' => $tasks]);
     }
@@ -36,7 +30,7 @@ class TaskController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreTaskRequest $request)
+    public function store(StoreTaskRequest $request): JsonResponse
     {
         $task = $this->taskService->createTask($request->validated(), auth()->user());
 
@@ -46,7 +40,7 @@ class TaskController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Task $task)
+    public function show(Task $task): JsonResponse
     {
         return jsonResponse(['task' => $task->load('users')]);
     }
@@ -54,7 +48,7 @@ class TaskController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateTaskRequest $request, Task $task)
+    public function update(UpdateTaskRequest $request, Task $task): JsonResponse
     {
         $this->authorize('modify', $task);
 
@@ -63,7 +57,7 @@ class TaskController extends Controller
         return jsonResponse(['task' => $task]);
     }
 
-    public function updateUsers(UpdateTaskRequest $request, Task $task)
+    public function updateUsers(UpdateTaskRequest $request, Task $task): JsonResponse
     {
         $task = $this->taskService->updateTaskUsers($task, $request->validated());
 
@@ -76,7 +70,7 @@ class TaskController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Task $task)
+    public function destroy(Task $task): JsonResponse
     {
         $this->authorize('modify', $task);
 

@@ -26,5 +26,4 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/logout', [AuthController::class, 'logout']);
     Route::apiResource('tasks', TaskController::class);
     Route::put('/tasks/{task}/users', [TaskController::class, 'updateUsers']);
-    Route::get('/filteredTasks/', [TaskController::class, 'filteredIndex']);
 });

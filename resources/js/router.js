@@ -1,5 +1,5 @@
 import { createWebHistory, createRouter } from 'vue-router'
-import clientState from './stores/clientState'
+import { clientState } from './stores/clientStateStore'
 import LoginView from './views/LoginView.vue'
 import DashboardView from './views/DashboardView.vue'
 import TasksView from './views/TasksView.vue'

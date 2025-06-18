@@ -1,5 +1,5 @@
 import axios from 'axios'
-import clientState from '../stores/clientState'
+import { clientState } from '../stores/clientStateStore'
 import router from '../router'
 
 export default async function restoreAuth() {

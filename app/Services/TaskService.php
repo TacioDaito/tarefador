@@ -4,7 +4,6 @@ namespace App\Services;
 use App\Models\Task;
 use App\Models\User;
 use App\Services\LogService;
-use App\Http\Requests\Task\GetTaskRequest;
 use Illuminate\Database\Eloquent\Collection;
 
 class TaskService
@@ -15,26 +14,17 @@ class TaskService
         $this->logService = new LogService();
     }
 
-    public function getUserTasks($user): Collection
+    public function getUserTasks($validatedRequest)
     {
-        return Task::with('users')
-            ->assignedOrOwnedBy($user)
-            ->orderByDesc('created_at')
-            ->get();
-    }
+        $dbQuery = Task::query();
 
-    public function getFilteredTasks($validatedRequest): Collection
-    {
-        $query = Task::query();
-
-        foreach ($validatedRequest as $scope => $value) {
-            if (isset($scope)) {
-                $query->{$scope}($value);
+        foreach ($validatedRequest as $key => $value) {
+            if (method_exists(Task::class, 'scope'.ucfirst($key))) {
+                $dbQuery->{$key}($value);
+                unset($validatedRequest[$key]);
             }
         }
-        $query->limit(100)->with('users');
-
-        return $query->get();
+        return $dbQuery->get()->load('users');
     }
 
     public function createTask(array $validatedData, User $creatorUser): Task

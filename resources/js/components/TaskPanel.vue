@@ -12,7 +12,7 @@ import Fieldset from 'primevue/fieldset'
 import Checkbox from 'primevue/checkbox'
 import taskAction from '../composables/taskAction'
 import taskPanelHelper from '../composables/taskPanelHelper'
-import clientState from '../stores/clientState'
+import { clientState } from '../stores/clientStateStore'
 
 const props = defineProps({
     task: {

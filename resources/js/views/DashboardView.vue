@@ -11,6 +11,7 @@ import NavBar from '../components/NavBar.vue'
 import TaskPanel from '../components/TaskPanel.vue'
 import taskAction from '../composables/taskAction'
 import responsivePagination from '../composables/responsivePagination'
+import { clientState } from '../stores/clientStateStore'
 
 const emit = defineEmits(['refreshTasks'])
 const { tasks, loading, getTasks, createTask } = taskAction(emit)
@@ -18,7 +19,7 @@ const { first, rows, pagedItems: pagedTasks, updateRows } = responsivePagination
 const openPanel = ref(null)
 
 onMounted(() => {
-    getTasks()
+    getTasks({ assignedOrOwnedByUser: clientState.user.id })
     updateRows()
 })
 </script>
@@ -50,7 +51,7 @@ onMounted(() => {
                             :task="task"
                             :value="task.id"
                             :openPanel="openPanel"
-                            @refreshTasks="getTasks"
+                            @refreshTasks="getTasks({ assignedOrOwnedByUser: clientState.user.id })"
                         />
                     </Accordion>
                 </div>

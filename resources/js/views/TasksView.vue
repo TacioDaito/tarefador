@@ -12,12 +12,12 @@ import taskAction from '../composables/taskAction'
 import responsivePagination from '../composables/responsivePagination'
 
 const emit = defineEmits(['refreshTasks'])
-const { tasks, loading, getFilteredTasks } = taskAction(emit)
+const { tasks, loading, getTasks } = taskAction(emit)
 const { first, rows, pagedItems: pagedTasks, updateRows } = responsivePagination(tasks)
 const openPanel = ref(null)
 
 onMounted(() => {
-    getFilteredTasks()
+    getTasks()
     updateRows()
 })
 </script>
@@ -48,7 +48,7 @@ onMounted(() => {
                             :task="task"
                             :value="task.id"
                             :openPanel="openPanel"
-                            @refreshTasks="getFilteredTasks"
+                            @refreshTasks="getTasks"
                         />
                     </Accordion>
                 </div>
