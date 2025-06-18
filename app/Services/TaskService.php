@@ -11,6 +11,7 @@ class TaskService
     {
         return Task::with('users')
             ->assignedOrOwnedBy($user)
+            ->orderByDesc('created_at')
             ->get();
     }
 
@@ -34,6 +35,9 @@ class TaskService
         }
 
         if (array_key_exists('users', $validatedData)) {
+            $userIds = collect($validatedData['users'])->map(function ($user) {
+                return is_array($user) ? $user['id'] : $user;
+            })->all();
             $userIds = array_column($validatedData['users'], 'id');
             $task->users()->sync($userIds);
             unset($validatedData['users']);

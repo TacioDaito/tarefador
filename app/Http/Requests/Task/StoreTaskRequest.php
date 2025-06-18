@@ -15,9 +15,9 @@ class StoreTaskRequest extends FormRequest
     {
         return [
             'title' => 'required|string|max:255',
-            'description' => 'nullable|string|max:1000',
+            'description' => 'present|nullable|string|max:1000',
             'users' => 'sometimes|array',
-            'users.*' => 'exists:users,id',
+            'users.*.id' => 'required|exists:users,id',
         ];
     }
 }

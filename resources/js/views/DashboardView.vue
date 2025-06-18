@@ -11,20 +11,16 @@ import TaskPanel from '../components/TaskPanel.vue'
 import taskAction from '../composables/taskAction'
 import responsivePagination from '../composables/responsivePagination'
 
-const { tasks, getTasks } = taskAction()
+const emit = defineEmits(['refreshTasks'])
+const { tasks, getTasks, createTask } = taskAction(emit)
 const { first, rows, pagedItems: pagedTasks, updateRows } = responsivePagination(tasks)
-
 const openPanel = ref(null)
-
-function createTask() {
-    // Implement your create logic here (open dialog, route, etc)
-    alert('Criar tarefa!')
-}
 
 onMounted(() => {
     getTasks()
     updateRows()
 })
+
 </script>
 
 <template>
@@ -51,6 +47,7 @@ onMounted(() => {
                             :task="task"
                             :value="task.id"
                             :openPanel="openPanel"
+                            @refreshTasks="getTasks"
                         />
                     </Accordion>
                 </div>

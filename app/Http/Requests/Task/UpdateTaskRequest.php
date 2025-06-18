@@ -18,7 +18,7 @@ class UpdateTaskRequest extends FormRequest
             'description' => 'sometimes|nullable|string|max:1000',
             'completed' => 'sometimes|boolean',
             'users' => 'sometimes|array',
-            'users.*' => 'exists:users,id',
+            'users.*.id' => 'required|exists:users,id',
         ];
     }
 }

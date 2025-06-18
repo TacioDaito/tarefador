@@ -1,4 +1,5 @@
 <script setup>
+import { defineProps, defineEmits, ref } from 'vue'
 import AccordionPanel from 'primevue/accordionpanel'
 import AccordionHeader from 'primevue/accordionheader'
 import AccordionContent from 'primevue/accordioncontent'
@@ -8,9 +9,9 @@ import FloatLabel from 'primevue/floatlabel'
 import InputText from 'primevue/inputtext'
 import Textarea from 'primevue/textarea'
 import Fieldset from 'primevue/fieldset'
-import { defineProps, toRefs } from 'vue'
 import taskAction from '../composables/taskAction'
-import { taskPanelHelper } from '../composables/TaskPanelHelper'
+import taskPanelHelper from '../composables/taskPanelHelper'
+import clientState from '../stores/clientState'
 
 const props = defineProps({
     task: {
@@ -24,11 +25,18 @@ const props = defineProps({
     }
 })
 
-const { editTask, deleteTask } = taskAction()
-const { editTitle, editDescription, isEditing, startEdit, cancelEdit, watchPanel } = taskPanelHelper(props.task, toRefs(props).openPanel)
+const emit = defineEmits(['refreshTasks'])
+const { isEditing, startEdit, cancelEdit } = taskPanelHelper(props, emit)
+const { editTask, deleteTask } = taskAction(emit)
 
-watchPanel()
 
+const hasParticipated = ref(false)
+function handleParticipar() {
+    hasParticipated.value = true
+}
+function handleUnparticipar() {
+    hasParticipated.value = false
+}
 </script>
 
 <template>
@@ -60,38 +68,48 @@ watchPanel()
             <div class="pt-4">
 
                 <FloatLabel variant="on" class="mb-6">
-                    <InputText id="title" v-model="editTitle" class="w-full" :readonly="!isEditing" />
+                    <InputText id="title" v-model="task.title" class="w-full" :readonly="!isEditing" />
                     <label for="title">Título</label>
                 </FloatLabel>
 
                 <FloatLabel variant="on" class="mb-2">
-                    <Textarea id="description" v-model="editDescription" class="w-full" rows="4" cols="30"
+                    <Textarea id="description" v-model="task.description" class="w-full" rows="4" cols="30"
                         style="resize: none" :readonly="!isEditing" />
                     <label for="description">Descrição</label>
                 </FloatLabel>
 
-                <Fieldset legend="Participantes" class="text-xs" :toggleable="false">
+                <Fieldset legend="Participantes" class="text-xs font-bold" :toggleable="false">
+                    <template v-if="!hasParticipated">
+                        <Chip label="Participar" class="cursor-pointer" @click="handleParticipar" style="background-color: darkcyan"/>
+                    </template>
+                    <template v-else>
+                        <Chip class="cursor-pointer pr-2" @click="handleUnparticipar" style="background-color: darkred">
+                            <span class="flex items-center">
+                                <span>{{ clientState.user?.name || 'Você' }}</span>
+                                <i class="pi pi-times ml-2 text-xs" />
+                            </span>
+                        </Chip>
+                    </template>
                     <span v-if="task.users.length" class="space-x-1 text-sm">
                         <Chip v-for="user in task.users" :key="user.id">
                             {{ user.name }}
                         </Chip>
                     </span>
-                    <span v-else class="text-xs text-gray-500">Nenhum participante</span>
                 </Fieldset>
 
                 <div class="flex justify-between mt-2">
                     <div class="flex gap-2">
-                        <Button v-if="!isEditing" label="Editar" @click="startEdit" class="p-button-secondary"
-                            icon="pi pi-pencil" />
+                        <Button v-if="!isEditing" label="Editar" @click="startEdit"
+                            class="p-button-secondary p-button-sm" icon="pi pi-pencil" />
                         <template v-else>
-                            <Button label="Salvar"
-                                @click="editTask(task.id, { title: editTitle, description: editDescription })"
-                                class="p-button-success" icon="pi pi-save" />
-                            <Button label="Cancelar" @click="cancelEdit" class="p-button-secondary"
+                            <Button label="Salvar" @click="editTask(task)" :disabled="!task.title || !task.description"
+                                class="p-button-Info p-button-sm" icon="pi pi-save" />
+                            <Button label="Cancelar" @click="cancelEdit" class="p-button-secondary p-button-sm"
                                 icon="pi pi-times" />
                         </template>
                     </div>
-                    <Button label="Deletar" @click="deleteTask(task.id)" class="p-button-danger" icon="pi pi-trash" />
+                    <Button v-if="!isEditing" label="Deletar" @click="deleteTask(task)"
+                        class="p-button-danger p-button-sm" icon="pi pi-trash" />
                 </div>
 
             </div>

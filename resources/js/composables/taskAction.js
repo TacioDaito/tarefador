@@ -1,47 +1,58 @@
 import axios from 'axios'
-import { ref } from 'vue'
-import router from '../router'
+import { ref, toRaw } from 'vue'
 
-const tasks = ref([])
+export default function taskAction(emit) {
 
-const getTasks = async () => {
-    try {
-        const response = await axios.get('/api/tasks')
-        tasks.value = response.data.tasks
-    } catch (error) {
-        tasks.value = []
+    const tasks = ref([])
+
+    const getTasks = async () => {
+        try {
+            const response = await axios.get('/api/tasks')
+            tasks.value = response.data.tasks
+        } catch (error) {
+            tasks.value = []
+        }
+    }
+
+    const createTask = async () => {
+        try {
+            const emptyTask = {
+                title: 'Nova Tarefa',
+                description: '',
+                users: []
+            }
+            const response = await axios.post('/api/tasks', emptyTask)
+            getTasks()
+        } catch (error) {
+            console.error('Error creating task:', error)
+        }
+    }
+
+    const editTask = async (task) => {
+        try {
+            const response = await axios.put(`/api/tasks/${task.id}`, toRaw(task))
+            emit('refreshTasks')
+        } catch (error) {
+            console.error('Erro:', error)
+        }
+    }
+
+    const deleteTask = async (task) => {
+        try {
+            await axios.delete(`/api/tasks/${task.id}`)
+            emit('refreshTasks')
+        } catch (error) {
+            console.error('Erro:', error)
+        }
+    }
+
+    return {
+        tasks,
+        getTasks,
+        createTask,
+        editTask,
+        deleteTask
     }
 }
 
-const createTask = async (task) => {
-    try {
-        const response = await axios.post('/api/tasks', task)
-        await getTasks()
-    } catch (error) {
-        console.error('Error creating task:', error)
-    }
-}
 
-const editTask = async (taskId, updatedFields) => {
-    try {
-        const response = await axios.put(`/api/tasks/${taskId}`, updatedFields)
-        await getTasks()
-    } catch (error) {
-        console.error('Erro:', error)
-    }
-}
-
-const deleteTask = async (taskId) => {
-    try {
-        await axios.delete(`/api/tasks/${taskId}`)
-        await getTasks()
-    } catch (error) {
-        console.error('Erro:', error)
-    }
-}
-
-
-
-export default function taskAction() {
-    return { tasks, getTasks, createTask, editTask, deleteTask }
-}
