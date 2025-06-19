@@ -12,17 +12,12 @@ import Fieldset from 'primevue/fieldset'
 import Checkbox from 'primevue/checkbox'
 import taskAction from '../composables/taskAction'
 import taskPanelHelper from '../composables/taskPanelHelper'
-import { clientState } from '../stores/clientStateStore'
+import { clientState, isAdmin } from '../stores/clientStateStore'
 
 const props = defineProps({
     task: {
         type: Object,
         required: true
-    },
-    openPanel: {
-        type: [String, Number, null],
-        required: false,
-        default: null
     }
 })
 
@@ -31,7 +26,7 @@ const { isEditing, startEdit, cancelEdit, isAssigned } = taskPanelHelper(props, 
 const { editTask, deleteTask, handleAssign, handleUnassign } = taskAction(emit)
 
 const isOwner = computed(() => {
-    return clientState.user && props.task.created_by === clientState.user.id
+    return props.task.created_by === clientState.user?.id
 })
 
 </script>
@@ -99,16 +94,16 @@ const isOwner = computed(() => {
 
                 <div class="flex justify-between mt-6">
                     <div class="flex gap-2">
-                        <Button v-if="isOwner || clientState.isAdmin && !isEditing" label="Editar" @click="startEdit"
+                        <Button v-if="(isOwner || isAdmin) && !isEditing" label="Editar" @click="startEdit"
                             class="p-button-secondary p-button-sm" icon="pi pi-pencil" />
-                        <template v-else-if="isOwner || clientState.isAdmin && isEditing">
+                        <template v-else-if="(isOwner || isAdmin) && isEditing">
                             <Button label="Salvar" @click="editTask(task)" :disabled="!task.title"
                                 class="p-button-Info p-button-sm" icon="pi pi-save" />
                             <Button label="Cancelar" @click="cancelEdit" class="p-button-secondary p-button-sm"
                                 icon="pi pi-times" />
                         </template>
                     </div>
-                    <Button v-if="isOwner || clientState.isAdmin && !isEditing" label="Deletar" @click="deleteTask(task)"
+                    <Button v-if="(isOwner || isAdmin) && !isEditing" label="Deletar" @click="deleteTask(task)"
                         class="p-button-danger p-button-sm" icon="pi pi-trash" />
                 </div>
 

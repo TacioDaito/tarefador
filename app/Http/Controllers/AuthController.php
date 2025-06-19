@@ -20,7 +20,7 @@ class AuthController extends Controller
             $request->session()->regenerate();
             return jsonResponse(['user' => auth()->user()]);
         }
-        
+
         return jsonResponse(['message' => 'Invalid credentials'], 401);
     }
 

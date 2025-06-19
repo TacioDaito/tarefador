@@ -32,11 +32,11 @@ export default function taskAction(emit) {
                 users: []
             }
             await axios.post('/api/tasks', emptyTask)
+            getTasks({ assignedOrOwnedByUser: clientState.user?.id })
         } catch (error) {
             clientState.message = error.response?.data?.message
         } finally {
             clientState.loading = false
-            emit('refreshTasks')
         }
     }
 
@@ -44,11 +44,11 @@ export default function taskAction(emit) {
         clientState.loading = true
         try {
             await axios.put(`/api/tasks/${task.id}`, toRaw(task))
+            emit('refreshTasks')
         } catch (error) {
             clientState.message = error.response?.data?.message
         } finally {
             clientState.loading = false
-            emit('refreshTasks')
         }
     }
 
@@ -56,11 +56,11 @@ export default function taskAction(emit) {
         clientState.loading = true
         try {
             await axios.put(`/api/tasks/${task.id}/users`, toRaw(task))
+            emit('refreshTasks')
         } catch (error) {
             clientState.message = error.response?.data?.message
         } finally {
             clientState.loading = false
-            emit('refreshTasks')
         }
     }
 
@@ -68,11 +68,11 @@ export default function taskAction(emit) {
         clientState.loading = true
         try {
             await axios.delete(`/api/tasks/${task.id}`)
+            emit('refreshTasks')
         } catch (error) {
             clientState.message = error.response?.data?.message
         } finally {
             clientState.loading = false
-            emit('refreshTasks')
         }
     }
 

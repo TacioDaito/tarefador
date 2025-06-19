@@ -3,12 +3,13 @@ import { clientState } from './stores/clientStateStore'
 import LoginView from './views/LoginView.vue'
 import DashboardView from './views/DashboardView.vue'
 import TasksView from './views/TasksView.vue'
+import SignUpView from './views/SignUpView.vue'
 
 const routes = [
     { path: '/', component: LoginView, name: 'login' },
+    { path: '/criarConta', component: SignUpView, name: 'signup', meta: { requiresAuth: false } },
     { path: '/dashboard', component: DashboardView, name: 'dashboard', meta: { requiresAuth: true } },
     { path: '/tarefas', component: TasksView, name: 'tasks', meta: { requiresAuth: true } },
-
 ]
 
 const router = createRouter({

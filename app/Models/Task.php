@@ -47,7 +47,7 @@ class Task extends Model
                 ->orWhereHas('users', function ($query3) use ($userId) {
                     $query3->where('users.id', $userId);
                 });
-        });
+        })->orderBy('created_at', 'desc');
     }
 
     public function scopeCompleted($query, $completed = true): Builder
@@ -60,7 +60,7 @@ class Task extends Model
         return $withDescription ? $query->whereNotNull('description') : $query->whereNull('description');
     }
 
-    public function scopeHasUsers($query, $withUsers = true): Builder
+    public function scopeWithUsers($query, $withUsers = true): Builder
     {
         return $withUsers ? $query->whereHas('users') : $query->whereDoesntHave('users');
     }

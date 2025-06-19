@@ -3,15 +3,15 @@ import { clientState } from '../stores/clientStateStore'
 import router from '../router'
 
 export default async function logout() {
-    clientState.loading = true
+    clientState.loggingOut = true
     try {
-        await axios.get('/api/logout')
-        router.push({ name: 'login' })
+        await axios.post('/api/logout')
         clientState.user = null
         clientState.isAuthenticated = false
-    } catch (error) {
-
-    } finally {
         clientState.loading = false
+        clientState.message = ''
+    } finally {
+        clientState.loggingOut = false
+        window.location.href = '/'
     }
 }

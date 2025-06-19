@@ -13,13 +13,11 @@ import taskAction from '../composables/taskAction'
 import responsivePagination from '../composables/responsivePagination'
 import { clientState } from '../stores/clientStateStore'
 
-const emit = defineEmits(['refreshTasks'])
-const { tasks, loading, getTasks, createTask } = taskAction(emit)
+const { tasks, loading, getTasks, createTask } = taskAction()
 const { first, rows, pagedItems: pagedTasks, updateRows } = responsivePagination(tasks)
-const openPanel = ref(null)
 
 onMounted(() => {
-    getTasks({ assignedOrOwnedByUser: clientState.user.id })
+    getTasks({ assignedOrOwnedByUser: clientState.user?.id })
     updateRows()
 })
 </script>
@@ -36,7 +34,7 @@ onMounted(() => {
                     <h1 class="text-lg md:text-xl">Minhas Tarefas</h1>
                     <Button label="Criar" icon="pi pi-plus" class="p-button-success" @click="createTask" />
                 </div>
-                <Divider/>
+                <Divider />
             </template>
 
             <template #content>
@@ -44,15 +42,9 @@ onMounted(() => {
                     <Skeleton height="3rem" class="mb-2 fixed z-50" v-for="n in 3" :key="n" />
                 </div>
                 <div v-show="tasks.length && !loading">
-                    <Accordion v-model:value="openPanel">
-                        <TaskPanel
-                            v-for="task in pagedTasks"
-                            :key="task.id"
-                            :task="task"
-                            :value="task.id"
-                            :openPanel="openPanel"
-                            @refreshTasks="getTasks({ assignedOrOwnedByUser: clientState.user.id })"
-                        />
+                    <Accordion value="0">
+                        <TaskPanel v-for="task in pagedTasks" :key="task.id" :task="task" :value="task.id"
+                            @refreshTasks="getTasks({ assignedOrOwnedByUser: clientState.user?.id })" />
                     </Accordion>
                 </div>
                 <Message v-show="tasks.length === 0 && !loading" severity="warn">Sem informações</Message>
@@ -62,8 +54,7 @@ onMounted(() => {
                 <Paginator :template="{
                     '768px': 'PrevPageLink CurrentPageReport NextPageLink',
                     default: 'JumpToPageInput FirstPageLink PageLinks LastPageLink CurrentPageReport',
-                }" :rows="rows" :totalRecords="tasks.length" :pageLinkSize="5" v-model:first="first"
-                    class="" />
+                }" :rows="rows" :totalRecords="tasks.length" :pageLinkSize="5" v-model:first="first" class="" />
             </template>
 
         </Card>

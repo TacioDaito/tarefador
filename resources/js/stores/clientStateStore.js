@@ -5,9 +5,10 @@ export const clientState = reactive({
     isAuthenticated: false,
     message: '',
     loading: false,
+    loggingOut: false,
 })
 
 export const isAdmin = computed(() => {
-    return clientState.user.role === 'admin'
+    return clientState.user?.role === 'admin'
 })
 

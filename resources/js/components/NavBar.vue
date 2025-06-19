@@ -30,7 +30,7 @@ const items = ref([
             <template #end>
                 <Tag value="Administrador" v-if="isAdmin" class="p-tag-info p-tag-sm mr-2" />
                 <Button label="Sair" icon="pi pi-sign-out" class="p-button-secondary p-button-sm"
-                    :loading="clientState.loading" @click="logout" />
+                    :loading="clientState.loggingOut" @click="logout" />
             </template>
         </Menubar>
     </div>

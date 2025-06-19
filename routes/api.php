@@ -1,9 +1,8 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\TaskController;
 
 /*
@@ -17,13 +16,15 @@ use App\Http\Controllers\TaskController;
 |
 */
 
-Route::post('/login', [AuthController::class, 'login']);
+Route::post('/login', [AuthController::class, 'login'])->name('login');
+Route::post('/user', [UserController::class, 'store'])->name('user.store');
 
 Route::middleware(['auth:sanctum'])->group(function () {
-    Route::get('/user', function () {
-        return auth()->user();
-    });
-    Route::get('/logout', [AuthController::class, 'logout']);
+
+    Route::apiResource('user', UserController::class)->only(['index', 'update', 'destroy']);
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
     Route::apiResource('tasks', TaskController::class);
     Route::put('/tasks/{task}/users', [TaskController::class, 'updateUsers']);
+
 });

@@ -1,17 +1,22 @@
-import { computed } from 'vue'
+import { ref, computed, unref } from 'vue'
 import axios from 'axios'
 import { clientState } from '../stores/clientStateStore'
 import router from '../router'
 
-export default function loginUser() {
-    const login = async (email, password) => {
+export default function loginAction(emailRef = null, passwordRef = null) {
+    const email = emailRef ?? ref('')
+    const password = passwordRef ?? ref('')
+
+    const login = async () => {
         clientState.loading = true
         try {
             await axios.get('/sanctum/csrf-cookie')
-            const response = await axios.post('/api/login', { email, password })
+            const response = await axios.post('/api/login', {
+                email: unref(email),
+                password: unref(password)
+            })
             clientState.user = response.data.user
             clientState.isAuthenticated = true
-            clientState.message = 'Login successful!'
             router.push({ name: 'dashboard' })
         } catch (error) {
             clientState.user = null
@@ -24,6 +29,8 @@ export default function loginUser() {
     }
 
     return {
+        email,
+        password,
         loading: computed(() => clientState.loading),
         message: computed(() => clientState.message),
         login

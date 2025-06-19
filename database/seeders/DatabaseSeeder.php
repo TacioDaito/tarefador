@@ -17,11 +17,12 @@ class DatabaseSeeder extends Seeder
 
         $tasks = Task::factory()->count(10)->make()->each(function ($task) use ($users) {
             $task->created_by = $users->random()->id;
+            $task->completed = rand(0, 1) == 1;
             $task->save();
         });
 
         foreach ($tasks as $task) {
-            $task->users()->attach($users->random(rand(1, 3))->pluck('id')->toArray());
+            $task->users()->attach($users->random(rand(0, 3))->pluck('id')->toArray());
         }
     }
 }

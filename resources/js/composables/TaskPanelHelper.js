@@ -16,19 +16,10 @@ export default function taskPanelHelper(props, emit) {
     }
 
     watch(
-        () => props.openPanel,
-        (newVal) => {
-            if (newVal !== props.task.id && isEditing.value) {
-                cancelEdit()
-            }
-        }
-    )
-
-    watch(
         () => props.task,
         () => {
             if (isEditing.value) {
-                cancelEdit()
+                isEditing.value = false
             }
         }
     )
