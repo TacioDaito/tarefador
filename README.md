@@ -96,16 +96,16 @@ Acesse [http://localhost:8000](http://localhost:8000) para utilizar a aplicaçã
 As escolhas de ferramentas em sua grande maioria foram feitas para atender os requisitos especificados, com exceção de alguns pacotes JavaScript:
 
 - PrimeVue:
-    Essa biblioteca de componentes Vue possui uma vasta gama de componentes próprios para o desenvolvimento rápido de novas aplicações, e por isso foi escolhida. A intenção foi agilizar o desenvolvimento sem comprometer a responsividade da aplicação à experiência do usuário. Apesar de ser bem útil, ainda não se tem uma comunidade grande utilizando essa biblioteca, o que acabou gerando alguns contratempos.
+Essa biblioteca de componentes Vue possui uma vasta gama de componentes próprios para o desenvolvimento rápido de novas aplicações, e por isso foi escolhida. A intenção foi agilizar o desenvolvimento sem comprometer a responsividade da aplicação à experiência do usuário. Apesar de ser bem útil, ainda não se tem uma comunidade grande utilizando essa biblioteca, o que acabou gerando alguns contratempos.
 
 - Vue-router:
-    Foi usado para agilizar o controle do fluxo entre views e deixá-lo mais claro. O seu uso é bem direto e objetivo.
+Foi usado para agilizar o controle do fluxo entre views e deixá-lo mais claro. O seu uso é bem direto e objetivo.
 
 - Armazens de estado:
-    Não foram utilizados pacotes como o pinia para armazenamento, pois o escopo do projeto não foi grande o suficiente para justificar o seu uso. Foi utilizado um simples arquivo de estado de cliente apenas para controlar certas lógicas entre views.
+Não foram utilizados pacotes como o pinia para armazenamento, pois o escopo do projeto não foi grande o suficiente para justificar o seu uso. Foi utilizado um simples arquivo de estado de cliente apenas para controlar certas lógicas entre views.
 
 - Laravel Sanctum SPA Auth:
-    Para a autenticação no back-end, foi escolhido o Laravel Sanctum. Conforme a sugestão da documentação, também foi escolhida a autenticação com cookies através da rota `sanctum/csrf-cookie`. A documentação do Laravel sugere isso para aplicações SPA utilizadas em um domínio específico.
+Para a autenticação no back-end, foi escolhido o Laravel Sanctum. Conforme a sugestão da documentação, também foi escolhida a autenticação com cookies através da rota `sanctum/csrf-cookie`. A documentação do Laravel sugere isso para aplicações SPA utilizadas em um domínio específico.
 
 ---
 
