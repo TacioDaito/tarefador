@@ -123,6 +123,16 @@ Além disso, foi introduzido um erro onde, ao entrar em uma conta, sair e depois
 
 ---
 
+## Documentação API
+
+Foi gerada uma documentação através do pacote PHP para Laravel Scribe. Nela são detalhadas (em inglês) os pontos da API do back-end. Os testes dentro dessa documentação não funcionam, pois não foram configurados, mas a informação ainda é válida.
+
+Para ver essa documentação, inicie o servidor e acesse [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
+
+Mais informações: [https://scribe.knuckles.wtf/laravel/](https://scribe.knuckles.wtf/laravel/)
+
+---
+
 Para mais detalhes, consulte a documentação dos frameworks utilizados:  
 - [Laravel](https://laravel.com/docs/10.x)  
 - [Vue.js](https://vuejs.org/)  
