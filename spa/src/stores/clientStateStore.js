@@ -11,4 +11,3 @@ export const clientState = reactive({
 export const isAdmin = computed(() => {
     return clientState.user?.role === 'admin'
 })
-

@@ -1,9 +1,9 @@
 import { createWebHistory, createRouter } from 'vue-router'
-import { clientState } from './stores/clientStateStore'
-import LoginView from './views/LoginView.vue'
-import DashboardView from './views/DashboardView.vue'
-import TasksView from './views/TasksView.vue'
-import SignUpView from './views/SignUpView.vue'
+import { clientState } from '../stores/clientStateStore'
+import LoginView from '../views/LoginView.vue'
+import DashboardView from '../views/DashboardView.vue'
+import TasksView from '../views/TasksView.vue'
+import SignUpView from '../views/SignUpView.vue'
 
 const routes = [
     { path: '/', component: LoginView, name: 'login' },
