@@ -1,6 +1,13 @@
 # Tarefador
 
-Tarefador é uma aplicação web desenvolvida em Laravel e Vue.js para gerenciamento de tarefas colaborativas. Usuários podem criar, editar, atribuir participantes e acompanhar o progresso de tarefas em tempo real, com autenticação e controle de permissões.
+Tarefador é uma aplicação web para gerenciamento de tarefas colaborativas. Usuários podem criar, editar, atribuir participantes e acompanhar o progresso de tarefas em tempo real, com autenticação e controle de permissões.
+
+## Arquitetura
+
+O projeto é dividido em duas partes independentes:
+
+- **Backend API** (Laravel) - na raiz do repositório
+- **Frontend SPA** (Vue 3 + PrimeVue) - no diretório `spa/`
 
 ## Funcionalidades
 
@@ -13,128 +20,108 @@ Tarefador é uma aplicação web desenvolvida em Laravel e Vue.js para gerenciam
 
 ## Requisitos
 
-- PHP >= 8.1 | Laravel >= 10.x | Vue >= 3.x
-- Axios >= 1.x | Vite >= 6.x | Tailwind CSS >= 4.x
-- PrimeVue >= 4.x | PrimeUIX >= 1.x | PrimeIcons
-- Vue-router | Composer | Node.js e npm
-- MySQL ou MariaDB (com XAMPP opcionalmente)
+- PHP >= 8.1 | Laravel >= 10.x
+- Composer
+- Node.js e npm
+- MySQL ou MariaDB
 - MongoDB
 
-## Instalação
+## Instalação (Backend)
 
-1. **Clone o repositório:**
-   ```sh
-   git clone https://github.com/TacioDaito/tarefador.git
-   cd tarefador
-   ```
+```sh
+git clone https://github.com/TacioDaito/tarefador.git
+cd tarefador
+composer install
+cp .env.example .env
+php artisan key:generate
+```
 
-2. **Instale as dependências do backend:**
-   ```sh
-   composer install
-   ```
+Configure o banco de dados no arquivo `.env`:
 
-3. **Instale as dependências do frontend:**
-   ```sh
-   npm install
-   ```
+```
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=laravel
+DB_USERNAME=root
+DB_PASSWORD=
 
-4. **Configure o arquivo `.env`:**
-   - Copie o arquivo `.env.example` para `.env`:
-     ```sh
-     cp .env.example .env
-     ```
-   - Edite as variáveis de ambiente conforme seu ambiente (banco de dados, MongoDB, etc).
+MONGODB_URI="mongodb://localhost:27017"
+MONGODB_DATABASE="laravel"
 
-5. **Gere a chave da aplicação:**
-   ```sh
-   php artisan key:generate
-   ```
+SANCTUM_STATEFUL_DOMAINS=localhost:8000,127.0.0.1:8000,localhost:5173,127.0.0.1:5173
+```
 
-6. **Instale e configure os bancos de dados:**
-    - MySQL:
-        - [Recomendado] Baixe e instale o XAMPP com a opção MySQL.
-    - MongoDB:
-        - Baixe e instale o MongoDB Compass Community Server.
-        - Crie uma conexão, um banco de dados com o nome `laravel` e uma coleção com o nome `action_logs`.
-        - Baixe a extensão PHP para MongoDB correta neste endereço: [https://github.com/mongodb/mongo-php-driver/releases/](https://github.com/mongodb/mongo-php-driver/releases/).
-        - Mova a extensão para a pasta `\ext` do PHP.
-        - Abra o `php.ini` dentro da pasta do PHP e insira o nome da extensão na secção `Dynamic Extensions`.
-        - Caso deseje, alterar os endereços e configurações de acordo com o seguinte guia: [https://laravel.com/docs/11.x/mongodb](https://laravel.com/docs/11.x/mongodb)
+Execute as migrações e seeders:
 
-7. **Inicie os bancos de dados:**
-    - Caso esteja utilizando o MySQL do XAMPP (recomendado localmente), inicie o XAMPP e o seu modulo MySQL.
-    - Inicie o MongoDB Compass e a sua conexão.
+```sh
+php artisan migrate --seed
+```
 
-8. **Execute as migrações do banco de dados relacional e rode o seeder:**
-   ```sh
-   php artisan migrate --seed
-   ```
-   - Todos os usuários criados pelo seeder tem senha `password`.
+Inicie o servidor da API:
 
-9. **Compile os assets do frontend:**
-   ```sh
-   npm run build
-   ```
-   Ou para desenvolvimento:
-   ```sh
-   npm run dev
-   ```
+```sh
+php artisan serve
+```
 
-10. **Inicie o servidor de desenvolvimento Laravel:**
-   ```sh
-   php artisan serve
-   ```
+A API estara disponivel em http://localhost:8000.
+
+## Instalação (Frontend)
+
+```sh
+cd spa
+npm install
+```
+
+Inicie o servidor de desenvolvimento:
+
+```sh
+npm run dev
+```
+
+O frontend estara disponivel em http://localhost:5173.
+
+Para build de producao:
+
+```sh
+npm run build
+```
 
 ## Uso
 
-Acesse [http://localhost:8000](http://localhost:8000) para utilizar a aplicação.
+Acesse [http://localhost:5173](http://localhost:5173) para utilizar a aplicacao.
+O backend deve estar rodando em [http://localhost:8000](http://localhost:8000) simultaneamente.
 
 ---
 
 ## Design
 
-As escolhas de ferramentas em sua grande maioria foram feitas para atender os requisitos especificados, com exceção de alguns pacotes JavaScript:
+As escolhas de ferramentas em sua grande maioria foram feitas para atender os requisitos especificados, com excecao de alguns pacotes JavaScript:
 
-- PrimeVue:
-Essa biblioteca de componentes Vue possui uma vasta gama de componentes próprios para o desenvolvimento rápido de novas aplicações, e por isso foi escolhida. A intenção foi agilizar o desenvolvimento sem comprometer a responsividade da aplicação à experiência do usuário. Apesar de ser bem útil, ainda não se tem uma comunidade grande utilizando essa biblioteca, o que acabou gerando alguns contratempos.
+- **PrimeVue**: Biblioteca de componentes Vue com vasta gama de componentes proprios para o desenvolvimento rapido de novas aplicacoes. A intencao foi agilizar o desenvolvimento sem comprometer a responsividade da aplicacao a experiencia do usuario.
 
-- Vue-router:
-Foi usado para agilizar o controle do fluxo entre views e deixá-lo mais claro. O seu uso é bem direto e objetivo.
+- **Vue-router**: Usado para agilizar o controle do fluxo entre views.
 
-- Armazens de estado:
-Não foram utilizados pacotes como o pinia para armazenamento, pois o escopo do projeto não foi grande o suficiente para justificar o seu uso. Foi utilizado um simples arquivo de estado de cliente apenas para controlar certas lógicas entre views.
-
-- Laravel Sanctum SPA Auth:
-Para a autenticação no back-end, foi escolhido o Laravel Sanctum. Conforme a sugestão da documentação, também foi escolhida a autenticação com cookies através da rota `sanctum/csrf-cookie`. A documentação do Laravel sugere isso para aplicações SPA utilizadas em um domínio específico.
+- **Laravel Sanctum SPA Auth**: Autenticacao com cookies atraves da rota `sanctum/csrf-cookie`. O frontend desacoplado se comunica com a API via CORS, com credenciais habilitadas.
 
 ---
 
-## Problemas
+## Problemas Conhecidos
 
-Além dos contratempos mencionados com o PrimeVue, também ocorreram alguns problemas no desenvolvimento do frond-end relacionados a compartilhamento de estados e props. Na intenção de tornar o código mais limpo ao separar a lógica dos componentes de sua estrutura, foi necessário utilizar algumas soluções para fazer com que essa lógica se comunicasse com outros componentes. Em alguns casos, foram utilizados props e emitters para isso, em outros, foram estados. Isso acabou adicionando uma certa complexidade suportável, mas indesejável ao front-end.
-
-Além disso, foi introduzido um erro onde, ao entrar em uma conta, sair e depois entrar em outra diferente, a autenticação não é feita com sucesso no back-end, mas sim no front-end. Isso faz com que as tarefas não sejam exibidas para o usuário, pois as chamadas do front-end retornam erro de autenticação. Isso provavelmente está relacionado à autenticação baseada em cookies do Laravel Sanctum. O erro desaparece ao realizar o recarregamento completo da página.
+- Ao trocar de conta (logout + login com credenciais diferentes), a autenticacao pode falhar no backend, exibindo apenas o estado autenticado no frontend sem carregar as tarefas. O erro desaparece ao recarregar a pagina.
 
 ---
 
-## Prévia
+## Documentacao da API
 
-![Imagem Prévia](/preview.jpg)
+A documentacao da API e gerada atraves do pacote Scribe. Acesse [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs) com o servidor rodando.
 
----
-
-## Documentação API
-
-Foi gerada uma documentação através do pacote PHP para Laravel Scribe. Nela são detalhadas (em inglês) os pontos da API do back-end. Os testes dentro dessa documentação não funcionam, pois não foram configurados, mas a informação ainda é válida.
-
-Para ver essa documentação, inicie o servidor e acesse [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
-
-Mais informações: [https://scribe.knuckles.wtf/laravel/](https://scribe.knuckles.wtf/laravel/)
+Mais informacoes: [https://scribe.knuckles.wtf/laravel/](https://scribe.knuckles.wtf/laravel/)
 
 ---
 
-Para mais detalhes, consulte a documentação dos frameworks utilizados:  
-- [Laravel](https://laravel.com/docs/10.x)  
-- [Vue.js](https://vuejs.org/)  
-- [PrimeVue](https://primevue.org/introduction/)  
+Para mais detalhes, consulte a documentacao dos frameworks utilizados:
+- [Laravel](https://laravel.com/docs/10.x)
+- [Vue.js](https://vuejs.org/)
+- [PrimeVue](https://primevue.org/introduction/)
 - [TailwindCSS](https://tailwindcss.com/)
