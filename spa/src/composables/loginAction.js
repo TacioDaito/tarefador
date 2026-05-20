@@ -10,12 +10,13 @@ export default function loginAction(emailRef = null, passwordRef = null) {
     const login = async () => {
         clientState.loading = true
         try {
-            await axios.get('/sanctum/csrf-cookie')
             const response = await axios.post('/api/login', {
                 email: unref(email),
                 password: unref(password)
             })
-            clientState.user = response.data.user
+            const { token, user } = response.data
+            localStorage.setItem('auth_token', token)
+            clientState.user = user
             clientState.isAuthenticated = true
             router.push({ name: 'dashboard' })
         } catch (error) {
