@@ -1,5 +1,5 @@
 services:
-  # --- API (PHP-FPM) ---
+  # --- API ---
   api:
     build:
       context: ./api
@@ -24,8 +24,9 @@ services:
     networks:
       - tarefador-net
 
-  # --- API (Nginx) ---
+  # --- REVERSE PROXY ---
   nginx:
+    container_name: nginx
     image: nginx:alpine
     ports:
       - "8000:8000"
@@ -37,7 +38,7 @@ services:
     networks:
       - tarefador-net
 
-  # --- SPA (built + served by Nginx) ---
+  # --- SPA ---
   spa:
     build:
       context: ./spa
@@ -49,8 +50,9 @@ services:
     networks:
       - tarefador-net
 
-  # --- MySQL ---
+  # --- MAIN DATABASE ---
   mysql:
+    container_name: mysql
     image: mysql:8.0
     ports:
       - "3306:3306"
@@ -70,8 +72,9 @@ services:
     networks:
       - tarefador-net
 
-  # --- MongoDB ---
+  # --- SECONDARY DATABASE ---
   mongodb:
+    container_name: mongodb
     image: mongo:7
     ports:
       - "27017:27017"
@@ -82,22 +85,13 @@ services:
     networks:
       - tarefador-net
 
-  # --- Redis ---
+  # --- CACHE ---
   redis:
     image: redis:alpine
     ports:
       - "6379:6379"
     volumes:
       - redis-data:/data
-    networks:
-      - tarefador-net
-
-  # --- Mailpit ---
-  mailpit:
-    image: axllent/mailpit
-    ports:
-      - "1025:1025"
-      - "8025:8025"
     networks:
       - tarefador-net
 
