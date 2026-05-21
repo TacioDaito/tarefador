@@ -7,7 +7,7 @@ services:
       - ./api:/var/www/api
     environment:
       - APP_ENV=local
-      - SPA_URL=http://localhost:5173
+      - SPA_URL=http://tarefador.localhost:5173
       - SANCTUM_STATEFUL_DOMAINS=localhost:5173
 
   # --- REVERSE PROXY ---

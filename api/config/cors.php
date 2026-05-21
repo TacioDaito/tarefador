@@ -19,7 +19,7 @@ return [
 
     'allowed_methods'          => ['*'],
 
-    'allowed_origins'          => [env('APP_URL'), 'http://localhost:5173'],
+    'allowed_origins'          => [env('APP_URL'), env('SPA_URL')],
 
     'allowed_origins_patterns' => [],
 

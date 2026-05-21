@@ -5,7 +5,7 @@ services:
       target: prod
     environment:
       - APP_ENV=prod
-      - SPA_URL=http://localhost
+      - SPA_URL=http://tarefador.localhost
 
   # --- REVERSE PROXY ---
   nginx:
