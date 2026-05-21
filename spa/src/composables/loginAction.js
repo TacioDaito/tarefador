@@ -10,8 +10,8 @@ export default function loginAction(emailRef = null, passwordRef = null) {
     const login = async () => {
         clientState.loading = true
         try {
-            await axios.get('/sanctum/csrf-cookie')
-            const response = await axios.post('/api/login', {
+            await axios.get(import.meta.env.VITE_API_URL + '/sanctum/csrf-cookie')
+            const response = await axios.post(import.meta.env.VITE_API_URL + '/login', {
                 email: unref(email),
                 password: unref(password)
             })

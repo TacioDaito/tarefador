@@ -9,7 +9,7 @@ export default function taskAction(emit) {
     const getTasks = async (params = []) => {
         clientState.loading = true
         try {
-            const response = await axios.get('/api/tasks', {
+            const response = await axios.get(import.meta.env.VITE_API_URL + '/tasks', {
                 params: {
                     ...params
                 }
@@ -31,7 +31,7 @@ export default function taskAction(emit) {
                 description: '',
                 users: []
             }
-            await axios.post('/api/tasks', emptyTask)
+            await axios.post(import.meta.env.VITE_API_URL + '/tasks', emptyTask)
             getTasks({ assignedOrOwnedByUser: clientState.user?.id })
         } catch (error) {
             clientState.message = error.response?.data?.message
@@ -43,7 +43,7 @@ export default function taskAction(emit) {
     const editTask = async (task) => {
         clientState.loading = true
         try {
-            await axios.put(`/api/tasks/${task.id}`, toRaw(task))
+            await axios.put(import.meta.env.VITE_API_URL + `/tasks/${task.id}`, toRaw(task))
             emit('refreshTasks')
         } catch (error) {
             clientState.message = error.response?.data?.message
@@ -55,7 +55,7 @@ export default function taskAction(emit) {
     const editTaskUsers = async (task) => {
         clientState.loading = true
         try {
-            await axios.put(`/api/tasks/${task.id}/users`, toRaw(task))
+            await axios.put(import.meta.env.VITE_API_URL + `/tasks/${task.id}/users`, toRaw(task))
             emit('refreshTasks')
         } catch (error) {
             clientState.message = error.response?.data?.message
@@ -67,7 +67,7 @@ export default function taskAction(emit) {
     const deleteTask = async (task) => {
         clientState.loading = true
         try {
-            await axios.delete(`/api/tasks/${task.id}`)
+            await axios.delete(import.meta.env.VITE_API_URL + `/tasks/${task.id}`)
             emit('refreshTasks')
         } catch (error) {
             clientState.message = error.response?.data?.message

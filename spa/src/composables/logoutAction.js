@@ -5,7 +5,7 @@ import router from '../router'
 export default async function logout() {
     clientState.loggingOut = true
     try {
-        await axios.post('/api/logout')
+        await axios.post(import.meta.env.VITE_API_URL + '/logout')
         clientState.user = null
         clientState.isAuthenticated = false
         clientState.loading = false

@@ -19,7 +19,7 @@ export default function signUpAction() {
         }
         loading.value = true
         try {
-            await axios.post('/api/user', {
+            await axios.post(import.meta.env.VITE_API_URL + '/user', {
                 name: name.value,
                 email: email.value,
                 password: password.value,

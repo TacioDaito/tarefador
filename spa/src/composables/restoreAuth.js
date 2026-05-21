@@ -3,7 +3,7 @@ import { clientState } from '../stores/clientStateStore'
 
 export default async function restoreAuth() {
     try {
-        const response = await axios.get('/api/user')
+        const response = await axios.get(import.meta.env.VITE_API_URL + '/user')
         clientState.user = response.data
         clientState.isAuthenticated = true
     } catch {

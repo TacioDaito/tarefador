@@ -1,4 +1,7 @@
-FROM php:8.4-fpm
+# ============================================================
+# STAGE 1: base — shared dependencies for both dev and prod
+# ============================================================
+FROM php:8.4-fpm AS base
 
 # System dependencies
 RUN apt-get update && apt-get install -y \
@@ -28,6 +31,25 @@ RUN pecl install redis && docker-php-ext-enable redis
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
 WORKDIR /var/www/api
+
+# ============================================================
+# STAGE 2: dev — live-reload friendly, relies on volume mount
+# ============================================================
+FROM base AS dev
+
+# Copy only the dev entrypoint — app source comes from docker-compose volume
+COPY docker/entrypoint.sh /usr/local/bin/docker-entrypoint.sh
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+
+EXPOSE 9000
+
+ENTRYPOINT ["docker-entrypoint.sh"]
+CMD ["php-fpm"]
+
+# ============================================================
+# STAGE 3: prod — self-contained image with built app
+# ============================================================
+FROM base AS prod
 
 # Copy composer files first for better caching
 COPY composer.json composer.lock ./

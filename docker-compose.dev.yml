@@ -1,0 +1,29 @@
+services:
+  # --- API ---
+  api:
+    build:
+      target: dev
+    volumes:
+      - ./api:/var/www/api
+    environment:
+      - APP_ENV=local
+      - SPA_URL=http://localhost:5173
+      - SANCTUM_STATEFUL_DOMAINS=localhost:5173
+
+  # --- REVERSE PROXY ---
+  nginx:
+    ports:
+      - "80:80"
+    volumes:
+      - ./api:/var/www/api
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+
+  # --- SPA ---
+  spa:
+    build:
+      target: dev
+    volumes:
+      - ./spa:/app
+      - /app/node_modules
+    ports:
+      - "5173:5173"
