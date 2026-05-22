@@ -1,0 +1,22 @@
+services:
+  # --- API ---
+  api:
+    build:
+      target: prod
+    environment:
+      - APP_ENV=prod
+      - SPA_URL=http://tarefador.localhost
+
+  # --- REVERSE PROXY ---
+  nginx:
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+
+  # --- SPA ---
+  spa:
+    build:
+      target: prod
+    expose:
+      - "80"

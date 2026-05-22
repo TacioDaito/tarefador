@@ -1,0 +1,120 @@
+services:
+  # --- API ---
+  api:
+    container_name: api
+    build:
+      context: ./api
+      dockerfile: docker/Dockerfile
+    environment:
+      - DB_HOST=mysql
+      - DB_DATABASE=laravel
+      - DB_USERNAME=laravel
+      - DB_PASSWORD=secret
+      - CACHE_DRIVER=redis
+      - SESSION_DRIVER=redis
+      - MONGODB_URI=mongodb://mongodb:27017
+      - REDIS_HOST=redis
+    depends_on:
+      mysql:
+        condition: service_healthy
+      mongodb:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "bash", "-c", "exec 3<>/dev/tcp/127.0.0.1/9000"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+    networks:
+      - tarefador-net
+
+  # --- REVERSE PROXY ---
+  nginx:
+    container_name: nginx
+    image: nginx:alpine
+    depends_on:
+      - api
+      - spa
+    networks:
+      - tarefador-net
+
+  # --- SPA ---
+  spa:
+    container_name: spa
+    build:
+      context: ./spa
+      dockerfile: docker/Dockerfile
+    depends_on:
+      api:
+        condition: service_healthy
+    networks:
+      - tarefador-net
+
+  # --- MAIN DATABASE ---
+  mysql:
+    container_name: mysql
+    image: mysql:8.0
+    expose:
+      - "3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: laravel
+      MYSQL_USER: laravel
+      MYSQL_PASSWORD: secret
+    volumes:
+      - mysql-data:/var/lib/mysql
+    healthcheck:
+      test:
+        ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-proot"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+    networks:
+      - tarefador-net
+
+  # --- SECONDARY DATABASE ---
+  mongodb:
+    container_name: mongodb
+    image: mongo:7
+    expose:
+      - "27017"
+    environment:
+      MONGO_INITDB_DATABASE: laravel
+    volumes:
+      - mongodb-data:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')", "--quiet"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+    networks:
+      - tarefador-net
+
+  # --- CACHE ---
+  redis:
+    image: redis:alpine
+    expose:
+      - "6379"
+    volumes:
+      - redis-data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+    networks:
+      - tarefador-net
+
+volumes:
+  mysql-data:
+  mongodb-data:
+  redis-data:
+
+networks:
+  tarefador-net:
+    driver: bridge
