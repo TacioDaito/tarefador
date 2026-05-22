@@ -6,7 +6,7 @@ WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm ci
 
-EXPOSE 5173
+EXPOSE 3000
 
 CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0"]
 
@@ -24,7 +24,7 @@ RUN npm run build
 # Prod stage
 FROM nginx:alpine AS prod
 
-COPY --from=build /app/dist /usr/share/nginx/html
+COPY --from=build /app/.output/public /usr/share/nginx/html
 COPY docker/nginx.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 80

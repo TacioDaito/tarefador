@@ -49,7 +49,6 @@ DB_PASSWORD=
 MONGODB_URI="mongodb://localhost:27017"
 MONGODB_DATABASE="laravel"
 
-SANCTUM_STATEFUL_DOMAINS=localhost:8000,127.0.0.1:8000,localhost:5173,127.0.0.1:5173
 ```
 
 Execute as migrações e seeders:
@@ -79,7 +78,7 @@ Inicie o servidor de desenvolvimento:
 npm run dev
 ```
 
-O frontend estara disponivel em http://localhost:5173.
+O frontend estara disponivel em http://tarefador.localhost:3000.
 
 Para build de producao:
 
@@ -89,8 +88,8 @@ npm run build
 
 ## Uso
 
-Acesse [http://localhost:5173](http://localhost:5173) para utilizar a aplicacao.
-O backend deve estar rodando em [http://localhost:8000](http://localhost:8000) simultaneamente.
+Acesse [http://tarefador.localhost:3000](http://tarefador.localhost:3000) para utilizar a aplicacao.
+O backend deve estar rodando em [http://tarefador.localhost/api](http://tarefador.localhost/api) simultaneamente.
 
 ---
 
