@@ -32,7 +32,10 @@ build-up: ## Build and start containers. Usage: `make build-up` (dev) or `make b
 up: ## Start containers. Usage: `make up` (dev) or `make up env=prod`
 	$(COMPOSE) up -d
 
-down: ## Stop and remove containers + volumes. Usage: `make down` (dev) or `make down env=prod`
+down: ## Stop and remove containers. Usage: `make down` (dev) or `make down env=prod`
+	$(COMPOSE) down
+
+down-volumes: ## Stop and remove containers + volumes. Usage: `make down` (dev) or `make down env=prod`
 	$(COMPOSE) down -v
 
 build: ## Build images only. Usage: `make build` (dev) or `make build env=prod`

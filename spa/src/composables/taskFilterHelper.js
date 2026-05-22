@@ -1,6 +1,6 @@
 import { ref, watch, toRaw } from 'vue'
 
-export default function taskFilterHelper(getTasks, updateRows) {
+export const taskFilterHelper = (getTasks, updateRows) => {
     const filterOptions = [
         { label: 'Completada', value: 'completed' },
         { label: 'Com descrição', value: 'withDescription' },

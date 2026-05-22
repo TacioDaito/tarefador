@@ -7,11 +7,11 @@ import Accordion from 'primevue/accordion'
 import Divider from 'primevue/divider'
 import Button from 'primevue/button'
 import Skeleton from 'primevue/skeleton'
-import NavBar from '../components/NavBar.vue'
-import TaskPanel from '../components/TaskPanel.vue'
-import taskAction from '../composables/taskAction'
-import responsivePagination from '../composables/responsivePagination'
-import { clientState } from '../stores/clientStateStore'
+import NavBar from '@/components/NavBar.vue'
+import TaskPanel from '@/components/TaskPanel.vue'
+import { taskAction } from '@/composables/taskAction'
+import { responsivePagination } from '@/composables/responsivePagination'
+import { clientState } from '@/stores/clientStateStore'
 
 const { tasks, loading, getTasks, createTask } = taskAction()
 const { first, rows, pagedItems: pagedTasks, updateRows } = responsivePagination(tasks)

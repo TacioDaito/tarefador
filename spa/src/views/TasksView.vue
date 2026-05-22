@@ -7,11 +7,11 @@ import Accordion from 'primevue/accordion'
 import Divider from 'primevue/divider'
 import Skeleton from 'primevue/skeleton'
 import MultiSelect from 'primevue/multiselect'
-import NavBar from '../components/NavBar.vue'
-import TaskPanel from '../components/TaskPanel.vue'
-import taskAction from '../composables/taskAction'
-import responsivePagination from '../composables/responsivePagination'
-import taskFilterHelper from '../composables/taskFilterHelper'
+import NavBar from '@/components/NavBar.vue'
+import TaskPanel from '@/components/TaskPanel.vue'
+import { taskAction } from '@/composables/taskAction'
+import { responsivePagination } from '@/composables/responsivePagination'
+import { taskFilterHelper } from '@/composables/taskFilterHelper'
 
 const emit = defineEmits(['refreshTasks'])
 const { tasks, loading, getTasks } = taskAction(emit)
@@ -37,7 +37,7 @@ onMounted(() => {
                     <h1 class="text-lg md:text-xl">Outras Tarefas</h1>
                     <MultiSelect v-model="selectedFilters" :options="filterOptions" optionLabel="label"
                         optionValue="value" display="chip" placeholder="Filtros" size="small" class="w-50 md:w-auto h-9 truncate
-                        "/>
+                        " />
                 </div>
                 <Divider />
             </template>
@@ -57,9 +57,9 @@ onMounted(() => {
 
             <template #footer>
                 <Paginator :template="{
-                    '768px': 'PrevPageLink CurrentPageReport NextPageLink',
-                    default: 'JumpToPageInput FirstPageLink PageLinks LastPageLink CurrentPageReport',
-                }" :rows="rows" :totalRecords="tasks.length" :pageLinkSize="5" v-model:first="first" class="" />
+                        '768px': 'PrevPageLink CurrentPageReport NextPageLink',
+                        default: 'JumpToPageInput FirstPageLink PageLinks LastPageLink CurrentPageReport',
+                    }" :rows="rows" :totalRecords="tasks.length" :pageLinkSize="5" v-model:first="first" class="" />
             </template>
 
         </Card>

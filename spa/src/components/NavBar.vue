@@ -4,8 +4,8 @@ import { useRouter } from 'vue-router'
 import Menubar from 'primevue/menubar'
 import Button from 'primevue/button'
 import Tag from 'primevue/tag'
-import logout from '../composables/logoutAction'
-import { clientState, isAdmin } from '../stores/clientStateStore'
+import { logout } from '@/composables/logoutAction'
+import { clientState, isAdmin } from '@/stores/clientStateStore'
 
 const router = useRouter()
 

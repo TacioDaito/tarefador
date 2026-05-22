@@ -1,8 +1,8 @@
 import { ref } from 'vue'
 import axios from 'axios'
-import loginAction from './loginAction'
+import { loginAction } from './loginAction'
 
-export default function signUpAction() {
+export const signUpAction = () => {
     const name = ref('')
     const email = ref('')
     const password = ref('')

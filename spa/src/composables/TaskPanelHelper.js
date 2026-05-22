@@ -1,7 +1,7 @@
 import { ref, watch } from 'vue'
-import { clientState } from '../stores/clientStateStore'
+import { clientState } from '@/stores/clientStateStore'
 
-export default function taskPanelHelper(props, emit) {
+export const taskPanelHelper = (props, emit) => {
 
     const isEditing = ref(false)
     const isAssigned = ref(false)

@@ -9,10 +9,10 @@ window.axios.defaults.withXSRFToken = true
 import './style.css'
 import 'primeicons/primeicons.css'
 import App from './App.vue'
-import router from './router'
+import { router } from './router'
 import PrimeVue from 'primevue/config'
 import Aura from '@primeuix/themes/aura'
-import restoreAuth from './composables/restoreAuth'
+import { restoreAuth } from '@/composables/restoreAuth'
 import { createApp } from 'vue'
 
 restoreAuth().then(() => {

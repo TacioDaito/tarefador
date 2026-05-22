@@ -1,9 +1,9 @@
 import { createWebHistory, createRouter } from 'vue-router'
-import { clientState } from '../stores/clientStateStore'
-import LoginView from '../views/LoginView.vue'
-import DashboardView from '../views/DashboardView.vue'
-import TasksView from '../views/TasksView.vue'
-import SignUpView from '../views/SignUpView.vue'
+import { clientState } from '@/stores/clientStateStore'
+import LoginView from '@/views/LoginView.vue'
+import DashboardView from '@/views/DashboardView.vue'
+import TasksView from '@/views/TasksView.vue'
+import SignUpView from '@/views/SignUpView.vue'
 
 const routes = [
     { path: '/', component: LoginView, name: 'login' },
@@ -12,19 +12,17 @@ const routes = [
     { path: '/tarefas', component: TasksView, name: 'tasks', meta: { requiresAuth: true } },
 ]
 
-const router = createRouter({
+export const router = createRouter({
     history: createWebHistory(),
     routes,
 })
 
-router.beforeEach((to, from, next) => {
+router.beforeEach((to, from) => {
     if (to.meta.requiresAuth && !clientState.isAuthenticated) {
-        next({ name: 'login' })
+        router.push({ name: 'login' })
     } else if (to.name === 'login' && clientState.isAuthenticated) {
-        next({ name: 'dashboard' })
+        router.push({ name: 'dashboard' })
     } else {
-        next()
+        return true
     }
 })
-
-export default router

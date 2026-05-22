@@ -1,5 +1,5 @@
 <script setup>
-import { defineProps, defineEmits, computed } from 'vue'
+import { computed } from 'vue'
 import AccordionPanel from 'primevue/accordionpanel'
 import AccordionHeader from 'primevue/accordionheader'
 import AccordionContent from 'primevue/accordioncontent'
@@ -10,9 +10,9 @@ import InputText from 'primevue/inputtext'
 import Textarea from 'primevue/textarea'
 import Fieldset from 'primevue/fieldset'
 import Checkbox from 'primevue/checkbox'
-import taskAction from '../composables/taskAction'
-import taskPanelHelper from '../composables/taskPanelHelper'
-import { clientState, isAdmin } from '../stores/clientStateStore'
+import { taskAction } from '@/composables/taskAction'
+import { taskPanelHelper } from '@/composables/taskPanelHelper'
+import { clientState, isAdmin } from '@/stores/clientStateStore'
 
 const props = defineProps({
     task: {

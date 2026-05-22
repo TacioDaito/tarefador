@@ -1,7 +1,7 @@
 import axios from 'axios'
-import { clientState } from '../stores/clientStateStore'
+import { clientState } from '@/stores/clientStateStore'
 
-export default async function restoreAuth() {
+export const restoreAuth = async () => {
     try {
         const response = await axios.get(import.meta.env.VITE_API_URL + '/user')
         clientState.user = response.data

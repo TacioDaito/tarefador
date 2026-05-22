@@ -1,14 +1,20 @@
 <script setup>
-import Card from 'primevue/card'
-import InputText from 'primevue/inputtext'
-import Password from 'primevue/password'
-import Button from 'primevue/button'
-import Message from 'primevue/message'
-import FloatLabel from 'primevue/floatlabel'
-import Divider from 'primevue/divider'
-import loginAction from '../composables/loginAction'
+    import { onMounted } from 'vue'
+    import Card from 'primevue/card'
+    import InputText from 'primevue/inputtext'
+    import Password from 'primevue/password'
+    import Button from 'primevue/button'
+    import Message from 'primevue/message'
+    import FloatLabel from 'primevue/floatlabel'
+    import Divider from 'primevue/divider'
+    import { loginAction } from '@/composables/loginAction'
 
-const { email, password, login, loading, message } = loginAction()
+    const { email, password, login, loading, message } = loginAction()
+
+    onMounted(() => {
+        const passwordElement = document.querySelector('input[id="password"]')
+        passwordElement.setAttribute('autocomplete', 'current-password')
+    })
 </script>
 
 <template>
@@ -18,9 +24,10 @@ const { email, password, login, loading, message } = loginAction()
                 <div class="mb-4">Login</div>
             </template>
             <template #content>
-                <form @submit.prevent="login">
+                <form @submit.prevent="login" autocomplete="on">
                     <FloatLabel variant="on">
-                        <InputText id="email" v-model="email" type="email" inputId="email" fluid required autofocus />
+                        <InputText id="email" v-model="email" type="email" inputId="email" autocomplete="username" fluid
+                            required autofocus />
                         <label for="email">Email</label>
                     </FloatLabel>
                     <FloatLabel variant="on" class="mb-6 mt-6">

@@ -5,17 +5,10 @@ import Password from 'primevue/password'
 import Button from 'primevue/button'
 import Message from 'primevue/message'
 import FloatLabel from 'primevue/floatlabel'
-import signUpAction from '../composables/signUpAction'
+import { signUpAction } from '@/composables/signUpAction'
 
-const {
-    name,
-    email,
-    password,
-    confirmPassword,
-    loading,
-    message,
-    onSubmit
-} = signUpAction()
+const { name, email, password, confirmPassword, loading, message, onSubmit }
+    = signUpAction()
 </script>
 
 <template>

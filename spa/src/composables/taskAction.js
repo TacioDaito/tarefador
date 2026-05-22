@@ -1,8 +1,8 @@
 import axios from 'axios'
 import { ref, computed, toRaw } from 'vue'
-import { clientState } from '../stores/clientStateStore'
+import { clientState } from '@/stores/clientStateStore'
 
-export default function taskAction(emit) {
+export const taskAction = (emit) => {
 
     const tasks = ref([])
 

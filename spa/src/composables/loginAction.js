@@ -1,9 +1,9 @@
 import { ref, computed, unref } from 'vue'
 import axios from 'axios'
-import { clientState } from '../stores/clientStateStore'
-import router from '../router'
+import { clientState } from '@/stores/clientStateStore'
+import { router } from '@/router'
 
-export default function loginAction(emailRef = null, passwordRef = null) {
+export const loginAction = (emailRef = null, passwordRef = null) => {
     const email = emailRef ?? ref('')
     const password = passwordRef ?? ref('')
 
