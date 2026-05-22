@@ -22,7 +22,7 @@ const props = defineProps({
 })
 
 const emit = defineEmits(['refreshTasks'])
-const { isEditing, startEdit, cancelEdit, isAssigned } = taskPanelHelper(props, emit)
+const { isEditing, startEdit, cancelEdit, isAssigned, editableTask } = taskPanelHelper(props, emit)
 const { editTask, deleteTask, handleAssign, handleUnassign } = taskAction(emit)
 
 const isOwner = computed(() => {
@@ -59,14 +59,16 @@ const isOwner = computed(() => {
         <AccordionContent>
             <div class="pt-4">
                 <FloatLabel variant="on" class="mb-6">
-                    <InputText id="title" v-model="task.title" class="w-full" :readonly="!isEditing" maxlength="100"
-                        minlength="1" />
+                    <InputText id="title" :modelValue="isEditing ? editableTask.title : task.title"
+                        @update:modelValue="val => isEditing && (editableTask.title = val)" class="w-full"
+                        :readonly="!isEditing" maxlength="100" minlength="1" />
                     <label for="title">Título</label>
                 </FloatLabel>
 
                 <FloatLabel variant="on" class="mb-2">
-                    <Textarea id="description" v-model="task.description" class="w-full" rows="4" cols="30"
-                        maxlength="1000" minlength="1" style="resize: none" :readonly="!isEditing" />
+                    <Textarea id="description" :modelValue="isEditing ? editableTask.description : task.description"
+                        @update:modelValue="val => isEditing && (editableTask.description = val)" class="w-full" rows="4"
+                        cols="30" maxlength="1000" minlength="1" style="resize: none" :readonly="!isEditing" />
                     <label for="description">Descrição</label>
                 </FloatLabel>
 
@@ -88,7 +90,9 @@ const isOwner = computed(() => {
                 </Fieldset>
 
                 <div class="my-8 flex items-center">
-                    <Checkbox v-model="task.completed" :binary="true" inputId="completed" :disabled="!isEditing" />
+                    <Checkbox :modelValue="isEditing ? editableTask.completed : task.completed"
+                        @update:modelValue="val => isEditing && (editableTask.completed = val)" :binary="true"
+                        inputId="completed" :disabled="!isEditing" />
                     <label for="completed" class="ml-2">Completada</label>
                 </div>
 
@@ -97,7 +101,7 @@ const isOwner = computed(() => {
                         <Button v-if="(isOwner || isAdmin) && !isEditing" label="Editar" @click="startEdit"
                             class="p-button-secondary p-button-sm" icon="pi pi-pencil" />
                         <template v-else-if="(isOwner || isAdmin) && isEditing">
-                            <Button label="Salvar" @click="editTask(task)" :disabled="!task.title"
+                            <Button label="Salvar" @click="editTask(editableTask)" :disabled="!editableTask.title"
                                 class="p-button-Info p-button-sm" icon="pi pi-save" />
                             <Button label="Cancelar" @click="cancelEdit" class="p-button-secondary p-button-sm"
                                 icon="pi pi-times" />

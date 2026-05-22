@@ -1,17 +1,20 @@
-import { ref, watch } from 'vue'
+import { ref, watch, toRaw } from 'vue'
 import { clientState } from '@/stores/clientStateStore'
 
 export const taskPanelHelper = (props, emit) => {
 
     const isEditing = ref(false)
     const isAssigned = ref(false)
+    const editableTask = ref(null)
 
     function startEdit() {
+        editableTask.value = JSON.parse(JSON.stringify(toRaw(props.task)))
         isEditing.value = true
     }
 
     function cancelEdit() {
         isEditing.value = false
+        editableTask.value = null
         emit('refreshTasks')
     }
 
@@ -41,5 +44,6 @@ export const taskPanelHelper = (props, emit) => {
         startEdit,
         cancelEdit,
         isAssigned,
+        editableTask,
     }
 }
