@@ -1,7 +1,8 @@
 import tailwindcss from '@tailwindcss/vite'
+import Aura from '@primevue/themes/aura'
 
 export default defineNuxtConfig({
-  ssr: false,
+  ssr: true,
 
   devServer: {
     host: '0.0.0.0',
@@ -21,7 +22,7 @@ export default defineNuxtConfig({
   primevue: {
     options: {
       theme: {
-        preset: 'Aura',
+        preset: Aura,
         options: {
           prefix: 'p',
           darkModeSelector: 'system',
