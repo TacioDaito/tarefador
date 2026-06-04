@@ -2,10 +2,265 @@ name: Endpoints
 description: ''
 endpoints:
   -
+    custom: []
+    httpMethods:
+      - GET
+    uri: sanctum/csrf-cookie
+    metadata:
+      custom: []
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Return an empty response simply to trigger the storage of the CSRF cookie in the browser.'
+      description: ''
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 404
+        content: |-
+          {
+              "message": "The route api/sanctum/csrf-cookie could not be found."
+          }
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: _ignition/health-check
+    metadata:
+      custom: []
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 404
+        content: |-
+          {
+              "message": "The route api/_ignition/health-check could not be found."
+          }
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
     httpMethods:
       - POST
-    uri: api/login
+    uri: _ignition/execute-solution
     metadata:
+      custom: []
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      solution:
+        custom: []
+        name: solution
+        description: ''
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      parameters:
+        custom: []
+        name: parameters
+        description: ''
+        required: false
+        example: null
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanBodyParameters:
+      solution: architecto
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: _ignition/update-config
+    metadata:
+      custom: []
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      theme:
+        custom: []
+        name: theme
+        description: ''
+        required: true
+        example: auto
+        type: string
+        enumValues:
+          - light
+          - dark
+          - auto
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      editor:
+        custom: []
+        name: editor
+        description: ''
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      hide_solutions:
+        custom: []
+        name: hide_solutions
+        description: ''
+        required: true
+        example: true
+        type: boolean
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanBodyParameters:
+      theme: auto
+      editor: architecto
+      hide_solutions: true
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: /
+    metadata:
+      custom: []
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 404
+        content: |-
+          {
+              "message": "The route api could not be found."
+          }
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: login
+    metadata:
+      custom: []
       groupName: Endpoints
       groupDescription: ''
       subgroup: ''
@@ -13,7 +268,7 @@ endpoints:
       title: 'Handle user login.'
       description: ''
       authenticated: false
-      custom: []
+      deprecated: false
     headers:
       Content-Type: application/json
       Accept: application/json
@@ -23,28 +278,30 @@ endpoints:
     cleanQueryParameters: []
     bodyParameters:
       email:
+        custom: []
         name: email
         description: 'Must be a valid email address.'
         required: true
-        example: qkunze@example.com
+        example: gbailey@example.net
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
-        custom: []
+        deprecated: false
       password:
+        custom: []
         name: password
         description: 'Must be at least 8 characters. Must not be greater than 30 characters.'
         required: true
-        example: 'Z5ij-e/dl4m{o,'
+        example: '+-0pBNvYgxwmi/#iw'
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
-        custom: []
+        deprecated: false
     cleanBodyParameters:
-      email: qkunze@example.com
-      password: 'Z5ij-e/dl4m{o,'
+      email: gbailey@example.net
+      password: '+-0pBNvYgxwmi/#iw'
     fileParameters: []
     responses: []
     responseFields: []
@@ -52,12 +309,13 @@ endpoints:
     controller: null
     method: null
     route: null
-    custom: []
   -
+    custom: []
     httpMethods:
       - POST
-    uri: api/user
+    uri: user
     metadata:
+      custom: []
       groupName: Endpoints
       groupDescription: ''
       subgroup: ''
@@ -65,7 +323,7 @@ endpoints:
       title: 'Store a newly created resource in storage.'
       description: ''
       authenticated: false
-      custom: []
+      deprecated: false
     headers:
       Content-Type: application/json
       Accept: application/json
@@ -75,50 +333,54 @@ endpoints:
     cleanQueryParameters: []
     bodyParameters:
       name:
+        custom: []
         name: name
         description: 'Must not be greater than 100 characters.'
         required: true
-        example: vmqeopfuudtdsufvyvddq
+        example: b
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
-        custom: []
+        deprecated: false
       email:
+        custom: []
         name: email
         description: 'Must be a valid email address. Must not be greater than 100 characters.'
         required: true
-        example: kunde.eloisa@example.com
+        example: zbailey@example.net
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
-        custom: []
+        deprecated: false
       password:
+        custom: []
         name: password
         description: 'Must be at least 8 characters. Must not be greater than 100 characters.'
         required: true
-        example: '4[*UyPJ"}6'
+        example: '-0pBNvYgxw'
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
-        custom: []
+        deprecated: false
       password_confirmation:
+        custom: []
         name: password_confirmation
         description: 'Must be at least 8 characters. Must not be greater than 100 characters.'
         required: true
-        example: hdtqtqxbajwbpilpmufin
+        example: a
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
-        custom: []
+        deprecated: false
     cleanBodyParameters:
-      name: vmqeopfuudtdsufvyvddq
-      email: kunde.eloisa@example.com
-      password: '4[*UyPJ"}6'
-      password_confirmation: hdtqtqxbajwbpilpmufin
+      name: b
+      email: zbailey@example.net
+      password: '-0pBNvYgxw'
+      password_confirmation: a
     fileParameters: []
     responses: []
     responseFields: []
@@ -126,12 +388,13 @@ endpoints:
     controller: null
     method: null
     route: null
-    custom: []
   -
+    custom: []
     httpMethods:
       - GET
-    uri: api/user
+    uri: user
     metadata:
+      custom: []
       groupName: Endpoints
       groupDescription: ''
       subgroup: ''
@@ -139,7 +402,7 @@ endpoints:
       title: 'Display a listing of the resource.'
       description: ''
       authenticated: false
-      custom: []
+      deprecated: false
     headers:
       Content-Type: application/json
       Accept: application/json
@@ -152,26 +415,30 @@ endpoints:
     fileParameters: []
     responses:
       -
-        status: 401
-        content: '{"message":"Unauthenticated."}'
+        custom: []
+        status: 404
+        content: |-
+          {
+              "message": "The route api/user could not be found."
+          }
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
           vary: Origin
         description: null
-        custom: []
     responseFields: []
     auth: []
     controller: null
     method: null
     route: null
-    custom: []
   -
+    custom: []
     httpMethods:
       - PUT
       - PATCH
-    uri: 'api/user/{id}'
+    uri: 'user/{id}'
     metadata:
+      custom: []
       groupName: Endpoints
       groupDescription: ''
       subgroup: ''
@@ -179,23 +446,24 @@ endpoints:
       title: 'Update the specified resource in storage.'
       description: ''
       authenticated: false
-      custom: []
+      deprecated: false
     headers:
       Content-Type: application/json
       Accept: application/json
     urlParameters:
       id:
+        custom: []
         name: id
         description: 'The ID of the user.'
         required: true
-        example: consequatur
+        example: architecto
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
-        custom: []
+        deprecated: false
     cleanUrlParameters:
-      id: consequatur
+      id: architecto
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -207,12 +475,13 @@ endpoints:
     controller: null
     method: null
     route: null
-    custom: []
   -
+    custom: []
     httpMethods:
       - DELETE
-    uri: 'api/user/{id}'
+    uri: 'user/{id}'
     metadata:
+      custom: []
       groupName: Endpoints
       groupDescription: ''
       subgroup: ''
@@ -220,23 +489,24 @@ endpoints:
       title: 'Remove the specified resource from storage.'
       description: ''
       authenticated: false
-      custom: []
+      deprecated: false
     headers:
       Content-Type: application/json
       Accept: application/json
     urlParameters:
       id:
+        custom: []
         name: id
         description: 'The ID of the user.'
         required: true
-        example: consequatur
+        example: architecto
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
-        custom: []
+        deprecated: false
     cleanUrlParameters:
-      id: consequatur
+      id: architecto
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -248,12 +518,13 @@ endpoints:
     controller: null
     method: null
     route: null
-    custom: []
   -
+    custom: []
     httpMethods:
       - POST
-    uri: api/logout
+    uri: logout
     metadata:
+      custom: []
       groupName: Endpoints
       groupDescription: ''
       subgroup: ''
@@ -261,7 +532,7 @@ endpoints:
       title: 'Handle user logout.'
       description: ''
       authenticated: false
-      custom: []
+      deprecated: false
     headers:
       Content-Type: application/json
       Accept: application/json
@@ -278,12 +549,13 @@ endpoints:
     controller: null
     method: null
     route: null
-    custom: []
   -
+    custom: []
     httpMethods:
       - GET
-    uri: api/tasks
+    uri: tasks
     metadata:
+      custom: []
       groupName: Endpoints
       groupDescription: ''
       subgroup: ''
@@ -291,7 +563,7 @@ endpoints:
       title: 'Display a listing of the resource.'
       description: ''
       authenticated: false
-      custom: []
+      deprecated: false
     headers:
       Content-Type: application/json
       Accept: application/json
@@ -301,16 +573,18 @@ endpoints:
     cleanQueryParameters: []
     bodyParameters:
       completed:
+        custom: []
         name: completed
         description: ''
         required: false
-        example: false
+        example: true
         type: boolean
         enumValues: []
         exampleWasSpecified: false
         nullable: true
-        custom: []
+        deprecated: false
       withDescription:
+        custom: []
         name: withDescription
         description: ''
         required: false
@@ -319,8 +593,9 @@ endpoints:
         enumValues: []
         exampleWasSpecified: false
         nullable: true
-        custom: []
+        deprecated: false
       withUsers:
+        custom: []
         name: withUsers
         description: ''
         required: false
@@ -329,44 +604,49 @@ endpoints:
         enumValues: []
         exampleWasSpecified: false
         nullable: true
-        custom: []
+        deprecated: false
       assignedOrOwnedByUser:
+        custom: []
         name: assignedOrOwnedByUser
         description: ''
         required: false
-        example: 17
+        example: 16
         type: integer
         enumValues: []
         exampleWasSpecified: false
         nullable: true
-        custom: []
+        deprecated: false
     cleanBodyParameters:
-      completed: false
+      completed: true
       withDescription: true
       withUsers: false
-      assignedOrOwnedByUser: 17
+      assignedOrOwnedByUser: 16
     fileParameters: []
     responses:
       -
-        status: 401
-        content: '{"message":"Unauthenticated."}'
+        custom: []
+        status: 404
+        content: |-
+          {
+              "message": "The route api/tasks could not be found."
+          }
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
           vary: Origin
         description: null
-        custom: []
     responseFields: []
     auth: []
     controller: null
     method: null
     route: null
-    custom: []
   -
+    custom: []
     httpMethods:
       - POST
-    uri: api/tasks
+    uri: tasks
     metadata:
+      custom: []
       groupName: Endpoints
       groupDescription: ''
       subgroup: ''
@@ -374,7 +654,7 @@ endpoints:
       title: 'Store a newly created resource in storage.'
       description: ''
       authenticated: false
-      custom: []
+      deprecated: false
     headers:
       Content-Type: application/json
       Accept: application/json
@@ -384,26 +664,29 @@ endpoints:
     cleanQueryParameters: []
     bodyParameters:
       title:
+        custom: []
         name: title
         description: 'Must not be greater than 255 characters.'
         required: true
-        example: vmqeopfuudtdsufvyvddq
+        example: b
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
-        custom: []
+        deprecated: false
       description:
+        custom: []
         name: description
         description: 'Must not be greater than 1000 characters.'
         required: false
-        example: 'Dolores molestias ipsam sit.'
+        example: 'Et animi quos velit et fugiat.'
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: true
-        custom: []
+        deprecated: false
       users:
+        custom: []
         name: users
         description: ''
         required: false
@@ -412,23 +695,24 @@ endpoints:
         enumValues: []
         exampleWasSpecified: false
         nullable: false
-        custom: []
+        deprecated: false
       'users[].id':
+        custom: []
         name: 'users[].id'
         description: 'The <code>id</code> of an existing record in the users table.'
         required: true
-        example: consequatur
+        example: architecto
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
-        custom: []
+        deprecated: false
     cleanBodyParameters:
-      title: vmqeopfuudtdsufvyvddq
-      description: 'Dolores molestias ipsam sit.'
+      title: b
+      description: 'Et animi quos velit et fugiat.'
       users:
         -
-          id: consequatur
+          id: architecto
     fileParameters: []
     responses: []
     responseFields: []
@@ -436,12 +720,13 @@ endpoints:
     controller: null
     method: null
     route: null
-    custom: []
   -
+    custom: []
     httpMethods:
       - GET
-    uri: 'api/tasks/{id}'
+    uri: 'tasks/{id}'
     metadata:
+      custom: []
       groupName: Endpoints
       groupDescription: ''
       subgroup: ''
@@ -449,12 +734,13 @@ endpoints:
       title: 'Display the specified resource.'
       description: ''
       authenticated: false
-      custom: []
+      deprecated: false
     headers:
       Content-Type: application/json
       Accept: application/json
     urlParameters:
       id:
+        custom: []
         name: id
         description: 'The ID of the task.'
         required: true
@@ -463,7 +749,7 @@ endpoints:
         enumValues: []
         exampleWasSpecified: false
         nullable: false
-        custom: []
+        deprecated: false
     cleanUrlParameters:
       id: 1
     queryParameters: []
@@ -473,26 +759,30 @@ endpoints:
     fileParameters: []
     responses:
       -
-        status: 401
-        content: '{"message":"Unauthenticated."}'
+        custom: []
+        status: 404
+        content: |-
+          {
+              "message": "The route api/tasks/1 could not be found."
+          }
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
           vary: Origin
         description: null
-        custom: []
     responseFields: []
     auth: []
     controller: null
     method: null
     route: null
-    custom: []
   -
+    custom: []
     httpMethods:
       - PUT
       - PATCH
-    uri: 'api/tasks/{id}'
+    uri: 'tasks/{id}'
     metadata:
+      custom: []
       groupName: Endpoints
       groupDescription: ''
       subgroup: ''
@@ -500,12 +790,13 @@ endpoints:
       title: 'Update the specified resource in storage.'
       description: ''
       authenticated: false
-      custom: []
+      deprecated: false
     headers:
       Content-Type: application/json
       Accept: application/json
     urlParameters:
       id:
+        custom: []
         name: id
         description: 'The ID of the task.'
         required: true
@@ -514,43 +805,47 @@ endpoints:
         enumValues: []
         exampleWasSpecified: false
         nullable: false
-        custom: []
+        deprecated: false
     cleanUrlParameters:
       id: 1
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
       title:
+        custom: []
         name: title
         description: 'Must not be greater than 255 characters.'
-        required: true
-        example: vmqeopfuudtdsufvyvddq
+        required: false
+        example: b
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
-        custom: []
+        deprecated: false
       description:
+        custom: []
         name: description
         description: 'Must not be greater than 1000 characters.'
         required: false
-        example: 'Dolores molestias ipsam sit.'
+        example: 'Et animi quos velit et fugiat.'
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: true
-        custom: []
+        deprecated: false
       completed:
+        custom: []
         name: completed
         description: ''
         required: false
-        example: false
+        example: true
         type: boolean
         enumValues: []
         exampleWasSpecified: false
         nullable: false
-        custom: []
+        deprecated: false
       users:
+        custom: []
         name: users
         description: ''
         required: false
@@ -559,24 +854,25 @@ endpoints:
         enumValues: []
         exampleWasSpecified: false
         nullable: false
-        custom: []
+        deprecated: false
       'users[].id':
+        custom: []
         name: 'users[].id'
         description: 'The <code>id</code> of an existing record in the users table.'
         required: true
-        example: consequatur
+        example: architecto
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
-        custom: []
+        deprecated: false
     cleanBodyParameters:
-      title: vmqeopfuudtdsufvyvddq
-      description: 'Dolores molestias ipsam sit.'
-      completed: false
+      title: b
+      description: 'Et animi quos velit et fugiat.'
+      completed: true
       users:
         -
-          id: consequatur
+          id: architecto
     fileParameters: []
     responses: []
     responseFields: []
@@ -584,12 +880,13 @@ endpoints:
     controller: null
     method: null
     route: null
-    custom: []
   -
+    custom: []
     httpMethods:
       - DELETE
-    uri: 'api/tasks/{id}'
+    uri: 'tasks/{id}'
     metadata:
+      custom: []
       groupName: Endpoints
       groupDescription: ''
       subgroup: ''
@@ -597,12 +894,13 @@ endpoints:
       title: 'Remove the specified resource from storage.'
       description: ''
       authenticated: false
-      custom: []
+      deprecated: false
     headers:
       Content-Type: application/json
       Accept: application/json
     urlParameters:
       id:
+        custom: []
         name: id
         description: 'The ID of the task.'
         required: true
@@ -611,7 +909,7 @@ endpoints:
         enumValues: []
         exampleWasSpecified: false
         nullable: false
-        custom: []
+        deprecated: false
     cleanUrlParameters:
       id: 1
     queryParameters: []
@@ -625,12 +923,13 @@ endpoints:
     controller: null
     method: null
     route: null
-    custom: []
   -
+    custom: []
     httpMethods:
       - PUT
-    uri: 'api/tasks/{task_id}/users'
+    uri: 'tasks/{task_id}/users'
     metadata:
+      custom: []
       groupName: Endpoints
       groupDescription: ''
       subgroup: ''
@@ -638,12 +937,13 @@ endpoints:
       title: ''
       description: ''
       authenticated: false
-      custom: []
+      deprecated: false
     headers:
       Content-Type: application/json
       Accept: application/json
     urlParameters:
       task_id:
+        custom: []
         name: task_id
         description: 'The ID of the task.'
         required: true
@@ -652,43 +952,47 @@ endpoints:
         enumValues: []
         exampleWasSpecified: false
         nullable: false
-        custom: []
+        deprecated: false
     cleanUrlParameters:
       task_id: 1
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
       title:
+        custom: []
         name: title
         description: 'Must not be greater than 255 characters.'
-        required: true
-        example: vmqeopfuudtdsufvyvddq
+        required: false
+        example: b
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
-        custom: []
+        deprecated: false
       description:
+        custom: []
         name: description
         description: 'Must not be greater than 1000 characters.'
         required: false
-        example: 'Dolores molestias ipsam sit.'
+        example: 'Et animi quos velit et fugiat.'
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: true
-        custom: []
+        deprecated: false
       completed:
+        custom: []
         name: completed
         description: ''
         required: false
-        example: false
+        example: true
         type: boolean
         enumValues: []
         exampleWasSpecified: false
         nullable: false
-        custom: []
+        deprecated: false
       users:
+        custom: []
         name: users
         description: ''
         required: false
@@ -697,24 +1001,25 @@ endpoints:
         enumValues: []
         exampleWasSpecified: false
         nullable: false
-        custom: []
+        deprecated: false
       'users[].id':
+        custom: []
         name: 'users[].id'
         description: 'The <code>id</code> of an existing record in the users table.'
         required: true
-        example: consequatur
+        example: architecto
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
-        custom: []
+        deprecated: false
     cleanBodyParameters:
-      title: vmqeopfuudtdsufvyvddq
-      description: 'Dolores molestias ipsam sit.'
-      completed: false
+      title: b
+      description: 'Et animi quos velit et fugiat.'
+      completed: true
       users:
         -
-          id: consequatur
+          id: architecto
     fileParameters: []
     responses: []
     responseFields: []
@@ -722,4 +1027,3 @@ endpoints:
     controller: null
     method: null
     route: null
-    custom: []

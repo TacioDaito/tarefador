@@ -26,13 +26,13 @@
             </style>
 
     <script>
-        var tryItOutBaseUrl = "http://localhost";
+        var tryItOutBaseUrl = "http://tarefador.localhost/api";
         var useCsrf = Boolean();
         var csrfUrl = "/sanctum/csrf-cookie";
     </script>
-    <script src="{{ asset("/vendor/scribe/js/tryitout-5.2.1.js") }}"></script>
+    <script src="{{ asset("/vendor/scribe/js/tryitout-5.10.0.js") }}"></script>
 
-    <script src="{{ asset("/vendor/scribe/js/theme-default-5.2.1.js") }}"></script>
+    <script src="{{ asset("/vendor/scribe/js/theme-default-5.10.0.js") }}"></script>
 
 </head>
 
@@ -71,41 +71,56 @@
                     <a href="#endpoints">Endpoints</a>
                 </li>
                                     <ul id="tocify-subheader-endpoints" class="tocify-subheader">
-                                                    <li class="tocify-item level-2" data-unique="endpoints-POSTapi-login">
-                                <a href="#endpoints-POSTapi-login">Handle user login.</a>
+                                                    <li class="tocify-item level-2" data-unique="endpoints-GETsanctum-csrf-cookie">
+                                <a href="#endpoints-GETsanctum-csrf-cookie">Return an empty response simply to trigger the storage of the CSRF cookie in the browser.</a>
                             </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-user">
-                                <a href="#endpoints-POSTapi-user">Store a newly created resource in storage.</a>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-GET_ignition-health-check">
+                                <a href="#endpoints-GET_ignition-health-check">GET _ignition/health-check</a>
                             </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-user">
-                                <a href="#endpoints-GETapi-user">Display a listing of the resource.</a>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-POST_ignition-execute-solution">
+                                <a href="#endpoints-POST_ignition-execute-solution">POST _ignition/execute-solution</a>
                             </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-PUTapi-user--id-">
-                                <a href="#endpoints-PUTapi-user--id-">Update the specified resource in storage.</a>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-POST_ignition-update-config">
+                                <a href="#endpoints-POST_ignition-update-config">POST _ignition/update-config</a>
                             </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-DELETEapi-user--id-">
-                                <a href="#endpoints-DELETEapi-user--id-">Remove the specified resource from storage.</a>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-GET-">
+                                <a href="#endpoints-GET-">GET /</a>
                             </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-logout">
-                                <a href="#endpoints-POSTapi-logout">Handle user logout.</a>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTlogin">
+                                <a href="#endpoints-POSTlogin">Handle user login.</a>
                             </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-tasks">
-                                <a href="#endpoints-GETapi-tasks">Display a listing of the resource.</a>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTuser">
+                                <a href="#endpoints-POSTuser">Store a newly created resource in storage.</a>
                             </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-tasks">
-                                <a href="#endpoints-POSTapi-tasks">Store a newly created resource in storage.</a>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETuser">
+                                <a href="#endpoints-GETuser">Display a listing of the resource.</a>
                             </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-tasks--id-">
-                                <a href="#endpoints-GETapi-tasks--id-">Display the specified resource.</a>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-PUTuser--id-">
+                                <a href="#endpoints-PUTuser--id-">Update the specified resource in storage.</a>
                             </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-PUTapi-tasks--id-">
-                                <a href="#endpoints-PUTapi-tasks--id-">Update the specified resource in storage.</a>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-DELETEuser--id-">
+                                <a href="#endpoints-DELETEuser--id-">Remove the specified resource from storage.</a>
                             </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-DELETEapi-tasks--id-">
-                                <a href="#endpoints-DELETEapi-tasks--id-">Remove the specified resource from storage.</a>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTlogout">
+                                <a href="#endpoints-POSTlogout">Handle user logout.</a>
                             </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-PUTapi-tasks--task_id--users">
-                                <a href="#endpoints-PUTapi-tasks--task_id--users">PUT api/tasks/{task_id}/users</a>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETtasks">
+                                <a href="#endpoints-GETtasks">Display a listing of the resource.</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTtasks">
+                                <a href="#endpoints-POSTtasks">Store a newly created resource in storage.</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETtasks--id-">
+                                <a href="#endpoints-GETtasks--id-">Display the specified resource.</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-PUTtasks--id-">
+                                <a href="#endpoints-PUTtasks--id-">Update the specified resource in storage.</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-DELETEtasks--id-">
+                                <a href="#endpoints-DELETEtasks--id-">Remove the specified resource from storage.</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-PUTtasks--task_id--users">
+                                <a href="#endpoints-PUTtasks--task_id--users">PUT tasks/{task_id}/users</a>
                             </li>
                                                                         </ul>
                             </ul>
@@ -118,7 +133,7 @@
     </ul>
 
     <ul class="toc-footer" id="last-updated">
-        <li>Last updated: June 19, 2025</li>
+        <li>Last updated: June 4, 2026</li>
     </ul>
 </div>
 
@@ -127,7 +142,7 @@
     <div class="content">
         <h1 id="introduction">Introduction</h1>
 <aside>
-    <strong>Base URL</strong>: <code>http://localhost</code>
+    <strong>Base URL</strong>: <code>http://tarefador.localhost/api</code>
 </aside>
 <pre><code>This documentation aims to provide all the information you need to work with our API.
 
@@ -141,32 +156,285 @@ You can switch the language used with the tabs at the top right (or from the nav
 
     
 
-                                <h2 id="endpoints-POSTapi-login">Handle user login.</h2>
+                                <h2 id="endpoints-GETsanctum-csrf-cookie">Return an empty response simply to trigger the storage of the CSRF cookie in the browser.</h2>
 
 <p>
 </p>
 
 
 
-<span id="example-requests-POSTapi-login">
+<span id="example-requests-GETsanctum-csrf-cookie">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://tarefador.localhost/api/sanctum/csrf-cookie" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://tarefador.localhost/api/sanctum/csrf-cookie"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETsanctum-csrf-cookie">
+            <blockquote>
+            <p>Example response (404):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+vary: Origin
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;The route api/sanctum/csrf-cookie could not be found.&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETsanctum-csrf-cookie" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETsanctum-csrf-cookie"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETsanctum-csrf-cookie"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETsanctum-csrf-cookie" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETsanctum-csrf-cookie">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETsanctum-csrf-cookie" data-method="GET"
+      data-path="sanctum/csrf-cookie"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETsanctum-csrf-cookie', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETsanctum-csrf-cookie"
+                    onclick="tryItOut('GETsanctum-csrf-cookie');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETsanctum-csrf-cookie"
+                    onclick="cancelTryOut('GETsanctum-csrf-cookie');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETsanctum-csrf-cookie"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>sanctum/csrf-cookie</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETsanctum-csrf-cookie"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETsanctum-csrf-cookie"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        </form>
+
+                    <h2 id="endpoints-GET_ignition-health-check">GET _ignition/health-check</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GET_ignition-health-check">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://tarefador.localhost/api/_ignition/health-check" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://tarefador.localhost/api/_ignition/health-check"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GET_ignition-health-check">
+            <blockquote>
+            <p>Example response (404):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+vary: Origin
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;The route api/_ignition/health-check could not be found.&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GET_ignition-health-check" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GET_ignition-health-check"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GET_ignition-health-check"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GET_ignition-health-check" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GET_ignition-health-check">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GET_ignition-health-check" data-method="GET"
+      data-path="_ignition/health-check"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GET_ignition-health-check', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GET_ignition-health-check"
+                    onclick="tryItOut('GET_ignition-health-check');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GET_ignition-health-check"
+                    onclick="cancelTryOut('GET_ignition-health-check');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GET_ignition-health-check"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>_ignition/health-check</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GET_ignition-health-check"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GET_ignition-health-check"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        </form>
+
+                    <h2 id="endpoints-POST_ignition-execute-solution">POST _ignition/execute-solution</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-POST_ignition-execute-solution">
 <blockquote>Example request:</blockquote>
 
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/login" \
+    "http://tarefador.localhost/api/_ignition/execute-solution" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"email\": \"qkunze@example.com\",
-    \"password\": \"Z5ij-e\\/dl4m{o,\"
+    \"solution\": \"architecto\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/login"
+    "http://tarefador.localhost/api/_ignition/execute-solution"
 );
 
 const headers = {
@@ -175,8 +443,7 @@ const headers = {
 };
 
 let body = {
-    "email": "qkunze@example.com",
-    "password": "Z5ij-e\/dl4m{o,"
+    "solution": "architecto"
 };
 
 fetch(url, {
@@ -187,45 +454,45 @@ fetch(url, {
 
 </span>
 
-<span id="example-responses-POSTapi-login">
+<span id="example-responses-POST_ignition-execute-solution">
 </span>
-<span id="execution-results-POSTapi-login" hidden>
+<span id="execution-results-POST_ignition-execute-solution" hidden>
     <blockquote>Received response<span
-                id="execution-response-status-POSTapi-login"></span>:
+                id="execution-response-status-POST_ignition-execute-solution"></span>:
     </blockquote>
-    <pre class="json"><code id="execution-response-content-POSTapi-login"
+    <pre class="json"><code id="execution-response-content-POST_ignition-execute-solution"
       data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
 </span>
-<span id="execution-error-POSTapi-login" hidden>
+<span id="execution-error-POST_ignition-execute-solution" hidden>
     <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-POSTapi-login">
+    <pre><code id="execution-error-message-POST_ignition-execute-solution">
 
 Tip: Check that you&#039;re properly connected to the network.
 If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
 You can check the Dev Tools console for debugging information.</code></pre>
 </span>
-<form id="form-POSTapi-login" data-method="POST"
-      data-path="api/login"
+<form id="form-POST_ignition-execute-solution" data-method="POST"
+      data-path="_ignition/execute-solution"
       data-authed="0"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('POSTapi-login', this);">
+      onsubmit="event.preventDefault(); executeTryOut('POST_ignition-execute-solution', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
                     <button type="button"
                     style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-POSTapi-login"
-                    onclick="tryItOut('POSTapi-login');">Try it out ⚡
+                    id="btn-tryout-POST_ignition-execute-solution"
+                    onclick="tryItOut('POST_ignition-execute-solution');">Try it out ⚡
             </button>
             <button type="button"
                     style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-POSTapi-login"
-                    onclick="cancelTryOut('POSTapi-login');" hidden>Cancel 🛑
+                    id="btn-canceltryout-POST_ignition-execute-solution"
+                    onclick="cancelTryOut('POST_ignition-execute-solution');" hidden>Cancel 🛑
             </button>&nbsp;&nbsp;
             <button type="submit"
                     style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-POSTapi-login"
+                    id="btn-executetryout-POST_ignition-execute-solution"
                     data-initial-text="Send Request 💥"
                     data-loading-text="⏱ Sending..."
                     hidden>Send Request 💥
@@ -233,15 +500,16 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </h3>
             <p>
             <small class="badge badge-black">POST</small>
-            <b><code>api/login</code></b>
+            <b><code>_ignition/execute-solution</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
 &nbsp;
  &nbsp;
+ &nbsp;
                 <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="POSTapi-login"
+                              name="Content-Type"                data-endpoint="POST_ignition-execute-solution"
                value="application/json"
                data-component="header">
     <br>
@@ -251,8 +519,454 @@ You can check the Dev Tools console for debugging information.</code></pre>
                 <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
 &nbsp;
  &nbsp;
+ &nbsp;
                 <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="POSTapi-login"
+                              name="Accept"                data-endpoint="POST_ignition-execute-solution"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>solution</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="solution"                data-endpoint="POST_ignition-execute-solution"
+               value="architecto"
+               data-component="body">
+    <br>
+<p>Example: <code>architecto</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>parameters</code></b>&nbsp;&nbsp;
+<small>object</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="parameters"                data-endpoint="POST_ignition-execute-solution"
+               value=""
+               data-component="body">
+    <br>
+
+        </div>
+        </form>
+
+                    <h2 id="endpoints-POST_ignition-update-config">POST _ignition/update-config</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-POST_ignition-update-config">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://tarefador.localhost/api/_ignition/update-config" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"theme\": \"auto\",
+    \"editor\": \"architecto\",
+    \"hide_solutions\": true
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://tarefador.localhost/api/_ignition/update-config"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "theme": "auto",
+    "editor": "architecto",
+    "hide_solutions": true
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POST_ignition-update-config">
+</span>
+<span id="execution-results-POST_ignition-update-config" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POST_ignition-update-config"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POST_ignition-update-config"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POST_ignition-update-config" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POST_ignition-update-config">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POST_ignition-update-config" data-method="POST"
+      data-path="_ignition/update-config"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POST_ignition-update-config', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POST_ignition-update-config"
+                    onclick="tryItOut('POST_ignition-update-config');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POST_ignition-update-config"
+                    onclick="cancelTryOut('POST_ignition-update-config');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POST_ignition-update-config"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>_ignition/update-config</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POST_ignition-update-config"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POST_ignition-update-config"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>theme</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="theme"                data-endpoint="POST_ignition-update-config"
+               value="auto"
+               data-component="body">
+    <br>
+<p>Example: <code>auto</code></p>
+Must be one of:
+<ul style="list-style-type: square;"><li><code>light</code></li> <li><code>dark</code></li> <li><code>auto</code></li></ul>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>editor</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="editor"                data-endpoint="POST_ignition-update-config"
+               value="architecto"
+               data-component="body">
+    <br>
+<p>Example: <code>architecto</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>hide_solutions</code></b>&nbsp;&nbsp;
+<small>boolean</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <label data-endpoint="POST_ignition-update-config" style="display: none">
+            <input type="radio" name="hide_solutions"
+                   value="true"
+                   data-endpoint="POST_ignition-update-config"
+                   data-component="body"             >
+            <code>true</code>
+        </label>
+        <label data-endpoint="POST_ignition-update-config" style="display: none">
+            <input type="radio" name="hide_solutions"
+                   value="false"
+                   data-endpoint="POST_ignition-update-config"
+                   data-component="body"             >
+            <code>false</code>
+        </label>
+    <br>
+<p>Example: <code>true</code></p>
+        </div>
+        </form>
+
+                    <h2 id="endpoints-GET-">GET /</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GET-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://tarefador.localhost/api/" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://tarefador.localhost/api/"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GET-">
+            <blockquote>
+            <p>Example response (404):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+vary: Origin
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;The route api could not be found.&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GET-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GET-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GET-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GET-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GET-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GET-" data-method="GET"
+      data-path="/"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GET-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GET-"
+                    onclick="tryItOut('GET-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GET-"
+                    onclick="cancelTryOut('GET-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GET-"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>/</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GET-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GET-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        </form>
+
+                    <h2 id="endpoints-POSTlogin">Handle user login.</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-POSTlogin">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://tarefador.localhost/api/login" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"email\": \"gbailey@example.net\",
+    \"password\": \"+-0pBNvYgxwmi\\/#iw\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://tarefador.localhost/api/login"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "email": "gbailey@example.net",
+    "password": "+-0pBNvYgxwmi\/#iw"
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTlogin">
+</span>
+<span id="execution-results-POSTlogin" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTlogin"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTlogin"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTlogin" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTlogin">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTlogin" data-method="POST"
+      data-path="login"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTlogin', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTlogin"
+                    onclick="tryItOut('POSTlogin');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTlogin"
+                    onclick="cancelTryOut('POSTlogin');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTlogin"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>login</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTlogin"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTlogin"
                value="application/json"
                data-component="header">
     <br>
@@ -263,54 +977,56 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <b style="line-height: 2;"><code>email</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
  &nbsp;
+ &nbsp;
                 <input type="text" style="display: none"
-                              name="email"                data-endpoint="POSTapi-login"
-               value="qkunze@example.com"
+                              name="email"                data-endpoint="POSTlogin"
+               value="gbailey@example.net"
                data-component="body">
     <br>
-<p>Must be a valid email address. Example: <code>qkunze@example.com</code></p>
+<p>Must be a valid email address. Example: <code>gbailey@example.net</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
  &nbsp;
+ &nbsp;
                 <input type="text" style="display: none"
-                              name="password"                data-endpoint="POSTapi-login"
-               value="Z5ij-e/dl4m{o,"
+                              name="password"                data-endpoint="POSTlogin"
+               value="+-0pBNvYgxwmi/#iw"
                data-component="body">
     <br>
-<p>Must be at least 8 characters. Must not be greater than 30 characters. Example: <code>Z5ij-e/dl4m{o,</code></p>
+<p>Must be at least 8 characters. Must not be greater than 30 characters. Example: <code>+-0pBNvYgxwmi/#iw</code></p>
         </div>
         </form>
 
-                    <h2 id="endpoints-POSTapi-user">Store a newly created resource in storage.</h2>
+                    <h2 id="endpoints-POSTuser">Store a newly created resource in storage.</h2>
 
 <p>
 </p>
 
 
 
-<span id="example-requests-POSTapi-user">
+<span id="example-requests-POSTuser">
 <blockquote>Example request:</blockquote>
 
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/user" \
+    "http://tarefador.localhost/api/user" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"name\": \"vmqeopfuudtdsufvyvddq\",
-    \"email\": \"kunde.eloisa@example.com\",
-    \"password\": \"4[*UyPJ\\\"}6\",
-    \"password_confirmation\": \"hdtqtqxbajwbpilpmufin\"
+    \"name\": \"b\",
+    \"email\": \"zbailey@example.net\",
+    \"password\": \"-0pBNvYgxw\",
+    \"password_confirmation\": \"a\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/user"
+    "http://tarefador.localhost/api/user"
 );
 
 const headers = {
@@ -319,10 +1035,10 @@ const headers = {
 };
 
 let body = {
-    "name": "vmqeopfuudtdsufvyvddq",
-    "email": "kunde.eloisa@example.com",
-    "password": "4[*UyPJ\"}6",
-    "password_confirmation": "hdtqtqxbajwbpilpmufin"
+    "name": "b",
+    "email": "zbailey@example.net",
+    "password": "-0pBNvYgxw",
+    "password_confirmation": "a"
 };
 
 fetch(url, {
@@ -333,45 +1049,45 @@ fetch(url, {
 
 </span>
 
-<span id="example-responses-POSTapi-user">
+<span id="example-responses-POSTuser">
 </span>
-<span id="execution-results-POSTapi-user" hidden>
+<span id="execution-results-POSTuser" hidden>
     <blockquote>Received response<span
-                id="execution-response-status-POSTapi-user"></span>:
+                id="execution-response-status-POSTuser"></span>:
     </blockquote>
-    <pre class="json"><code id="execution-response-content-POSTapi-user"
+    <pre class="json"><code id="execution-response-content-POSTuser"
       data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
 </span>
-<span id="execution-error-POSTapi-user" hidden>
+<span id="execution-error-POSTuser" hidden>
     <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-POSTapi-user">
+    <pre><code id="execution-error-message-POSTuser">
 
 Tip: Check that you&#039;re properly connected to the network.
 If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
 You can check the Dev Tools console for debugging information.</code></pre>
 </span>
-<form id="form-POSTapi-user" data-method="POST"
-      data-path="api/user"
+<form id="form-POSTuser" data-method="POST"
+      data-path="user"
       data-authed="0"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('POSTapi-user', this);">
+      onsubmit="event.preventDefault(); executeTryOut('POSTuser', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
                     <button type="button"
                     style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-POSTapi-user"
-                    onclick="tryItOut('POSTapi-user');">Try it out ⚡
+                    id="btn-tryout-POSTuser"
+                    onclick="tryItOut('POSTuser');">Try it out ⚡
             </button>
             <button type="button"
                     style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-POSTapi-user"
-                    onclick="cancelTryOut('POSTapi-user');" hidden>Cancel 🛑
+                    id="btn-canceltryout-POSTuser"
+                    onclick="cancelTryOut('POSTuser');" hidden>Cancel 🛑
             </button>&nbsp;&nbsp;
             <button type="submit"
                     style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-POSTapi-user"
+                    id="btn-executetryout-POSTuser"
                     data-initial-text="Send Request 💥"
                     data-loading-text="⏱ Sending..."
                     hidden>Send Request 💥
@@ -379,15 +1095,16 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </h3>
             <p>
             <small class="badge badge-black">POST</small>
-            <b><code>api/user</code></b>
+            <b><code>user</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
 &nbsp;
  &nbsp;
+ &nbsp;
                 <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="POSTapi-user"
+                              name="Content-Type"                data-endpoint="POSTuser"
                value="application/json"
                data-component="header">
     <br>
@@ -397,8 +1114,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
                 <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
 &nbsp;
  &nbsp;
+ &nbsp;
                 <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="POSTapi-user"
+                              name="Accept"                data-endpoint="POSTuser"
                value="application/json"
                data-component="header">
     <br>
@@ -409,75 +1127,80 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <b style="line-height: 2;"><code>name</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
  &nbsp;
+ &nbsp;
                 <input type="text" style="display: none"
-                              name="name"                data-endpoint="POSTapi-user"
-               value="vmqeopfuudtdsufvyvddq"
+                              name="name"                data-endpoint="POSTuser"
+               value="b"
                data-component="body">
     <br>
-<p>Must not be greater than 100 characters. Example: <code>vmqeopfuudtdsufvyvddq</code></p>
+<p>Must not be greater than 100 characters. Example: <code>b</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>email</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
  &nbsp;
+ &nbsp;
                 <input type="text" style="display: none"
-                              name="email"                data-endpoint="POSTapi-user"
-               value="kunde.eloisa@example.com"
+                              name="email"                data-endpoint="POSTuser"
+               value="zbailey@example.net"
                data-component="body">
     <br>
-<p>Must be a valid email address. Must not be greater than 100 characters. Example: <code>kunde.eloisa@example.com</code></p>
+<p>Must be a valid email address. Must not be greater than 100 characters. Example: <code>zbailey@example.net</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
  &nbsp;
+ &nbsp;
                 <input type="text" style="display: none"
-                              name="password"                data-endpoint="POSTapi-user"
-               value="4[*UyPJ"}6"
+                              name="password"                data-endpoint="POSTuser"
+               value="-0pBNvYgxw"
                data-component="body">
     <br>
-<p>Must be at least 8 characters. Must not be greater than 100 characters. Example: <code>4[*UyPJ"}6</code></p>
+<p>Must be at least 8 characters. Must not be greater than 100 characters. Example: <code>-0pBNvYgxw</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>password_confirmation</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
  &nbsp;
+ &nbsp;
                 <input type="text" style="display: none"
-                              name="password_confirmation"                data-endpoint="POSTapi-user"
-               value="hdtqtqxbajwbpilpmufin"
+                              name="password_confirmation"                data-endpoint="POSTuser"
+               value="a"
                data-component="body">
     <br>
-<p>Must be at least 8 characters. Must not be greater than 100 characters. Example: <code>hdtqtqxbajwbpilpmufin</code></p>
+<p>Must be at least 8 characters. Must not be greater than 100 characters. Example: <code>a</code></p>
         </div>
         </form>
 
-                    <h2 id="endpoints-GETapi-user">Display a listing of the resource.</h2>
+                    <h2 id="endpoints-GETuser">Display a listing of the resource.</h2>
 
 <p>
 </p>
 
 
 
-<span id="example-requests-GETapi-user">
+<span id="example-requests-GETuser">
 <blockquote>Example request:</blockquote>
 
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/user" \
+    --get "http://tarefador.localhost/api/user" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/user"
+    "http://tarefador.localhost/api/user"
 );
 
 const headers = {
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
+
 
 fetch(url, {
     method: "GET",
@@ -486,9 +1209,9 @@ fetch(url, {
 
 </span>
 
-<span id="example-responses-GETapi-user">
+<span id="example-responses-GETuser">
             <blockquote>
-            <p>Example response (401):</p>
+            <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
             <summary style="cursor: pointer;">
@@ -500,47 +1223,47 @@ vary: Origin
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Unauthenticated.&quot;
+    &quot;message&quot;: &quot;The route api/user could not be found.&quot;
 }</code>
  </pre>
     </span>
-<span id="execution-results-GETapi-user" hidden>
+<span id="execution-results-GETuser" hidden>
     <blockquote>Received response<span
-                id="execution-response-status-GETapi-user"></span>:
+                id="execution-response-status-GETuser"></span>:
     </blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-user"
+    <pre class="json"><code id="execution-response-content-GETuser"
       data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
 </span>
-<span id="execution-error-GETapi-user" hidden>
+<span id="execution-error-GETuser" hidden>
     <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-user">
+    <pre><code id="execution-error-message-GETuser">
 
 Tip: Check that you&#039;re properly connected to the network.
 If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
 You can check the Dev Tools console for debugging information.</code></pre>
 </span>
-<form id="form-GETapi-user" data-method="GET"
-      data-path="api/user"
+<form id="form-GETuser" data-method="GET"
+      data-path="user"
       data-authed="0"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('GETapi-user', this);">
+      onsubmit="event.preventDefault(); executeTryOut('GETuser', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
                     <button type="button"
                     style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-user"
-                    onclick="tryItOut('GETapi-user');">Try it out ⚡
+                    id="btn-tryout-GETuser"
+                    onclick="tryItOut('GETuser');">Try it out ⚡
             </button>
             <button type="button"
                     style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-user"
-                    onclick="cancelTryOut('GETapi-user');" hidden>Cancel 🛑
+                    id="btn-canceltryout-GETuser"
+                    onclick="cancelTryOut('GETuser');" hidden>Cancel 🛑
             </button>&nbsp;&nbsp;
             <button type="submit"
                     style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-user"
+                    id="btn-executetryout-GETuser"
                     data-initial-text="Send Request 💥"
                     data-loading-text="⏱ Sending..."
                     hidden>Send Request 💥
@@ -548,15 +1271,16 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </h3>
             <p>
             <small class="badge badge-green">GET</small>
-            <b><code>api/user</code></b>
+            <b><code>user</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
 &nbsp;
  &nbsp;
+ &nbsp;
                 <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="GETapi-user"
+                              name="Content-Type"                data-endpoint="GETuser"
                value="application/json"
                data-component="header">
     <br>
@@ -566,8 +1290,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
                 <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
 &nbsp;
  &nbsp;
+ &nbsp;
                 <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="GETapi-user"
+                              name="Accept"                data-endpoint="GETuser"
                value="application/json"
                data-component="header">
     <br>
@@ -575,33 +1300,34 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                         </form>
 
-                    <h2 id="endpoints-PUTapi-user--id-">Update the specified resource in storage.</h2>
+                    <h2 id="endpoints-PUTuser--id-">Update the specified resource in storage.</h2>
 
 <p>
 </p>
 
 
 
-<span id="example-requests-PUTapi-user--id-">
+<span id="example-requests-PUTuser--id-">
 <blockquote>Example request:</blockquote>
 
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost/api/user/consequatur" \
+    "http://tarefador.localhost/api/user/architecto" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/user/consequatur"
+    "http://tarefador.localhost/api/user/architecto"
 );
 
 const headers = {
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
+
 
 fetch(url, {
     method: "PUT",
@@ -610,45 +1336,45 @@ fetch(url, {
 
 </span>
 
-<span id="example-responses-PUTapi-user--id-">
+<span id="example-responses-PUTuser--id-">
 </span>
-<span id="execution-results-PUTapi-user--id-" hidden>
+<span id="execution-results-PUTuser--id-" hidden>
     <blockquote>Received response<span
-                id="execution-response-status-PUTapi-user--id-"></span>:
+                id="execution-response-status-PUTuser--id-"></span>:
     </blockquote>
-    <pre class="json"><code id="execution-response-content-PUTapi-user--id-"
+    <pre class="json"><code id="execution-response-content-PUTuser--id-"
       data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
 </span>
-<span id="execution-error-PUTapi-user--id-" hidden>
+<span id="execution-error-PUTuser--id-" hidden>
     <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-PUTapi-user--id-">
+    <pre><code id="execution-error-message-PUTuser--id-">
 
 Tip: Check that you&#039;re properly connected to the network.
 If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
 You can check the Dev Tools console for debugging information.</code></pre>
 </span>
-<form id="form-PUTapi-user--id-" data-method="PUT"
-      data-path="api/user/{id}"
+<form id="form-PUTuser--id-" data-method="PUT"
+      data-path="user/{id}"
       data-authed="0"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('PUTapi-user--id-', this);">
+      onsubmit="event.preventDefault(); executeTryOut('PUTuser--id-', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
                     <button type="button"
                     style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-PUTapi-user--id-"
-                    onclick="tryItOut('PUTapi-user--id-');">Try it out ⚡
+                    id="btn-tryout-PUTuser--id-"
+                    onclick="tryItOut('PUTuser--id-');">Try it out ⚡
             </button>
             <button type="button"
                     style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-PUTapi-user--id-"
-                    onclick="cancelTryOut('PUTapi-user--id-');" hidden>Cancel 🛑
+                    id="btn-canceltryout-PUTuser--id-"
+                    onclick="cancelTryOut('PUTuser--id-');" hidden>Cancel 🛑
             </button>&nbsp;&nbsp;
             <button type="submit"
                     style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-PUTapi-user--id-"
+                    id="btn-executetryout-PUTuser--id-"
                     data-initial-text="Send Request 💥"
                     data-loading-text="⏱ Sending..."
                     hidden>Send Request 💥
@@ -656,19 +1382,20 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </h3>
             <p>
             <small class="badge badge-darkblue">PUT</small>
-            <b><code>api/user/{id}</code></b>
+            <b><code>user/{id}</code></b>
         </p>
             <p>
             <small class="badge badge-purple">PATCH</small>
-            <b><code>api/user/{id}</code></b>
+            <b><code>user/{id}</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
 &nbsp;
  &nbsp;
+ &nbsp;
                 <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="PUTapi-user--id-"
+                              name="Content-Type"                data-endpoint="PUTuser--id-"
                value="application/json"
                data-component="header">
     <br>
@@ -678,8 +1405,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
                 <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
 &nbsp;
  &nbsp;
+ &nbsp;
                 <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="PUTapi-user--id-"
+                              name="Accept"                data-endpoint="PUTuser--id-"
                value="application/json"
                data-component="header">
     <br>
@@ -690,42 +1418,44 @@ You can check the Dev Tools console for debugging information.</code></pre>
                 <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
  &nbsp;
+ &nbsp;
                 <input type="text" style="display: none"
-                              name="id"                data-endpoint="PUTapi-user--id-"
-               value="consequatur"
+                              name="id"                data-endpoint="PUTuser--id-"
+               value="architecto"
                data-component="url">
     <br>
-<p>The ID of the user. Example: <code>consequatur</code></p>
+<p>The ID of the user. Example: <code>architecto</code></p>
             </div>
                     </form>
 
-                    <h2 id="endpoints-DELETEapi-user--id-">Remove the specified resource from storage.</h2>
+                    <h2 id="endpoints-DELETEuser--id-">Remove the specified resource from storage.</h2>
 
 <p>
 </p>
 
 
 
-<span id="example-requests-DELETEapi-user--id-">
+<span id="example-requests-DELETEuser--id-">
 <blockquote>Example request:</blockquote>
 
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost/api/user/consequatur" \
+    "http://tarefador.localhost/api/user/architecto" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/user/consequatur"
+    "http://tarefador.localhost/api/user/architecto"
 );
 
 const headers = {
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
+
 
 fetch(url, {
     method: "DELETE",
@@ -734,45 +1464,45 @@ fetch(url, {
 
 </span>
 
-<span id="example-responses-DELETEapi-user--id-">
+<span id="example-responses-DELETEuser--id-">
 </span>
-<span id="execution-results-DELETEapi-user--id-" hidden>
+<span id="execution-results-DELETEuser--id-" hidden>
     <blockquote>Received response<span
-                id="execution-response-status-DELETEapi-user--id-"></span>:
+                id="execution-response-status-DELETEuser--id-"></span>:
     </blockquote>
-    <pre class="json"><code id="execution-response-content-DELETEapi-user--id-"
+    <pre class="json"><code id="execution-response-content-DELETEuser--id-"
       data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
 </span>
-<span id="execution-error-DELETEapi-user--id-" hidden>
+<span id="execution-error-DELETEuser--id-" hidden>
     <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-DELETEapi-user--id-">
+    <pre><code id="execution-error-message-DELETEuser--id-">
 
 Tip: Check that you&#039;re properly connected to the network.
 If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
 You can check the Dev Tools console for debugging information.</code></pre>
 </span>
-<form id="form-DELETEapi-user--id-" data-method="DELETE"
-      data-path="api/user/{id}"
+<form id="form-DELETEuser--id-" data-method="DELETE"
+      data-path="user/{id}"
       data-authed="0"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('DELETEapi-user--id-', this);">
+      onsubmit="event.preventDefault(); executeTryOut('DELETEuser--id-', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
                     <button type="button"
                     style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-DELETEapi-user--id-"
-                    onclick="tryItOut('DELETEapi-user--id-');">Try it out ⚡
+                    id="btn-tryout-DELETEuser--id-"
+                    onclick="tryItOut('DELETEuser--id-');">Try it out ⚡
             </button>
             <button type="button"
                     style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-DELETEapi-user--id-"
-                    onclick="cancelTryOut('DELETEapi-user--id-');" hidden>Cancel 🛑
+                    id="btn-canceltryout-DELETEuser--id-"
+                    onclick="cancelTryOut('DELETEuser--id-');" hidden>Cancel 🛑
             </button>&nbsp;&nbsp;
             <button type="submit"
                     style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-DELETEapi-user--id-"
+                    id="btn-executetryout-DELETEuser--id-"
                     data-initial-text="Send Request 💥"
                     data-loading-text="⏱ Sending..."
                     hidden>Send Request 💥
@@ -780,15 +1510,16 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </h3>
             <p>
             <small class="badge badge-red">DELETE</small>
-            <b><code>api/user/{id}</code></b>
+            <b><code>user/{id}</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
 &nbsp;
  &nbsp;
+ &nbsp;
                 <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="DELETEapi-user--id-"
+                              name="Content-Type"                data-endpoint="DELETEuser--id-"
                value="application/json"
                data-component="header">
     <br>
@@ -798,8 +1529,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
                 <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
 &nbsp;
  &nbsp;
+ &nbsp;
                 <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="DELETEapi-user--id-"
+                              name="Accept"                data-endpoint="DELETEuser--id-"
                value="application/json"
                data-component="header">
     <br>
@@ -810,42 +1542,44 @@ You can check the Dev Tools console for debugging information.</code></pre>
                 <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
  &nbsp;
+ &nbsp;
                 <input type="text" style="display: none"
-                              name="id"                data-endpoint="DELETEapi-user--id-"
-               value="consequatur"
+                              name="id"                data-endpoint="DELETEuser--id-"
+               value="architecto"
                data-component="url">
     <br>
-<p>The ID of the user. Example: <code>consequatur</code></p>
+<p>The ID of the user. Example: <code>architecto</code></p>
             </div>
                     </form>
 
-                    <h2 id="endpoints-POSTapi-logout">Handle user logout.</h2>
+                    <h2 id="endpoints-POSTlogout">Handle user logout.</h2>
 
 <p>
 </p>
 
 
 
-<span id="example-requests-POSTapi-logout">
+<span id="example-requests-POSTlogout">
 <blockquote>Example request:</blockquote>
 
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/logout" \
+    "http://tarefador.localhost/api/logout" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/logout"
+    "http://tarefador.localhost/api/logout"
 );
 
 const headers = {
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
+
 
 fetch(url, {
     method: "POST",
@@ -854,45 +1588,45 @@ fetch(url, {
 
 </span>
 
-<span id="example-responses-POSTapi-logout">
+<span id="example-responses-POSTlogout">
 </span>
-<span id="execution-results-POSTapi-logout" hidden>
+<span id="execution-results-POSTlogout" hidden>
     <blockquote>Received response<span
-                id="execution-response-status-POSTapi-logout"></span>:
+                id="execution-response-status-POSTlogout"></span>:
     </blockquote>
-    <pre class="json"><code id="execution-response-content-POSTapi-logout"
+    <pre class="json"><code id="execution-response-content-POSTlogout"
       data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
 </span>
-<span id="execution-error-POSTapi-logout" hidden>
+<span id="execution-error-POSTlogout" hidden>
     <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-POSTapi-logout">
+    <pre><code id="execution-error-message-POSTlogout">
 
 Tip: Check that you&#039;re properly connected to the network.
 If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
 You can check the Dev Tools console for debugging information.</code></pre>
 </span>
-<form id="form-POSTapi-logout" data-method="POST"
-      data-path="api/logout"
+<form id="form-POSTlogout" data-method="POST"
+      data-path="logout"
       data-authed="0"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('POSTapi-logout', this);">
+      onsubmit="event.preventDefault(); executeTryOut('POSTlogout', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
                     <button type="button"
                     style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-POSTapi-logout"
-                    onclick="tryItOut('POSTapi-logout');">Try it out ⚡
+                    id="btn-tryout-POSTlogout"
+                    onclick="tryItOut('POSTlogout');">Try it out ⚡
             </button>
             <button type="button"
                     style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-POSTapi-logout"
-                    onclick="cancelTryOut('POSTapi-logout');" hidden>Cancel 🛑
+                    id="btn-canceltryout-POSTlogout"
+                    onclick="cancelTryOut('POSTlogout');" hidden>Cancel 🛑
             </button>&nbsp;&nbsp;
             <button type="submit"
                     style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-POSTapi-logout"
+                    id="btn-executetryout-POSTlogout"
                     data-initial-text="Send Request 💥"
                     data-loading-text="⏱ Sending..."
                     hidden>Send Request 💥
@@ -900,15 +1634,16 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </h3>
             <p>
             <small class="badge badge-black">POST</small>
-            <b><code>api/logout</code></b>
+            <b><code>logout</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
 &nbsp;
  &nbsp;
+ &nbsp;
                 <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="POSTapi-logout"
+                              name="Content-Type"                data-endpoint="POSTlogout"
                value="application/json"
                data-component="header">
     <br>
@@ -918,8 +1653,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
                 <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
 &nbsp;
  &nbsp;
+ &nbsp;
                 <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="POSTapi-logout"
+                              name="Accept"                data-endpoint="POSTlogout"
                value="application/json"
                data-component="header">
     <br>
@@ -927,34 +1663,34 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                         </form>
 
-                    <h2 id="endpoints-GETapi-tasks">Display a listing of the resource.</h2>
+                    <h2 id="endpoints-GETtasks">Display a listing of the resource.</h2>
 
 <p>
 </p>
 
 
 
-<span id="example-requests-GETapi-tasks">
+<span id="example-requests-GETtasks">
 <blockquote>Example request:</blockquote>
 
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/tasks" \
+    --get "http://tarefador.localhost/api/tasks" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"completed\": false,
+    \"completed\": true,
     \"withDescription\": true,
     \"withUsers\": false,
-    \"assignedOrOwnedByUser\": 17
+    \"assignedOrOwnedByUser\": 16
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/tasks"
+    "http://tarefador.localhost/api/tasks"
 );
 
 const headers = {
@@ -963,10 +1699,10 @@ const headers = {
 };
 
 let body = {
-    "completed": false,
+    "completed": true,
     "withDescription": true,
     "withUsers": false,
-    "assignedOrOwnedByUser": 17
+    "assignedOrOwnedByUser": 16
 };
 
 fetch(url, {
@@ -977,9 +1713,9 @@ fetch(url, {
 
 </span>
 
-<span id="example-responses-GETapi-tasks">
+<span id="example-responses-GETtasks">
             <blockquote>
-            <p>Example response (401):</p>
+            <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
             <summary style="cursor: pointer;">
@@ -991,47 +1727,47 @@ vary: Origin
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Unauthenticated.&quot;
+    &quot;message&quot;: &quot;The route api/tasks could not be found.&quot;
 }</code>
  </pre>
     </span>
-<span id="execution-results-GETapi-tasks" hidden>
+<span id="execution-results-GETtasks" hidden>
     <blockquote>Received response<span
-                id="execution-response-status-GETapi-tasks"></span>:
+                id="execution-response-status-GETtasks"></span>:
     </blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-tasks"
+    <pre class="json"><code id="execution-response-content-GETtasks"
       data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
 </span>
-<span id="execution-error-GETapi-tasks" hidden>
+<span id="execution-error-GETtasks" hidden>
     <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-tasks">
+    <pre><code id="execution-error-message-GETtasks">
 
 Tip: Check that you&#039;re properly connected to the network.
 If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
 You can check the Dev Tools console for debugging information.</code></pre>
 </span>
-<form id="form-GETapi-tasks" data-method="GET"
-      data-path="api/tasks"
+<form id="form-GETtasks" data-method="GET"
+      data-path="tasks"
       data-authed="0"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('GETapi-tasks', this);">
+      onsubmit="event.preventDefault(); executeTryOut('GETtasks', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
                     <button type="button"
                     style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-tasks"
-                    onclick="tryItOut('GETapi-tasks');">Try it out ⚡
+                    id="btn-tryout-GETtasks"
+                    onclick="tryItOut('GETtasks');">Try it out ⚡
             </button>
             <button type="button"
                     style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-tasks"
-                    onclick="cancelTryOut('GETapi-tasks');" hidden>Cancel 🛑
+                    id="btn-canceltryout-GETtasks"
+                    onclick="cancelTryOut('GETtasks');" hidden>Cancel 🛑
             </button>&nbsp;&nbsp;
             <button type="submit"
                     style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-tasks"
+                    id="btn-executetryout-GETtasks"
                     data-initial-text="Send Request 💥"
                     data-loading-text="⏱ Sending..."
                     hidden>Send Request 💥
@@ -1039,15 +1775,16 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </h3>
             <p>
             <small class="badge badge-green">GET</small>
-            <b><code>api/tasks</code></b>
+            <b><code>tasks</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
 &nbsp;
  &nbsp;
+ &nbsp;
                 <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="GETapi-tasks"
+                              name="Content-Type"                data-endpoint="GETtasks"
                value="application/json"
                data-component="header">
     <br>
@@ -1057,8 +1794,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
                 <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
 &nbsp;
  &nbsp;
+ &nbsp;
                 <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="GETapi-tasks"
+                              name="Accept"                data-endpoint="GETtasks"
                value="application/json"
                data-component="header">
     <br>
@@ -1069,38 +1807,40 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <b style="line-height: 2;"><code>completed</code></b>&nbsp;&nbsp;
 <small>boolean</small>&nbsp;
 <i>optional</i> &nbsp;
-                <label data-endpoint="GETapi-tasks" style="display: none">
+ &nbsp;
+                <label data-endpoint="GETtasks" style="display: none">
             <input type="radio" name="completed"
                    value="true"
-                   data-endpoint="GETapi-tasks"
+                   data-endpoint="GETtasks"
                    data-component="body"             >
             <code>true</code>
         </label>
-        <label data-endpoint="GETapi-tasks" style="display: none">
+        <label data-endpoint="GETtasks" style="display: none">
             <input type="radio" name="completed"
                    value="false"
-                   data-endpoint="GETapi-tasks"
+                   data-endpoint="GETtasks"
                    data-component="body"             >
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>false</code></p>
+<p>Example: <code>true</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>withDescription</code></b>&nbsp;&nbsp;
 <small>boolean</small>&nbsp;
 <i>optional</i> &nbsp;
-                <label data-endpoint="GETapi-tasks" style="display: none">
+ &nbsp;
+                <label data-endpoint="GETtasks" style="display: none">
             <input type="radio" name="withDescription"
                    value="true"
-                   data-endpoint="GETapi-tasks"
+                   data-endpoint="GETtasks"
                    data-component="body"             >
             <code>true</code>
         </label>
-        <label data-endpoint="GETapi-tasks" style="display: none">
+        <label data-endpoint="GETtasks" style="display: none">
             <input type="radio" name="withDescription"
                    value="false"
-                   data-endpoint="GETapi-tasks"
+                   data-endpoint="GETtasks"
                    data-component="body"             >
             <code>false</code>
         </label>
@@ -1111,17 +1851,18 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <b style="line-height: 2;"><code>withUsers</code></b>&nbsp;&nbsp;
 <small>boolean</small>&nbsp;
 <i>optional</i> &nbsp;
-                <label data-endpoint="GETapi-tasks" style="display: none">
+ &nbsp;
+                <label data-endpoint="GETtasks" style="display: none">
             <input type="radio" name="withUsers"
                    value="true"
-                   data-endpoint="GETapi-tasks"
+                   data-endpoint="GETtasks"
                    data-component="body"             >
             <code>true</code>
         </label>
-        <label data-endpoint="GETapi-tasks" style="display: none">
+        <label data-endpoint="GETtasks" style="display: none">
             <input type="radio" name="withUsers"
                    value="false"
-                   data-endpoint="GETapi-tasks"
+                   data-endpoint="GETtasks"
                    data-component="body"             >
             <code>false</code>
         </label>
@@ -1132,37 +1873,38 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <b style="line-height: 2;"><code>assignedOrOwnedByUser</code></b>&nbsp;&nbsp;
 <small>integer</small>&nbsp;
 <i>optional</i> &nbsp;
+ &nbsp;
                 <input type="number" style="display: none"
-               step="any"               name="assignedOrOwnedByUser"                data-endpoint="GETapi-tasks"
-               value="17"
+               step="any"               name="assignedOrOwnedByUser"                data-endpoint="GETtasks"
+               value="16"
                data-component="body">
     <br>
-<p>Example: <code>17</code></p>
+<p>Example: <code>16</code></p>
         </div>
         </form>
 
-                    <h2 id="endpoints-POSTapi-tasks">Store a newly created resource in storage.</h2>
+                    <h2 id="endpoints-POSTtasks">Store a newly created resource in storage.</h2>
 
 <p>
 </p>
 
 
 
-<span id="example-requests-POSTapi-tasks">
+<span id="example-requests-POSTtasks">
 <blockquote>Example request:</blockquote>
 
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/tasks" \
+    "http://tarefador.localhost/api/tasks" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"title\": \"vmqeopfuudtdsufvyvddq\",
-    \"description\": \"Dolores molestias ipsam sit.\",
+    \"title\": \"b\",
+    \"description\": \"Et animi quos velit et fugiat.\",
     \"users\": [
         {
-            \"id\": \"consequatur\"
+            \"id\": \"architecto\"
         }
     ]
 }"
@@ -1171,7 +1913,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/tasks"
+    "http://tarefador.localhost/api/tasks"
 );
 
 const headers = {
@@ -1180,11 +1922,11 @@ const headers = {
 };
 
 let body = {
-    "title": "vmqeopfuudtdsufvyvddq",
-    "description": "Dolores molestias ipsam sit.",
+    "title": "b",
+    "description": "Et animi quos velit et fugiat.",
     "users": [
         {
-            "id": "consequatur"
+            "id": "architecto"
         }
     ]
 };
@@ -1197,45 +1939,45 @@ fetch(url, {
 
 </span>
 
-<span id="example-responses-POSTapi-tasks">
+<span id="example-responses-POSTtasks">
 </span>
-<span id="execution-results-POSTapi-tasks" hidden>
+<span id="execution-results-POSTtasks" hidden>
     <blockquote>Received response<span
-                id="execution-response-status-POSTapi-tasks"></span>:
+                id="execution-response-status-POSTtasks"></span>:
     </blockquote>
-    <pre class="json"><code id="execution-response-content-POSTapi-tasks"
+    <pre class="json"><code id="execution-response-content-POSTtasks"
       data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
 </span>
-<span id="execution-error-POSTapi-tasks" hidden>
+<span id="execution-error-POSTtasks" hidden>
     <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-POSTapi-tasks">
+    <pre><code id="execution-error-message-POSTtasks">
 
 Tip: Check that you&#039;re properly connected to the network.
 If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
 You can check the Dev Tools console for debugging information.</code></pre>
 </span>
-<form id="form-POSTapi-tasks" data-method="POST"
-      data-path="api/tasks"
+<form id="form-POSTtasks" data-method="POST"
+      data-path="tasks"
       data-authed="0"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('POSTapi-tasks', this);">
+      onsubmit="event.preventDefault(); executeTryOut('POSTtasks', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
                     <button type="button"
                     style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-POSTapi-tasks"
-                    onclick="tryItOut('POSTapi-tasks');">Try it out ⚡
+                    id="btn-tryout-POSTtasks"
+                    onclick="tryItOut('POSTtasks');">Try it out ⚡
             </button>
             <button type="button"
                     style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-POSTapi-tasks"
-                    onclick="cancelTryOut('POSTapi-tasks');" hidden>Cancel 🛑
+                    id="btn-canceltryout-POSTtasks"
+                    onclick="cancelTryOut('POSTtasks');" hidden>Cancel 🛑
             </button>&nbsp;&nbsp;
             <button type="submit"
                     style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-POSTapi-tasks"
+                    id="btn-executetryout-POSTtasks"
                     data-initial-text="Send Request 💥"
                     data-loading-text="⏱ Sending..."
                     hidden>Send Request 💥
@@ -1243,15 +1985,16 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </h3>
             <p>
             <small class="badge badge-black">POST</small>
-            <b><code>api/tasks</code></b>
+            <b><code>tasks</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
 &nbsp;
  &nbsp;
+ &nbsp;
                 <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="POSTapi-tasks"
+                              name="Content-Type"                data-endpoint="POSTtasks"
                value="application/json"
                data-component="header">
     <br>
@@ -1261,8 +2004,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
                 <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
 &nbsp;
  &nbsp;
+ &nbsp;
                 <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="POSTapi-tasks"
+                              name="Accept"                data-endpoint="POSTtasks"
                value="application/json"
                data-component="header">
     <br>
@@ -1273,23 +2017,25 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <b style="line-height: 2;"><code>title</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
  &nbsp;
+ &nbsp;
                 <input type="text" style="display: none"
-                              name="title"                data-endpoint="POSTapi-tasks"
-               value="vmqeopfuudtdsufvyvddq"
+                              name="title"                data-endpoint="POSTtasks"
+               value="b"
                data-component="body">
     <br>
-<p>Must not be greater than 255 characters. Example: <code>vmqeopfuudtdsufvyvddq</code></p>
+<p>Must not be greater than 255 characters. Example: <code>b</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>description</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
 <i>optional</i> &nbsp;
+ &nbsp;
                 <input type="text" style="display: none"
-                              name="description"                data-endpoint="POSTapi-tasks"
-               value="Dolores molestias ipsam sit."
+                              name="description"                data-endpoint="POSTtasks"
+               value="Et animi quos velit et fugiat."
                data-component="body">
     <br>
-<p>Must not be greater than 1000 characters. Example: <code>Dolores molestias ipsam sit.</code></p>
+<p>Must not be greater than 1000 characters. Example: <code>Et animi quos velit et fugiat.</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
         <details>
@@ -1297,6 +2043,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                 <b style="line-height: 2;"><code>users</code></b>&nbsp;&nbsp;
 <small>object[]</small>&nbsp;
 <i>optional</i> &nbsp;
+ &nbsp;
 <br>
 
             </summary>
@@ -1304,44 +2051,46 @@ You can check the Dev Tools console for debugging information.</code></pre>
                         <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
  &nbsp;
+ &nbsp;
                 <input type="text" style="display: none"
-                              name="users.0.id"                data-endpoint="POSTapi-tasks"
-               value="consequatur"
+                              name="users.0.id"                data-endpoint="POSTtasks"
+               value="architecto"
                data-component="body">
     <br>
-<p>The <code>id</code> of an existing record in the users table. Example: <code>consequatur</code></p>
+<p>The <code>id</code> of an existing record in the users table. Example: <code>architecto</code></p>
                     </div>
                                     </details>
         </div>
         </form>
 
-                    <h2 id="endpoints-GETapi-tasks--id-">Display the specified resource.</h2>
+                    <h2 id="endpoints-GETtasks--id-">Display the specified resource.</h2>
 
 <p>
 </p>
 
 
 
-<span id="example-requests-GETapi-tasks--id-">
+<span id="example-requests-GETtasks--id-">
 <blockquote>Example request:</blockquote>
 
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/tasks/1" \
+    --get "http://tarefador.localhost/api/tasks/1" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/tasks/1"
+    "http://tarefador.localhost/api/tasks/1"
 );
 
 const headers = {
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
+
 
 fetch(url, {
     method: "GET",
@@ -1350,9 +2099,9 @@ fetch(url, {
 
 </span>
 
-<span id="example-responses-GETapi-tasks--id-">
+<span id="example-responses-GETtasks--id-">
             <blockquote>
-            <p>Example response (401):</p>
+            <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
             <summary style="cursor: pointer;">
@@ -1364,47 +2113,47 @@ vary: Origin
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Unauthenticated.&quot;
+    &quot;message&quot;: &quot;The route api/tasks/1 could not be found.&quot;
 }</code>
  </pre>
     </span>
-<span id="execution-results-GETapi-tasks--id-" hidden>
+<span id="execution-results-GETtasks--id-" hidden>
     <blockquote>Received response<span
-                id="execution-response-status-GETapi-tasks--id-"></span>:
+                id="execution-response-status-GETtasks--id-"></span>:
     </blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-tasks--id-"
+    <pre class="json"><code id="execution-response-content-GETtasks--id-"
       data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
 </span>
-<span id="execution-error-GETapi-tasks--id-" hidden>
+<span id="execution-error-GETtasks--id-" hidden>
     <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-tasks--id-">
+    <pre><code id="execution-error-message-GETtasks--id-">
 
 Tip: Check that you&#039;re properly connected to the network.
 If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
 You can check the Dev Tools console for debugging information.</code></pre>
 </span>
-<form id="form-GETapi-tasks--id-" data-method="GET"
-      data-path="api/tasks/{id}"
+<form id="form-GETtasks--id-" data-method="GET"
+      data-path="tasks/{id}"
       data-authed="0"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('GETapi-tasks--id-', this);">
+      onsubmit="event.preventDefault(); executeTryOut('GETtasks--id-', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
                     <button type="button"
                     style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-tasks--id-"
-                    onclick="tryItOut('GETapi-tasks--id-');">Try it out ⚡
+                    id="btn-tryout-GETtasks--id-"
+                    onclick="tryItOut('GETtasks--id-');">Try it out ⚡
             </button>
             <button type="button"
                     style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-tasks--id-"
-                    onclick="cancelTryOut('GETapi-tasks--id-');" hidden>Cancel 🛑
+                    id="btn-canceltryout-GETtasks--id-"
+                    onclick="cancelTryOut('GETtasks--id-');" hidden>Cancel 🛑
             </button>&nbsp;&nbsp;
             <button type="submit"
                     style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-tasks--id-"
+                    id="btn-executetryout-GETtasks--id-"
                     data-initial-text="Send Request 💥"
                     data-loading-text="⏱ Sending..."
                     hidden>Send Request 💥
@@ -1412,15 +2161,16 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </h3>
             <p>
             <small class="badge badge-green">GET</small>
-            <b><code>api/tasks/{id}</code></b>
+            <b><code>tasks/{id}</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
 &nbsp;
  &nbsp;
+ &nbsp;
                 <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="GETapi-tasks--id-"
+                              name="Content-Type"                data-endpoint="GETtasks--id-"
                value="application/json"
                data-component="header">
     <br>
@@ -1430,8 +2180,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
                 <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
 &nbsp;
  &nbsp;
+ &nbsp;
                 <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="GETapi-tasks--id-"
+                              name="Accept"                data-endpoint="GETtasks--id-"
                value="application/json"
                data-component="header">
     <br>
@@ -1442,8 +2193,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
                 <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
 <small>integer</small>&nbsp;
  &nbsp;
+ &nbsp;
                 <input type="number" style="display: none"
-               step="any"               name="id"                data-endpoint="GETapi-tasks--id-"
+               step="any"               name="id"                data-endpoint="GETtasks--id-"
                value="1"
                data-component="url">
     <br>
@@ -1451,29 +2203,29 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                     </form>
 
-                    <h2 id="endpoints-PUTapi-tasks--id-">Update the specified resource in storage.</h2>
+                    <h2 id="endpoints-PUTtasks--id-">Update the specified resource in storage.</h2>
 
 <p>
 </p>
 
 
 
-<span id="example-requests-PUTapi-tasks--id-">
+<span id="example-requests-PUTtasks--id-">
 <blockquote>Example request:</blockquote>
 
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost/api/tasks/1" \
+    "http://tarefador.localhost/api/tasks/1" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"title\": \"vmqeopfuudtdsufvyvddq\",
-    \"description\": \"Dolores molestias ipsam sit.\",
-    \"completed\": false,
+    \"title\": \"b\",
+    \"description\": \"Et animi quos velit et fugiat.\",
+    \"completed\": true,
     \"users\": [
         {
-            \"id\": \"consequatur\"
+            \"id\": \"architecto\"
         }
     ]
 }"
@@ -1482,7 +2234,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/tasks/1"
+    "http://tarefador.localhost/api/tasks/1"
 );
 
 const headers = {
@@ -1491,12 +2243,12 @@ const headers = {
 };
 
 let body = {
-    "title": "vmqeopfuudtdsufvyvddq",
-    "description": "Dolores molestias ipsam sit.",
-    "completed": false,
+    "title": "b",
+    "description": "Et animi quos velit et fugiat.",
+    "completed": true,
     "users": [
         {
-            "id": "consequatur"
+            "id": "architecto"
         }
     ]
 };
@@ -1509,45 +2261,45 @@ fetch(url, {
 
 </span>
 
-<span id="example-responses-PUTapi-tasks--id-">
+<span id="example-responses-PUTtasks--id-">
 </span>
-<span id="execution-results-PUTapi-tasks--id-" hidden>
+<span id="execution-results-PUTtasks--id-" hidden>
     <blockquote>Received response<span
-                id="execution-response-status-PUTapi-tasks--id-"></span>:
+                id="execution-response-status-PUTtasks--id-"></span>:
     </blockquote>
-    <pre class="json"><code id="execution-response-content-PUTapi-tasks--id-"
+    <pre class="json"><code id="execution-response-content-PUTtasks--id-"
       data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
 </span>
-<span id="execution-error-PUTapi-tasks--id-" hidden>
+<span id="execution-error-PUTtasks--id-" hidden>
     <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-PUTapi-tasks--id-">
+    <pre><code id="execution-error-message-PUTtasks--id-">
 
 Tip: Check that you&#039;re properly connected to the network.
 If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
 You can check the Dev Tools console for debugging information.</code></pre>
 </span>
-<form id="form-PUTapi-tasks--id-" data-method="PUT"
-      data-path="api/tasks/{id}"
+<form id="form-PUTtasks--id-" data-method="PUT"
+      data-path="tasks/{id}"
       data-authed="0"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('PUTapi-tasks--id-', this);">
+      onsubmit="event.preventDefault(); executeTryOut('PUTtasks--id-', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
                     <button type="button"
                     style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-PUTapi-tasks--id-"
-                    onclick="tryItOut('PUTapi-tasks--id-');">Try it out ⚡
+                    id="btn-tryout-PUTtasks--id-"
+                    onclick="tryItOut('PUTtasks--id-');">Try it out ⚡
             </button>
             <button type="button"
                     style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-PUTapi-tasks--id-"
-                    onclick="cancelTryOut('PUTapi-tasks--id-');" hidden>Cancel 🛑
+                    id="btn-canceltryout-PUTtasks--id-"
+                    onclick="cancelTryOut('PUTtasks--id-');" hidden>Cancel 🛑
             </button>&nbsp;&nbsp;
             <button type="submit"
                     style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-PUTapi-tasks--id-"
+                    id="btn-executetryout-PUTtasks--id-"
                     data-initial-text="Send Request 💥"
                     data-loading-text="⏱ Sending..."
                     hidden>Send Request 💥
@@ -1555,19 +2307,20 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </h3>
             <p>
             <small class="badge badge-darkblue">PUT</small>
-            <b><code>api/tasks/{id}</code></b>
+            <b><code>tasks/{id}</code></b>
         </p>
             <p>
             <small class="badge badge-purple">PATCH</small>
-            <b><code>api/tasks/{id}</code></b>
+            <b><code>tasks/{id}</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
 &nbsp;
  &nbsp;
+ &nbsp;
                 <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="PUTapi-tasks--id-"
+                              name="Content-Type"                data-endpoint="PUTtasks--id-"
                value="application/json"
                data-component="header">
     <br>
@@ -1577,8 +2330,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
                 <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
 &nbsp;
  &nbsp;
+ &nbsp;
                 <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="PUTapi-tasks--id-"
+                              name="Accept"                data-endpoint="PUTtasks--id-"
                value="application/json"
                data-component="header">
     <br>
@@ -1589,8 +2343,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
                 <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
 <small>integer</small>&nbsp;
  &nbsp;
+ &nbsp;
                 <input type="number" style="display: none"
-               step="any"               name="id"                data-endpoint="PUTapi-tasks--id-"
+               step="any"               name="id"                data-endpoint="PUTtasks--id-"
                value="1"
                data-component="url">
     <br>
@@ -1600,45 +2355,48 @@ You can check the Dev Tools console for debugging information.</code></pre>
         <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>title</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
+<i>optional</i> &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="title"                data-endpoint="PUTapi-tasks--id-"
-               value="vmqeopfuudtdsufvyvddq"
+                              name="title"                data-endpoint="PUTtasks--id-"
+               value="b"
                data-component="body">
     <br>
-<p>Must not be greater than 255 characters. Example: <code>vmqeopfuudtdsufvyvddq</code></p>
+<p>Must not be greater than 255 characters. Example: <code>b</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>description</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
 <i>optional</i> &nbsp;
+ &nbsp;
                 <input type="text" style="display: none"
-                              name="description"                data-endpoint="PUTapi-tasks--id-"
-               value="Dolores molestias ipsam sit."
+                              name="description"                data-endpoint="PUTtasks--id-"
+               value="Et animi quos velit et fugiat."
                data-component="body">
     <br>
-<p>Must not be greater than 1000 characters. Example: <code>Dolores molestias ipsam sit.</code></p>
+<p>Must not be greater than 1000 characters. Example: <code>Et animi quos velit et fugiat.</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>completed</code></b>&nbsp;&nbsp;
 <small>boolean</small>&nbsp;
 <i>optional</i> &nbsp;
-                <label data-endpoint="PUTapi-tasks--id-" style="display: none">
+ &nbsp;
+                <label data-endpoint="PUTtasks--id-" style="display: none">
             <input type="radio" name="completed"
                    value="true"
-                   data-endpoint="PUTapi-tasks--id-"
+                   data-endpoint="PUTtasks--id-"
                    data-component="body"             >
             <code>true</code>
         </label>
-        <label data-endpoint="PUTapi-tasks--id-" style="display: none">
+        <label data-endpoint="PUTtasks--id-" style="display: none">
             <input type="radio" name="completed"
                    value="false"
-                   data-endpoint="PUTapi-tasks--id-"
+                   data-endpoint="PUTtasks--id-"
                    data-component="body"             >
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>false</code></p>
+<p>Example: <code>true</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
         <details>
@@ -1646,6 +2404,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                 <b style="line-height: 2;"><code>users</code></b>&nbsp;&nbsp;
 <small>object[]</small>&nbsp;
 <i>optional</i> &nbsp;
+ &nbsp;
 <br>
 
             </summary>
@@ -1653,44 +2412,46 @@ You can check the Dev Tools console for debugging information.</code></pre>
                         <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
  &nbsp;
+ &nbsp;
                 <input type="text" style="display: none"
-                              name="users.0.id"                data-endpoint="PUTapi-tasks--id-"
-               value="consequatur"
+                              name="users.0.id"                data-endpoint="PUTtasks--id-"
+               value="architecto"
                data-component="body">
     <br>
-<p>The <code>id</code> of an existing record in the users table. Example: <code>consequatur</code></p>
+<p>The <code>id</code> of an existing record in the users table. Example: <code>architecto</code></p>
                     </div>
                                     </details>
         </div>
         </form>
 
-                    <h2 id="endpoints-DELETEapi-tasks--id-">Remove the specified resource from storage.</h2>
+                    <h2 id="endpoints-DELETEtasks--id-">Remove the specified resource from storage.</h2>
 
 <p>
 </p>
 
 
 
-<span id="example-requests-DELETEapi-tasks--id-">
+<span id="example-requests-DELETEtasks--id-">
 <blockquote>Example request:</blockquote>
 
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost/api/tasks/1" \
+    "http://tarefador.localhost/api/tasks/1" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/tasks/1"
+    "http://tarefador.localhost/api/tasks/1"
 );
 
 const headers = {
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
+
 
 fetch(url, {
     method: "DELETE",
@@ -1699,45 +2460,45 @@ fetch(url, {
 
 </span>
 
-<span id="example-responses-DELETEapi-tasks--id-">
+<span id="example-responses-DELETEtasks--id-">
 </span>
-<span id="execution-results-DELETEapi-tasks--id-" hidden>
+<span id="execution-results-DELETEtasks--id-" hidden>
     <blockquote>Received response<span
-                id="execution-response-status-DELETEapi-tasks--id-"></span>:
+                id="execution-response-status-DELETEtasks--id-"></span>:
     </blockquote>
-    <pre class="json"><code id="execution-response-content-DELETEapi-tasks--id-"
+    <pre class="json"><code id="execution-response-content-DELETEtasks--id-"
       data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
 </span>
-<span id="execution-error-DELETEapi-tasks--id-" hidden>
+<span id="execution-error-DELETEtasks--id-" hidden>
     <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-DELETEapi-tasks--id-">
+    <pre><code id="execution-error-message-DELETEtasks--id-">
 
 Tip: Check that you&#039;re properly connected to the network.
 If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
 You can check the Dev Tools console for debugging information.</code></pre>
 </span>
-<form id="form-DELETEapi-tasks--id-" data-method="DELETE"
-      data-path="api/tasks/{id}"
+<form id="form-DELETEtasks--id-" data-method="DELETE"
+      data-path="tasks/{id}"
       data-authed="0"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('DELETEapi-tasks--id-', this);">
+      onsubmit="event.preventDefault(); executeTryOut('DELETEtasks--id-', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
                     <button type="button"
                     style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-DELETEapi-tasks--id-"
-                    onclick="tryItOut('DELETEapi-tasks--id-');">Try it out ⚡
+                    id="btn-tryout-DELETEtasks--id-"
+                    onclick="tryItOut('DELETEtasks--id-');">Try it out ⚡
             </button>
             <button type="button"
                     style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-DELETEapi-tasks--id-"
-                    onclick="cancelTryOut('DELETEapi-tasks--id-');" hidden>Cancel 🛑
+                    id="btn-canceltryout-DELETEtasks--id-"
+                    onclick="cancelTryOut('DELETEtasks--id-');" hidden>Cancel 🛑
             </button>&nbsp;&nbsp;
             <button type="submit"
                     style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-DELETEapi-tasks--id-"
+                    id="btn-executetryout-DELETEtasks--id-"
                     data-initial-text="Send Request 💥"
                     data-loading-text="⏱ Sending..."
                     hidden>Send Request 💥
@@ -1745,15 +2506,16 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </h3>
             <p>
             <small class="badge badge-red">DELETE</small>
-            <b><code>api/tasks/{id}</code></b>
+            <b><code>tasks/{id}</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
 &nbsp;
  &nbsp;
+ &nbsp;
                 <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="DELETEapi-tasks--id-"
+                              name="Content-Type"                data-endpoint="DELETEtasks--id-"
                value="application/json"
                data-component="header">
     <br>
@@ -1763,8 +2525,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
                 <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
 &nbsp;
  &nbsp;
+ &nbsp;
                 <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="DELETEapi-tasks--id-"
+                              name="Accept"                data-endpoint="DELETEtasks--id-"
                value="application/json"
                data-component="header">
     <br>
@@ -1775,8 +2538,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
                 <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
 <small>integer</small>&nbsp;
  &nbsp;
+ &nbsp;
                 <input type="number" style="display: none"
-               step="any"               name="id"                data-endpoint="DELETEapi-tasks--id-"
+               step="any"               name="id"                data-endpoint="DELETEtasks--id-"
                value="1"
                data-component="url">
     <br>
@@ -1784,29 +2548,29 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                     </form>
 
-                    <h2 id="endpoints-PUTapi-tasks--task_id--users">PUT api/tasks/{task_id}/users</h2>
+                    <h2 id="endpoints-PUTtasks--task_id--users">PUT tasks/{task_id}/users</h2>
 
 <p>
 </p>
 
 
 
-<span id="example-requests-PUTapi-tasks--task_id--users">
+<span id="example-requests-PUTtasks--task_id--users">
 <blockquote>Example request:</blockquote>
 
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost/api/tasks/1/users" \
+    "http://tarefador.localhost/api/tasks/1/users" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"title\": \"vmqeopfuudtdsufvyvddq\",
-    \"description\": \"Dolores molestias ipsam sit.\",
-    \"completed\": false,
+    \"title\": \"b\",
+    \"description\": \"Et animi quos velit et fugiat.\",
+    \"completed\": true,
     \"users\": [
         {
-            \"id\": \"consequatur\"
+            \"id\": \"architecto\"
         }
     ]
 }"
@@ -1815,7 +2579,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/tasks/1/users"
+    "http://tarefador.localhost/api/tasks/1/users"
 );
 
 const headers = {
@@ -1824,12 +2588,12 @@ const headers = {
 };
 
 let body = {
-    "title": "vmqeopfuudtdsufvyvddq",
-    "description": "Dolores molestias ipsam sit.",
-    "completed": false,
+    "title": "b",
+    "description": "Et animi quos velit et fugiat.",
+    "completed": true,
     "users": [
         {
-            "id": "consequatur"
+            "id": "architecto"
         }
     ]
 };
@@ -1842,45 +2606,45 @@ fetch(url, {
 
 </span>
 
-<span id="example-responses-PUTapi-tasks--task_id--users">
+<span id="example-responses-PUTtasks--task_id--users">
 </span>
-<span id="execution-results-PUTapi-tasks--task_id--users" hidden>
+<span id="execution-results-PUTtasks--task_id--users" hidden>
     <blockquote>Received response<span
-                id="execution-response-status-PUTapi-tasks--task_id--users"></span>:
+                id="execution-response-status-PUTtasks--task_id--users"></span>:
     </blockquote>
-    <pre class="json"><code id="execution-response-content-PUTapi-tasks--task_id--users"
+    <pre class="json"><code id="execution-response-content-PUTtasks--task_id--users"
       data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
 </span>
-<span id="execution-error-PUTapi-tasks--task_id--users" hidden>
+<span id="execution-error-PUTtasks--task_id--users" hidden>
     <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-PUTapi-tasks--task_id--users">
+    <pre><code id="execution-error-message-PUTtasks--task_id--users">
 
 Tip: Check that you&#039;re properly connected to the network.
 If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
 You can check the Dev Tools console for debugging information.</code></pre>
 </span>
-<form id="form-PUTapi-tasks--task_id--users" data-method="PUT"
-      data-path="api/tasks/{task_id}/users"
+<form id="form-PUTtasks--task_id--users" data-method="PUT"
+      data-path="tasks/{task_id}/users"
       data-authed="0"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('PUTapi-tasks--task_id--users', this);">
+      onsubmit="event.preventDefault(); executeTryOut('PUTtasks--task_id--users', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
                     <button type="button"
                     style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-PUTapi-tasks--task_id--users"
-                    onclick="tryItOut('PUTapi-tasks--task_id--users');">Try it out ⚡
+                    id="btn-tryout-PUTtasks--task_id--users"
+                    onclick="tryItOut('PUTtasks--task_id--users');">Try it out ⚡
             </button>
             <button type="button"
                     style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-PUTapi-tasks--task_id--users"
-                    onclick="cancelTryOut('PUTapi-tasks--task_id--users');" hidden>Cancel 🛑
+                    id="btn-canceltryout-PUTtasks--task_id--users"
+                    onclick="cancelTryOut('PUTtasks--task_id--users');" hidden>Cancel 🛑
             </button>&nbsp;&nbsp;
             <button type="submit"
                     style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-PUTapi-tasks--task_id--users"
+                    id="btn-executetryout-PUTtasks--task_id--users"
                     data-initial-text="Send Request 💥"
                     data-loading-text="⏱ Sending..."
                     hidden>Send Request 💥
@@ -1888,15 +2652,16 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </h3>
             <p>
             <small class="badge badge-darkblue">PUT</small>
-            <b><code>api/tasks/{task_id}/users</code></b>
+            <b><code>tasks/{task_id}/users</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
 &nbsp;
  &nbsp;
+ &nbsp;
                 <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="PUTapi-tasks--task_id--users"
+                              name="Content-Type"                data-endpoint="PUTtasks--task_id--users"
                value="application/json"
                data-component="header">
     <br>
@@ -1906,8 +2671,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
                 <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
 &nbsp;
  &nbsp;
+ &nbsp;
                 <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="PUTapi-tasks--task_id--users"
+                              name="Accept"                data-endpoint="PUTtasks--task_id--users"
                value="application/json"
                data-component="header">
     <br>
@@ -1918,8 +2684,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
                 <b style="line-height: 2;"><code>task_id</code></b>&nbsp;&nbsp;
 <small>integer</small>&nbsp;
  &nbsp;
+ &nbsp;
                 <input type="number" style="display: none"
-               step="any"               name="task_id"                data-endpoint="PUTapi-tasks--task_id--users"
+               step="any"               name="task_id"                data-endpoint="PUTtasks--task_id--users"
                value="1"
                data-component="url">
     <br>
@@ -1929,45 +2696,48 @@ You can check the Dev Tools console for debugging information.</code></pre>
         <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>title</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
+<i>optional</i> &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="title"                data-endpoint="PUTapi-tasks--task_id--users"
-               value="vmqeopfuudtdsufvyvddq"
+                              name="title"                data-endpoint="PUTtasks--task_id--users"
+               value="b"
                data-component="body">
     <br>
-<p>Must not be greater than 255 characters. Example: <code>vmqeopfuudtdsufvyvddq</code></p>
+<p>Must not be greater than 255 characters. Example: <code>b</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>description</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
 <i>optional</i> &nbsp;
+ &nbsp;
                 <input type="text" style="display: none"
-                              name="description"                data-endpoint="PUTapi-tasks--task_id--users"
-               value="Dolores molestias ipsam sit."
+                              name="description"                data-endpoint="PUTtasks--task_id--users"
+               value="Et animi quos velit et fugiat."
                data-component="body">
     <br>
-<p>Must not be greater than 1000 characters. Example: <code>Dolores molestias ipsam sit.</code></p>
+<p>Must not be greater than 1000 characters. Example: <code>Et animi quos velit et fugiat.</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>completed</code></b>&nbsp;&nbsp;
 <small>boolean</small>&nbsp;
 <i>optional</i> &nbsp;
-                <label data-endpoint="PUTapi-tasks--task_id--users" style="display: none">
+ &nbsp;
+                <label data-endpoint="PUTtasks--task_id--users" style="display: none">
             <input type="radio" name="completed"
                    value="true"
-                   data-endpoint="PUTapi-tasks--task_id--users"
+                   data-endpoint="PUTtasks--task_id--users"
                    data-component="body"             >
             <code>true</code>
         </label>
-        <label data-endpoint="PUTapi-tasks--task_id--users" style="display: none">
+        <label data-endpoint="PUTtasks--task_id--users" style="display: none">
             <input type="radio" name="completed"
                    value="false"
-                   data-endpoint="PUTapi-tasks--task_id--users"
+                   data-endpoint="PUTtasks--task_id--users"
                    data-component="body"             >
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>false</code></p>
+<p>Example: <code>true</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
         <details>
@@ -1975,6 +2745,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                 <b style="line-height: 2;"><code>users</code></b>&nbsp;&nbsp;
 <small>object[]</small>&nbsp;
 <i>optional</i> &nbsp;
+ &nbsp;
 <br>
 
             </summary>
@@ -1982,12 +2753,13 @@ You can check the Dev Tools console for debugging information.</code></pre>
                         <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
  &nbsp;
+ &nbsp;
                 <input type="text" style="display: none"
-                              name="users.0.id"                data-endpoint="PUTapi-tasks--task_id--users"
-               value="consequatur"
+                              name="users.0.id"                data-endpoint="PUTtasks--task_id--users"
+               value="architecto"
                data-component="body">
     <br>
-<p>The <code>id</code> of an existing record in the users table. Example: <code>consequatur</code></p>
+<p>The <code>id</code> of an existing record in the users table. Example: <code>architecto</code></p>
                     </div>
                                     </details>
         </div>

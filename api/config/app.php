@@ -185,4 +185,12 @@ return [
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
 
+
+    /*
+    SPA and API URLs
+    */
+    'public_spa_url' => env('NUXT_PUBLIC_SPA_URL'),
+    'public_api_url' => env('NUXT_PUBLIC_API_URL'),
+    'internal_api_url' => env('INTERNAL_API_URL'),
+    'internal_spa_url' => env('INTERNAL_SPA_URL'),
 ];
