@@ -16,14 +16,14 @@ return [
 
     // The base URL displayed in the docs.
     // If you're using `laravel` type, you can set this to a dynamic string, like '{{ config("app.tenant_url") }}' to get a dynamic base URL.
-    'base_url' => config("app.url"),
+    'base_url' => config("app.public_api_url"),
 
     // Routes to include in the docs
     'routes' => [
         [
             'match' => [
                 // Match only routes whose paths match this pattern (use * as a wildcard to match any characters). Example: 'users/*'.
-                'prefixes' => ['api/*'],
+                'prefixes' => ['*'],
 
                 // Match only routes whose domains match this pattern (use * as a wildcard to match any characters). Example: 'api.*'.
                 'domains' => ['*'],
@@ -31,7 +31,12 @@ return [
 
             // Include these routes even if they did not match the rules above.
             'include' => [
-                // 'users.index', 'POST /new', '/auth/*'
+                '/login',
+                '/logout',
+                '/user',
+                '/user/*',
+                '/tasks',
+                '/tasks/*',
             ],
 
             // Exclude these routes even if they matched the rules above.

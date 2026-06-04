@@ -1,126 +1,127 @@
 # Tarefador
 
-Tarefador é uma aplicação web para gerenciamento de tarefas colaborativas. Usuários podem criar, editar, atribuir participantes e acompanhar o progresso de tarefas em tempo real, com autenticação e controle de permissões.
-
-## Arquitetura
-
-O projeto é dividido em duas partes independentes:
-
-- **Backend API** (Laravel) - na raiz do repositório
-- **Frontend SPA** (Vue 3 + PrimeVue) - no diretório `spa/`
-
-## Funcionalidades
-
-- Cadastro e autenticação de usuários
-- Criação, edição e exclusão de tarefas
-- Atribuição de participantes às tarefas
-- Controle de permissões (admin, proprietário, participante)
-- Interface moderna com PrimeVue e TailwindCSS
-- Log de ações utilizando MongoDB
-
-## Requisitos
-
-- PHP >= 8.1 | Laravel >= 10.x
-- Composer
-- Node.js e npm
-- MySQL ou MariaDB
-- MongoDB
-
-## Instalação (Backend)
-
-```sh
-git clone https://github.com/TacioDaito/tarefador.git
-cd tarefador
-composer install
-cp .env.example .env
-php artisan key:generate
-```
-
-Configure o banco de dados no arquivo `.env`:
-
-```
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=laravel
-DB_USERNAME=root
-DB_PASSWORD=
-
-MONGODB_URI="mongodb://localhost:27017"
-MONGODB_DATABASE="laravel"
-
-```
-
-Execute as migrações e seeders:
-
-```sh
-php artisan migrate --seed
-```
-
-Inicie o servidor da API:
-
-```sh
-php artisan serve
-```
-
-A API estara disponivel em http://localhost:8000.
-
-## Instalação (Frontend)
-
-```sh
-cd spa
-npm install
-```
-
-Inicie o servidor de desenvolvimento:
-
-```sh
-npm run dev
-```
-
-O frontend estara disponivel em http://tarefador.localhost:3000.
-
-Para build de producao:
-
-```sh
-npm run build
-```
-
-## Uso
-
-Acesse [http://tarefador.localhost:3000](http://tarefador.localhost:3000) para utilizar a aplicacao.
-O backend deve estar rodando em [http://tarefador.localhost/api](http://tarefador.localhost/api) simultaneamente.
+> Nuxt 4 SPA with Laravel 13 API for collaborative task management. Users can create an account, authenticate, create tasks, or join existing tasks, organizing workflow for small businesses.
 
 ---
 
-## Design
+### Tech Stack
 
-As escolhas de ferramentas em sua grande maioria foram feitas para atender os requisitos especificados, com excecao de alguns pacotes JavaScript:
-
-- **PrimeVue**: Biblioteca de componentes Vue com vasta gama de componentes proprios para o desenvolvimento rapido de novas aplicacoes. A intencao foi agilizar o desenvolvimento sem comprometer a responsividade da aplicacao a experiencia do usuario.
-
-- **Vue-router**: Usado para agilizar o controle do fluxo entre views.
-
-- **Laravel Sanctum SPA Auth**: Autenticacao com cookies atraves da rota `sanctum/csrf-cookie`. O frontend desacoplado se comunica com a API via CORS, com credenciais habilitadas.
-
----
-
-## Problemas Conhecidos
-
-- Ao trocar de conta (logout + login com credenciais diferentes), a autenticacao pode falhar no backend, exibindo apenas o estado autenticado no frontend sem carregar as tarefas. O erro desaparece ao recarregar a pagina.
+| Category | Tools and Frameworks |
+| :--- | :--- |
+| **Frontend** | Nuxt 4 (Vue 3), PrimeVue 4, TailwindCSS v4, PrimeIcons |
+| **Backend** | Laravel 13 (PHP 8.4+), Laravel Sanctum (SPA auth via cookies), PHP-FPM |
+| **Database** | MySQL 8.0 (primary), MongoDB 7 (action logs), Redis (cache and sessions) |
+| **Infrastructure** | Docker, Docker Compose, Nginx (reverse proxy), Makefile for orchestration |
 
 ---
 
-## Documentacao da API
+### Folder Structure
 
-A documentacao da API e gerada atraves do pacote Scribe. Acesse [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs) com o servidor rodando.
-
-Mais informacoes: [https://scribe.knuckles.wtf/laravel/](https://scribe.knuckles.wtf/laravel/)
+```text
+tarefador/
+├── api/                  # Laravel 13 backend API
+│   ├── app/
+│   │   ├── Http/Controllers/   # Auth, Task, User controllers
+│   │   ├── Models/             # Task, User, ActionLog models
+│   │   ├── Services/           # TaskService, LogService
+│   │   └── Policies/           # TaskPolicy
+│   ├── config/                 # Database, Sanctum, Scribe config
+│   ├── database/
+│   │   ├── migrations/         # Users, tasks, personal access tokens
+│   │   └── seeders/            # DatabaseSeeder, TaskSeeder
+│   ├── routes/
+│   │   └── api.php             # API route definitions
+│   └── tests/                  # PHPUnit feature and unit tests
+├── spa/                  # Nuxt 4 frontend SPA
+│   ├── app/
+│   │   ├── components/         # NavBar, TaskPanel
+│   │   ├── composables/        # useAuthState, useTaskAction, etc.
+│   │   ├── pages/              # index, login, signup, dashboard, tasks
+│   │   └── assets/css/         # Main CSS with Tailwind
+│   └── nuxt.config.js          # Nuxt configuration
+├── docker-compose.yml          # Base Docker Compose
+├── docker-compose.dev.yml      # Dev overrides
+├── docker-compose.prod.yml     # Production overrides
+├── nginx.conf                  # Reverse proxy configuration
+├── Makefile                    # Orchestration commands
+└── .env.example                # Environment variable template
+```
 
 ---
 
-Para mais detalhes, consulte a documentacao dos frameworks utilizados:
-- [Laravel](https://laravel.com/docs/10.x)
-- [Vue.js](https://vuejs.org/)
-- [PrimeVue](https://primevue.org/introduction/)
-- [TailwindCSS](https://tailwindcss.com/)
+### Prerequisites
+
+The following dependencies are required to build and run the project:
+
+* **Runtime Environment:** PHP 8.4+ (via Docker), Node.js (via Docker)
+* **Package Management:** Composer (via Docker), npm (via Docker)
+* **Virtualization:** Docker and Docker Compose
+
+---
+
+### Installation and Setup
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/TacioDaito/tarefador.git
+   cd tarefador
+   ```
+
+2. **Configure Environment Variables:**
+   ```bash
+   cp .env.example .env
+   ```
+   Choose MySQL's password and rootpassword.
+
+3. **Initialize Containers:**
+   ```bash
+   make build-up        # Development
+   make build-up env=prod  # Production
+   ```
+
+4. **Access the App:**
+    You can access the app in the `http://tarefador.localhost` URL.
+
+5. **Stopping Containers:**
+   ```bash
+   make down    # Stop containers
+   make down-volumes    # Remove volumes
+   ```
+
+
+---
+
+### Testing
+
+Ensure the integrity of the codebase by running the automated test suite:
+
+```bash
+# Execute all API tests
+docker compose exec api php artisan test
+
+# Generate coverage report
+docker compose exec api php artisan test --coverage
+```
+
+---
+
+### Design Decisions
+
+- **PrimeVue**: Component library for rapid UI development with Vue, providing a wide range of pre-built components without compromising responsiveness or user experience.
+- **Laravel Sanctum SPA Auth**: Cookie-based authentication via `sanctum/csrf-cookie` endpoint. The decoupled SPA communicates with the API through CORS with credentials enabled.
+- **MongoDB for Action Logs**: Task action history is stored in MongoDB, keeping the MySQL primary database lean while enabling flexible querying of audit trails.
+- **Docker Compose Orchestration**: All services (Nginx, SPA, API, MySQL, MongoDB, Redis) are containerized and orchestrated with Docker Compose for consistent development and production environments.
+
+---
+
+### Known Issues
+
+- When switching accounts (logout + login with different credentials), authentication may fail on the backend, showing an authenticated state on the frontend without loading tasks. Reloading the page resolves the issue.
+
+---
+
+### API Documentation
+
+API documentation is auto-generated via Scribe. Access it at `http://tarefador.localhost/docs` with the server running.
+
+More information: [https://scribe.knuckles.wtf/laravel/](https://scribe.knuckles.wtf/laravel/)

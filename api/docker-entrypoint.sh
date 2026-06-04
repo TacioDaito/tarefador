@@ -4,6 +4,18 @@ set -e
 # Determine environment (default: local/dev)
 ENV=${APP_ENV:-local}
 
+# Create .env from .env.example if it doesn't exist
+if [ ! -f .env ]; then
+    echo "Creating .env from .env.example..."
+    cp .env.example .env
+fi
+
+# Generate app key if APP_KEY is not set in .env
+if ! grep -q "^APP_KEY=" .env || [ -z "$(grep "^APP_KEY=" .env | cut -d= -f2-)" ]; then
+    echo "Generating application key..."
+    php artisan key:generate
+fi
+
 # Run migrations with seed
 echo "Running migrations and seeders..."
 php artisan migrate --seed --force
