@@ -15,6 +15,7 @@ dist-ssr
 .output
 *.local
 .env
+.nuxt
 
 # Editor directories and files
 .vscode/*

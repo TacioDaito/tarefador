@@ -45,9 +45,11 @@ export default defineNuxtConfig({
   vite: {
     plugins: [tailwindcss()],
     server: {
-      hmr: {
-        protocol: 'ws',
-        host: 'localhost'
+      hmr: true,
+      watch: {
+        usePolling: true,
+        interval: 1000,
+        ignored: ['**/.nuxt/**', '**/node_modules/**']
       }
     },
     optimizeDeps: {

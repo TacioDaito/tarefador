@@ -2,15 +2,13 @@ import { toRaw } from 'vue'
 
 export const useTaskAction = (emit) => {
   const { user, loading, message } = useAuthState()
-  const config = useRuntimeConfig()
+  const client = useSanctumClient()
   const tasks = ref([])
 
   const getTasks = async (params = {}) => {
     loading.value = true
     try {
-      const data = await $fetch('/tasks', {
-        baseURL: config.public.apiUrl,
-        credentials: 'include',
+      const data = await client('/tasks', {
         params
       })
       tasks.value = data.tasks
@@ -30,10 +28,8 @@ export const useTaskAction = (emit) => {
         description: '',
         users: []
       }
-      await $fetch('/tasks', {
-        baseURL: config.public.apiUrl,
+      await client('/tasks', {
         method: 'POST',
-        credentials: 'include',
         body: emptyTask
       })
       getTasks({ assignedOrOwnedByUser: user.value?.id })
@@ -47,10 +43,8 @@ export const useTaskAction = (emit) => {
   const editTask = async (task) => {
     loading.value = true
     try {
-      await $fetch(`/tasks/${task.id}`, {
-        baseURL: config.public.apiUrl,
+      await client(`/tasks/${task.id}`, {
         method: 'PUT',
-        credentials: 'include',
         body: toRaw(task)
       })
       emit('refreshTasks')
@@ -64,10 +58,8 @@ export const useTaskAction = (emit) => {
   const editTaskUsers = async (task) => {
     loading.value = true
     try {
-      await $fetch(`/tasks/${task.id}/users`, {
-        baseURL: config.public.apiUrl,
+      await client(`/tasks/${task.id}/users`, {
         method: 'PUT',
-        credentials: 'include',
         body: toRaw(task)
       })
       emit('refreshTasks')
@@ -81,10 +73,8 @@ export const useTaskAction = (emit) => {
   const deleteTask = async (task) => {
     loading.value = true
     try {
-      await $fetch(`/tasks/${task.id}`, {
-        baseURL: config.public.apiUrl,
-        method: 'DELETE',
-        credentials: 'include'
+      await client(`/tasks/${task.id}`, {
+        method: 'DELETE'
       })
       emit('refreshTasks')
     } catch (error) {

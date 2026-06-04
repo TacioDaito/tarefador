@@ -1,7 +1,6 @@
 <script setup>
 const { isAdmin, loggingOut } = useAuthState()
 const { logout } = useLogoutAction()
-const router = useRouter()
 
 const items = ref([
   {
