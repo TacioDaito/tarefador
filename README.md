@@ -80,7 +80,7 @@ The following dependencies are required to build and run the project:
    ```
 
 4. **Access the App:**
-    You can access the app in the `http://tarefador.localhost` URL.
+    You can access the app in the [http://tarefador.localhost](http://tarefador.localhost) URL.
 
 5. **Stopping Containers:**
    ```bash
@@ -122,6 +122,6 @@ docker compose exec api php artisan test --coverage
 
 ### API Documentation
 
-API documentation is auto-generated via Scribe. Access it at `http://tarefador.localhost/docs` with the server running.
+API documentation is auto-generated via Scribe. Access it at [http://tarefador.localhost/api/docs](http://tarefador.localhost/api/docs) with the server running.
 
 More information: [https://scribe.knuckles.wtf/laravel/](https://scribe.knuckles.wtf/laravel/)

@@ -28,7 +28,12 @@ export const useSignUpAction = () => {
       })
       await login()
     } catch (error) {
-      signUpMessage.value = error || 'Erro ao registrar.'
+      if (error?.data?.errors) {
+        const messages = Object.values(error.data.errors).flat()
+        signUpMessage.value = messages.join('. ')
+      } else {
+        signUpMessage.value = error?.message || 'Erro ao registrar.'
+      }
     } finally {
       signUpLoading.value = false
     }

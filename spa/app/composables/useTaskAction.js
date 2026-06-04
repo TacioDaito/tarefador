@@ -14,7 +14,12 @@ export const useTaskAction = (emit) => {
       tasks.value = data.tasks
     } catch (error) {
       tasks.value = []
-      message.value = error.data?.message || 'Erro ao buscar tarefas.'
+      if (error?.data?.errors) {
+        const messages = Object.values(error.data.errors).flat()
+        message.value = messages.join('. ')
+      } else {
+        message.value = error?.message || 'Erro ao buscar tarefas.'
+      }
     } finally {
       loading.value = false
     }
@@ -34,7 +39,12 @@ export const useTaskAction = (emit) => {
       })
       getTasks({ assignedOrOwnedByUser: user.value?.id })
     } catch (error) {
-      message.value = error.data?.message || 'Erro ao criar tarefa.'
+      if (error?.data?.errors) {
+        const messages = Object.values(error.data.errors).flat()
+        message.value = messages.join('. ')
+      } else {
+        message.value = error?.message || 'Erro ao criar tarefa.'
+      }
     } finally {
       loading.value = false
     }
@@ -49,7 +59,12 @@ export const useTaskAction = (emit) => {
       })
       emit('refreshTasks')
     } catch (error) {
-      message.value = error.data?.message || 'Erro ao editar tarefa.'
+      if (error?.data?.errors) {
+        const messages = Object.values(error.data.errors).flat()
+        message.value = messages.join('. ')
+      } else {
+        message.value = error?.message || 'Erro ao editar tarefa.'
+      }
     } finally {
       loading.value = false
     }
@@ -64,7 +79,12 @@ export const useTaskAction = (emit) => {
       })
       emit('refreshTasks')
     } catch (error) {
-      message.value = error.data?.message || 'Erro ao atualizar participantes.'
+      if (error?.data?.errors) {
+        const messages = Object.values(error.data.errors).flat()
+        message.value = messages.join('. ')
+      } else {
+        message.value = error?.message || 'Erro ao atualizar participantes.'
+      }
     } finally {
       loading.value = false
     }
@@ -78,7 +98,12 @@ export const useTaskAction = (emit) => {
       })
       emit('refreshTasks')
     } catch (error) {
-      message.value = error.data?.message || 'Erro ao deletar tarefa.'
+      if (error?.data?.errors) {
+        const messages = Object.values(error.data.errors).flat()
+        message.value = messages.join('. ')
+      } else {
+        message.value = error?.message || 'Erro ao deletar tarefa.'
+      }
     } finally {
       loading.value = false
     }

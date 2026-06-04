@@ -10,6 +10,12 @@ if [ ! -f .env ]; then
     cp .env.example .env
 fi
 
+# Install Composer dependencies if vendor is missing (e.g. fresh clone)
+if [ ! -d vendor ]; then
+    echo "Installing Composer dependencies..."
+    composer install --no-interaction --prefer-dist
+fi
+
 # Generate app key if APP_KEY is not set in .env
 if ! grep -q "^APP_KEY=" .env || [ -z "$(grep "^APP_KEY=" .env | cut -d= -f2-)" ]; then
     echo "Generating application key..."
