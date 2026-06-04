@@ -3,17 +3,18 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "nuxi dev",
+    "dev": "nuxi dev --host",
     "build": "nuxi build",
     "generate": "nuxi generate",
     "preview": "nuxi preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxi prepare"
   },
   "dependencies": {
     "@primevue/nuxt-module": "^4.2.0",
     "@primevue/themes": "^4.5.4",
     "@tailwindcss/vite": "^4.0.0",
-    "nuxt": "^3.16.0",
+    "nuxt": "^4.2.0",
+    "nuxt-auth-sanctum": "^3.0.0",
     "primeicons": "^7.0.0",
     "primevue": "^4.2.0",
     "tailwindcss": "^4.0.0",

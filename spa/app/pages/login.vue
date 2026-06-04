@@ -1,16 +1,9 @@
 <script setup>
 definePageMeta({
-  middleware: 'auth'
+  middleware: ['sanctum:guest']
 })
 
 const { email, password, login, loading, message } = useLoginAction()
-
-onMounted(() => {
-  const passwordElement = document.querySelector('input[id="password"]')
-  if (passwordElement) {
-    passwordElement.setAttribute('autocomplete', 'current-password')
-  }
-})
 </script>
 
 <template>

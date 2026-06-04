@@ -1,15 +1,11 @@
 export const useLogoutAction = () => {
   const { user, isAuthenticated, loading, loggingOut, message } = useAuthState()
-  const config = useRuntimeConfig()
+  const { logout: sanctumLogout } = useSanctumAuth()
 
   const logout = async () => {
     loggingOut.value = true
     try {
-      await $fetch('/logout', {
-        baseURL: config.public.apiUrl,
-        method: 'POST',
-        credentials: 'include'
-      })
+      await sanctumLogout()
       user.value = null
       isAuthenticated.value = false
       loading.value = false

@@ -1,4 +1,6 @@
+.nuxt
+node_modules
+dist/
+.output/
 .git
 .gitignore
-node_modules
-dist

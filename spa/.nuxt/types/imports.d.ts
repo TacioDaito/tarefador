@@ -10,6 +10,8 @@ declare global {
   const clearNuxtState: typeof import('../../node_modules/nuxt/dist/app/composables/state').clearNuxtState
   const computed: typeof import('vue').computed
   const createError: typeof import('../../node_modules/nuxt/dist/app/composables/error').createError
+  const createUseAsyncData: typeof import('../../node_modules/nuxt/dist/app/composables/asyncData').createUseAsyncData
+  const createUseFetch: typeof import('../../node_modules/nuxt/dist/app/composables/fetch').createUseFetch
   const customRef: typeof import('vue').customRef
   const defineAppConfig: typeof import('../../node_modules/nuxt/dist/app/nuxt').defineAppConfig
   const defineAsyncComponent: typeof import('vue').defineAsyncComponent
@@ -19,7 +21,7 @@ declare global {
   const defineNuxtLink: typeof import('../../node_modules/nuxt/dist/app/components/nuxt-link').defineNuxtLink
   const defineNuxtPlugin: typeof import('../../node_modules/nuxt/dist/app/nuxt').defineNuxtPlugin
   const defineNuxtRouteMiddleware: typeof import('../../node_modules/nuxt/dist/app/composables/router').defineNuxtRouteMiddleware
-  const definePageMeta: typeof import('../../node_modules/nuxt/dist/pages/runtime/composables').definePageMeta
+  const definePageMeta: typeof import('../../node_modules/nuxt/dist/app/composables/pages').definePageMeta
   const definePayloadPlugin: typeof import('../../node_modules/nuxt/dist/app/nuxt').definePayloadPlugin
   const definePayloadReducer: typeof import('../../node_modules/nuxt/dist/app/composables/payload').definePayloadReducer
   const definePayloadReviver: typeof import('../../node_modules/nuxt/dist/app/composables/payload').definePayloadReviver
@@ -94,10 +96,12 @@ declare global {
   const tryUseNuxtApp: typeof import('../../node_modules/nuxt/dist/app/nuxt').tryUseNuxtApp
   const unref: typeof import('vue').unref
   const updateAppConfig: typeof import('../../node_modules/nuxt/dist/app/config').updateAppConfig
+  const useAnnouncer: typeof import('../../node_modules/nuxt/dist/app/composables/announcer').useAnnouncer
+  const useApi: typeof import('../../app/composables/useApi').useApi
   const useAppConfig: typeof import('../../node_modules/nuxt/dist/app/config').useAppConfig
   const useAsyncData: typeof import('../../node_modules/nuxt/dist/app/composables/asyncData').useAsyncData
   const useAttrs: typeof import('vue').useAttrs
-  const useAuthState: typeof import('../../composables/useAuthState').useAuthState
+  const useAuthState: typeof import('../../app/composables/useAuthState').useAuthState
   const useConfirm: typeof import('primevue/useconfirm').useConfirm
   const useCookie: typeof import('../../node_modules/nuxt/dist/app/composables/cookie').useCookie
   const useCssModule: typeof import('vue').useCssModule
@@ -111,10 +115,11 @@ declare global {
   const useId: typeof import('vue').useId
   const useLazyAsyncData: typeof import('../../node_modules/nuxt/dist/app/composables/asyncData').useLazyAsyncData
   const useLazyFetch: typeof import('../../node_modules/nuxt/dist/app/composables/fetch').useLazyFetch
+  const useLazySanctumFetch: typeof import('../../node_modules/nuxt-auth-sanctum/dist/runtime/composables/useLazySanctumFetch').useLazySanctumFetch
   const useLink: typeof import('../../node_modules/vue-router').useLink
   const useLoadingIndicator: typeof import('../../node_modules/nuxt/dist/app/composables/loading-indicator').useLoadingIndicator
-  const useLoginAction: typeof import('../../composables/useLoginAction').useLoginAction
-  const useLogoutAction: typeof import('../../composables/useLogoutAction').useLogoutAction
+  const useLoginAction: typeof import('../../app/composables/useLoginAction').useLoginAction
+  const useLogoutAction: typeof import('../../app/composables/useLogoutAction').useLogoutAction
   const useModel: typeof import('vue').useModel
   const useNuxtApp: typeof import('../../node_modules/nuxt/dist/app/nuxt').useNuxtApp
   const useNuxtData: typeof import('../../node_modules/nuxt/dist/app/composables/asyncData').useNuxtData
@@ -127,13 +132,20 @@ declare global {
   const useRequestHeaders: typeof import('../../node_modules/nuxt/dist/app/composables/ssr').useRequestHeaders
   const useRequestURL: typeof import('../../node_modules/nuxt/dist/app/composables/url').useRequestURL
   const useResponseHeader: typeof import('../../node_modules/nuxt/dist/app/composables/ssr').useResponseHeader
-  const useResponsivePagination: typeof import('../../composables/useResponsivePagination').useResponsivePagination
-  const useRestoreAuth: typeof import('../../composables/useRestoreAuth').useRestoreAuth
+  const useResponsivePagination: typeof import('../../app/composables/useResponsivePagination').useResponsivePagination
+  const useRestoreAuth: typeof import('../../app/composables/useRestoreAuth').useRestoreAuth
   const useRoute: typeof import('../../node_modules/nuxt/dist/app/composables/router').useRoute
   const useRouteAnnouncer: typeof import('../../node_modules/nuxt/dist/app/composables/route-announcer').useRouteAnnouncer
   const useRouter: typeof import('../../node_modules/nuxt/dist/app/composables/router').useRouter
   const useRuntimeConfig: typeof import('../../node_modules/nuxt/dist/app/nuxt').useRuntimeConfig
   const useRuntimeHook: typeof import('../../node_modules/nuxt/dist/app/composables/runtime-hook').useRuntimeHook
+  const useSanctumAppConfig: typeof import('../../node_modules/nuxt-auth-sanctum/dist/runtime/composables/useSanctumAppConfig').useSanctumAppConfig
+  const useSanctumAuth: typeof import('../../node_modules/nuxt-auth-sanctum/dist/runtime/composables/useSanctumAuth').useSanctumAuth
+  const useSanctumClient: typeof import('../../node_modules/nuxt-auth-sanctum/dist/runtime/composables/useSanctumClient').useSanctumClient
+  const useSanctumConfig: typeof import('../../node_modules/nuxt-auth-sanctum/dist/runtime/composables/useSanctumConfig').useSanctumConfig
+  const useSanctumFetch: typeof import('../../node_modules/nuxt-auth-sanctum/dist/runtime/composables/useSanctumFetch').useSanctumFetch
+  const useSanctumTokenStorage: typeof import('../../node_modules/nuxt-auth-sanctum/dist/runtime/composables/useSanctumTokenStorage').useSanctumTokenStorage
+  const useSanctumUser: typeof import('../../node_modules/nuxt-auth-sanctum/dist/runtime/composables/useSanctumUser').useSanctumUser
   const useScript: typeof import('../../node_modules/nuxt/dist/app/composables/script-stubs').useScript
   const useScriptAhrefsAnalytics: typeof import('../../node_modules/nuxt/dist/app/composables/script-stubs').useScriptAhrefsAnalytics
   const useScriptBingUet: typeof import('../../node_modules/nuxt/dist/app/composables/script-stubs').useScriptBingUet
@@ -181,13 +193,13 @@ declare global {
   const useServerHeadSafe: typeof import('../../node_modules/nuxt/dist/app/composables/head').useServerHeadSafe
   const useServerSeoMeta: typeof import('../../node_modules/nuxt/dist/app/composables/head').useServerSeoMeta
   const useShadowRoot: typeof import('vue').useShadowRoot
-  const useSignUpAction: typeof import('../../composables/useSignUpAction').useSignUpAction
+  const useSignUpAction: typeof import('../../app/composables/useSignUpAction').useSignUpAction
   const useSlots: typeof import('vue').useSlots
   const useState: typeof import('../../node_modules/nuxt/dist/app/composables/state').useState
   const useStyle: typeof import('primevue/usestyle').useStyle
-  const useTaskAction: typeof import('../../composables/useTaskAction').useTaskAction
-  const useTaskFilterHelper: typeof import('../../composables/useTaskFilterHelper').useTaskFilterHelper
-  const useTaskPanelHelper: typeof import('../../composables/useTaskPanelHelper').useTaskPanelHelper
+  const useTaskAction: typeof import('../../app/composables/useTaskAction').useTaskAction
+  const useTaskFilterHelper: typeof import('../../app/composables/useTaskFilterHelper').useTaskFilterHelper
+  const useTaskPanelHelper: typeof import('../../app/composables/useTaskPanelHelper').useTaskPanelHelper
   const useTemplateRef: typeof import('vue').useTemplateRef
   const useToast: typeof import('primevue/usetoast').useToast
   const useTransitionState: typeof import('vue').useTransitionState
@@ -207,6 +219,9 @@ declare global {
   // @ts-ignore
   export type { Component, ComponentPublicInstance, ComputedRef, DirectiveBinding, ExtractDefaultPropTypes, ExtractPropTypes, ExtractPublicPropTypes, InjectionKey, PropType, Ref, MaybeRef, MaybeRefOrGetter, VNode, WritableComputedRef } from 'vue'
   import('vue')
+  // @ts-ignore
+  export type { PageMeta } from '../../node_modules/nuxt/dist/app/composables/pages'
+  import('../../node_modules/nuxt/dist/app/composables/pages')
 }
 // for vue template auto import
 import { UnwrapRef } from 'vue'
@@ -221,6 +236,8 @@ declare module 'vue' {
     readonly clearNuxtState: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app/composables/state')['clearNuxtState']>
     readonly computed: UnwrapRef<typeof import('vue')['computed']>
     readonly createError: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app/composables/error')['createError']>
+    readonly createUseAsyncData: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app/composables/asyncData')['createUseAsyncData']>
+    readonly createUseFetch: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app/composables/fetch')['createUseFetch']>
     readonly customRef: UnwrapRef<typeof import('vue')['customRef']>
     readonly defineAppConfig: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app/nuxt')['defineAppConfig']>
     readonly defineAsyncComponent: UnwrapRef<typeof import('vue')['defineAsyncComponent']>
@@ -230,7 +247,7 @@ declare module 'vue' {
     readonly defineNuxtLink: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app/components/nuxt-link')['defineNuxtLink']>
     readonly defineNuxtPlugin: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app/nuxt')['defineNuxtPlugin']>
     readonly defineNuxtRouteMiddleware: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app/composables/router')['defineNuxtRouteMiddleware']>
-    readonly definePageMeta: UnwrapRef<typeof import('../../node_modules/nuxt/dist/pages/runtime/composables')['definePageMeta']>
+    readonly definePageMeta: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app/composables/pages')['definePageMeta']>
     readonly definePayloadPlugin: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app/nuxt')['definePayloadPlugin']>
     readonly definePayloadReducer: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app/composables/payload')['definePayloadReducer']>
     readonly definePayloadReviver: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app/composables/payload')['definePayloadReviver']>
@@ -305,10 +322,12 @@ declare module 'vue' {
     readonly tryUseNuxtApp: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app/nuxt')['tryUseNuxtApp']>
     readonly unref: UnwrapRef<typeof import('vue')['unref']>
     readonly updateAppConfig: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app/config')['updateAppConfig']>
+    readonly useAnnouncer: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app/composables/announcer')['useAnnouncer']>
+    readonly useApi: UnwrapRef<typeof import('../../app/composables/useApi')['useApi']>
     readonly useAppConfig: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app/config')['useAppConfig']>
     readonly useAsyncData: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app/composables/asyncData')['useAsyncData']>
     readonly useAttrs: UnwrapRef<typeof import('vue')['useAttrs']>
-    readonly useAuthState: UnwrapRef<typeof import('../../composables/useAuthState')['useAuthState']>
+    readonly useAuthState: UnwrapRef<typeof import('../../app/composables/useAuthState')['useAuthState']>
     readonly useConfirm: UnwrapRef<typeof import('primevue/useconfirm')['useConfirm']>
     readonly useCookie: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app/composables/cookie')['useCookie']>
     readonly useCssModule: UnwrapRef<typeof import('vue')['useCssModule']>
@@ -322,10 +341,11 @@ declare module 'vue' {
     readonly useId: UnwrapRef<typeof import('vue')['useId']>
     readonly useLazyAsyncData: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app/composables/asyncData')['useLazyAsyncData']>
     readonly useLazyFetch: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app/composables/fetch')['useLazyFetch']>
+    readonly useLazySanctumFetch: UnwrapRef<typeof import('../../node_modules/nuxt-auth-sanctum/dist/runtime/composables/useLazySanctumFetch')['useLazySanctumFetch']>
     readonly useLink: UnwrapRef<typeof import('../../node_modules/vue-router')['useLink']>
     readonly useLoadingIndicator: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app/composables/loading-indicator')['useLoadingIndicator']>
-    readonly useLoginAction: UnwrapRef<typeof import('../../composables/useLoginAction')['useLoginAction']>
-    readonly useLogoutAction: UnwrapRef<typeof import('../../composables/useLogoutAction')['useLogoutAction']>
+    readonly useLoginAction: UnwrapRef<typeof import('../../app/composables/useLoginAction')['useLoginAction']>
+    readonly useLogoutAction: UnwrapRef<typeof import('../../app/composables/useLogoutAction')['useLogoutAction']>
     readonly useModel: UnwrapRef<typeof import('vue')['useModel']>
     readonly useNuxtApp: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app/nuxt')['useNuxtApp']>
     readonly useNuxtData: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app/composables/asyncData')['useNuxtData']>
@@ -338,13 +358,20 @@ declare module 'vue' {
     readonly useRequestHeaders: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app/composables/ssr')['useRequestHeaders']>
     readonly useRequestURL: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app/composables/url')['useRequestURL']>
     readonly useResponseHeader: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app/composables/ssr')['useResponseHeader']>
-    readonly useResponsivePagination: UnwrapRef<typeof import('../../composables/useResponsivePagination')['useResponsivePagination']>
-    readonly useRestoreAuth: UnwrapRef<typeof import('../../composables/useRestoreAuth')['useRestoreAuth']>
+    readonly useResponsivePagination: UnwrapRef<typeof import('../../app/composables/useResponsivePagination')['useResponsivePagination']>
+    readonly useRestoreAuth: UnwrapRef<typeof import('../../app/composables/useRestoreAuth')['useRestoreAuth']>
     readonly useRoute: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app/composables/router')['useRoute']>
     readonly useRouteAnnouncer: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app/composables/route-announcer')['useRouteAnnouncer']>
     readonly useRouter: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app/composables/router')['useRouter']>
     readonly useRuntimeConfig: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app/nuxt')['useRuntimeConfig']>
     readonly useRuntimeHook: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app/composables/runtime-hook')['useRuntimeHook']>
+    readonly useSanctumAppConfig: UnwrapRef<typeof import('../../node_modules/nuxt-auth-sanctum/dist/runtime/composables/useSanctumAppConfig')['useSanctumAppConfig']>
+    readonly useSanctumAuth: UnwrapRef<typeof import('../../node_modules/nuxt-auth-sanctum/dist/runtime/composables/useSanctumAuth')['useSanctumAuth']>
+    readonly useSanctumClient: UnwrapRef<typeof import('../../node_modules/nuxt-auth-sanctum/dist/runtime/composables/useSanctumClient')['useSanctumClient']>
+    readonly useSanctumConfig: UnwrapRef<typeof import('../../node_modules/nuxt-auth-sanctum/dist/runtime/composables/useSanctumConfig')['useSanctumConfig']>
+    readonly useSanctumFetch: UnwrapRef<typeof import('../../node_modules/nuxt-auth-sanctum/dist/runtime/composables/useSanctumFetch')['useSanctumFetch']>
+    readonly useSanctumTokenStorage: UnwrapRef<typeof import('../../node_modules/nuxt-auth-sanctum/dist/runtime/composables/useSanctumTokenStorage')['useSanctumTokenStorage']>
+    readonly useSanctumUser: UnwrapRef<typeof import('../../node_modules/nuxt-auth-sanctum/dist/runtime/composables/useSanctumUser')['useSanctumUser']>
     readonly useScript: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app/composables/script-stubs')['useScript']>
     readonly useScriptAhrefsAnalytics: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app/composables/script-stubs')['useScriptAhrefsAnalytics']>
     readonly useScriptBingUet: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app/composables/script-stubs')['useScriptBingUet']>
@@ -392,13 +419,13 @@ declare module 'vue' {
     readonly useServerHeadSafe: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app/composables/head')['useServerHeadSafe']>
     readonly useServerSeoMeta: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app/composables/head')['useServerSeoMeta']>
     readonly useShadowRoot: UnwrapRef<typeof import('vue')['useShadowRoot']>
-    readonly useSignUpAction: UnwrapRef<typeof import('../../composables/useSignUpAction')['useSignUpAction']>
+    readonly useSignUpAction: UnwrapRef<typeof import('../../app/composables/useSignUpAction')['useSignUpAction']>
     readonly useSlots: UnwrapRef<typeof import('vue')['useSlots']>
     readonly useState: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app/composables/state')['useState']>
     readonly useStyle: UnwrapRef<typeof import('primevue/usestyle')['useStyle']>
-    readonly useTaskAction: UnwrapRef<typeof import('../../composables/useTaskAction')['useTaskAction']>
-    readonly useTaskFilterHelper: UnwrapRef<typeof import('../../composables/useTaskFilterHelper')['useTaskFilterHelper']>
-    readonly useTaskPanelHelper: UnwrapRef<typeof import('../../composables/useTaskPanelHelper')['useTaskPanelHelper']>
+    readonly useTaskAction: UnwrapRef<typeof import('../../app/composables/useTaskAction')['useTaskAction']>
+    readonly useTaskFilterHelper: UnwrapRef<typeof import('../../app/composables/useTaskFilterHelper')['useTaskFilterHelper']>
+    readonly useTaskPanelHelper: UnwrapRef<typeof import('../../app/composables/useTaskPanelHelper')['useTaskPanelHelper']>
     readonly useTemplateRef: UnwrapRef<typeof import('vue')['useTemplateRef']>
     readonly useToast: UnwrapRef<typeof import('primevue/usetoast')['useToast']>
     readonly useTransitionState: UnwrapRef<typeof import('vue')['useTransitionState']>

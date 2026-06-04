@@ -1,4 +1,4 @@
-import { ref, unref } from 'vue'
+import { ref } from 'vue'
 
 export const useSignUpAction = () => {
   const name = ref('')
@@ -7,32 +7,28 @@ export const useSignUpAction = () => {
   const confirmPassword = ref('')
   const signUpLoading = ref(false)
   const signUpMessage = ref('')
+  const client = useSanctumClient()
   const { login } = useLoginAction(email, password)
 
-  const onSubmit = async () => {
+  const signUp = async () => {
     signUpMessage.value = ''
     if (password.value !== confirmPassword.value) {
       signUpMessage.value = 'As senhas não coincidem.'
       return
     }
     signUpLoading.value = true
-    const config = useRuntimeConfig()
 
     try {
-      await $fetch('/user', {
-        baseURL: config.public.apiUrl,
+      await client('/user', {
         method: 'POST',
-        credentials: 'include',
         body: {
-          name: name.value,
-          email: email.value,
-          password: password.value,
-          password_confirmation: confirmPassword.value
+          name: unref(name), email: unref(email),
+          password: unref(password), password_confirmation: unref(confirmPassword)
         }
       })
       await login()
     } catch (error) {
-      signUpMessage.value = error.data?.message || 'Erro ao registrar.'
+      signUpMessage.value = error || 'Erro ao registrar.'
     } finally {
       signUpLoading.value = false
     }
@@ -45,6 +41,6 @@ export const useSignUpAction = () => {
     confirmPassword,
     loading: signUpLoading,
     message: signUpMessage,
-    onSubmit
+    signUp
   }
 }

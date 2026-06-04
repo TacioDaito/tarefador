@@ -1,13 +1,10 @@
 export const useRestoreAuth = () => {
   const restoreAuth = async () => {
     const { user, isAuthenticated } = useAuthState()
-    const config = useRuntimeConfig()
+    const { api } = useApi()
 
     try {
-      const data = await $fetch('/user', {
-        baseURL: config.public.apiUrl,
-        credentials: 'include'
-      })
+      const data = await api('/user')
       user.value = data
       isAuthenticated.value = true
     } catch {

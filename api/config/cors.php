@@ -19,7 +19,7 @@ return [
 
     'allowed_methods'          => ['*'],
 
-    'allowed_origins'          => [env('APP_URL'), env('SPA_URL')],
+    'allowed_origins'          => [env('APP_URL'), env('NUXT_PUBLIC_SPA_URL')],
 
     'allowed_origins_patterns' => [],
 

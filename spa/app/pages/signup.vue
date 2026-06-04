@@ -1,9 +1,9 @@
 <script setup>
 definePageMeta({
-  middleware: 'auth'
+  middleware: ['sanctum:guest']
 })
 
-const { name, email, password, confirmPassword, loading, message, onSubmit } = useSignUpAction()
+const { name, email, password, confirmPassword, loading, message, signUp } = useSignUpAction()
 </script>
 
 <template>
@@ -13,7 +13,7 @@ const { name, email, password, confirmPassword, loading, message, onSubmit } = u
         <div class="mb-4">Criar Conta</div>
       </template>
       <template #content>
-        <form @submit.prevent="onSubmit">
+        <form @submit.prevent="signUp">
           <FloatLabel variant="on" class="mb-6">
             <InputText id="name" v-model="name" type="text" inputId="name" fluid required autofocus />
             <label for="name">Nome</label>

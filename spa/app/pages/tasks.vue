@@ -1,14 +1,15 @@
 <script setup>
 definePageMeta({
-  middleware: 'auth'
+  middleware: ['sanctum:auth']
 })
 
-const { tasks, loading, getTasks, createTask } = useTaskAction()
+const { tasks, loading, getTasks } = useTaskAction()
 const { first, rows, pagedItems: pagedTasks, updateRows } = useResponsivePagination(tasks)
-const { user } = useAuthState()
+
+const { filterOptions, selectedFilters } = useTaskFilterHelper(getTasks, updateRows)
 
 onMounted(() => {
-  getTasks({ assignedOrOwnedByUser: user.value?.id })
+  getTasks()
   updateRows()
 })
 </script>
@@ -22,8 +23,9 @@ onMounted(() => {
 
       <template #title>
         <div class="flex justify-between items-center mb-4">
-          <h1 class="text-lg md:text-xl">Minhas Tarefas</h1>
-          <Button label="Criar" icon="pi pi-plus" severity="success" @click="createTask" />
+          <h1 class="text-lg md:text-xl">Outras Tarefas</h1>
+          <MultiSelect v-model="selectedFilters" :options="filterOptions" optionLabel="label"
+            optionValue="value" display="chip" placeholder="Filtros" size="small" class="w-50 md:w-auto h-9 truncate" />
         </div>
         <Divider />
       </template>
@@ -35,7 +37,7 @@ onMounted(() => {
         <div v-show="tasks.length && !loading">
           <Accordion>
             <TaskPanel v-for="task in pagedTasks" :key="task.id" :task="task" :value="task.id"
-              @refreshTasks="getTasks({ assignedOrOwnedByUser: user?.id })" />
+              @refreshTasks="getTasks" />
           </Accordion>
         </div>
         <Message v-show="tasks.length === 0 && !loading" severity="warn">Sem informações</Message>

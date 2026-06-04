@@ -7,12 +7,12 @@ const items = ref([
   {
     label: 'Dashboard',
     icon: 'pi pi-home',
-    command: () => router.push('/dashboard'),
+    command: () => navigateTo('/dashboard'),
   },
   {
     label: 'Tarefas',
     icon: 'pi pi-list',
-    command: () => router.push('/tasks'),
+    command: () => navigateTo('/tasks'),
   },
 ])
 </script>

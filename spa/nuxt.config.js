@@ -2,22 +2,32 @@ import tailwindcss from '@tailwindcss/vite'
 import Aura from '@primevue/themes/aura'
 
 export default defineNuxtConfig({
-  ssr: true,
-
-  devServer: {
-    host: '0.0.0.0',
-    port: 3000
-  },
-
   runtimeConfig: {
     public: {
-      apiUrl: process.env.NUXT_PUBLIC_API_URL || 'http://localhost:8000'
+      apiUrl: process.env.NUXT_PUBLIC_API_URL
     }
   },
 
   css: ['~/assets/css/main.css', 'primeicons/primeicons.css'],
 
-  modules: ['@primevue/nuxt-module'],
+  modules: ['@primevue/nuxt-module', 'nuxt-auth-sanctum'],
+
+  sanctum: {
+    baseUrl: process.env.NUXT_PUBLIC_API_URL,
+    endpoints: {
+      csrf: '/sanctum/csrf-cookie',
+      login: '/login',
+      logout: '/logout',
+      user: '/user'
+    },
+    redirect: {
+      keepRequestedRoute: true,
+      onLogin: '/dashboard',
+      onLogout: '/login',
+      onAuthOnly: '/login',
+      onGuestOnly: '/dashboard'
+    }
+  },
 
   primevue: {
     options: {
@@ -39,6 +49,9 @@ export default defineNuxtConfig({
         protocol: 'ws',
         host: 'localhost'
       }
+    },
+    optimizeDeps: {
+      include: ['@vue/devtools-core', '@vue/devtools-kit']
     }
   },
 

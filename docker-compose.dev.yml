@@ -1,14 +1,4 @@
 services:
-  # --- API ---
-  api:
-    build:
-      target: dev
-    volumes:
-      - ./api:/var/www/api
-    environment:
-      - APP_ENV=local
-      - SPA_URL=http://tarefador.localhost:3000
-
   # --- REVERSE PROXY ---
   nginx:
     ports:
@@ -24,5 +14,16 @@ services:
     volumes:
       - ./spa:/app
       - /app/node_modules
-    ports:
-      - "3000:3000"
+    expose:
+      - "3000"
+
+  # --- API ---
+  api:
+    build:
+      target: dev
+    volumes:
+      - ./api:/var/www/api
+    environment:
+      - APP_ENV=local
+    expose:
+      - "9000"

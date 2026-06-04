@@ -38,7 +38,7 @@ WORKDIR /var/www/api
 FROM base AS dev
 
 # Copy only the dev entrypoint — app source comes from docker-compose volume
-COPY docker/entrypoint.sh /usr/local/bin/docker-entrypoint.sh
+COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 
 EXPOSE 9000
@@ -66,7 +66,7 @@ RUN chmod -R 775 storage bootstrap/cache \
     && chown -R www-data:www-data storage bootstrap/cache
 
 # Entrypoint
-COPY docker/entrypoint.sh /usr/local/bin/docker-entrypoint.sh
+COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 
 EXPOSE 9000
