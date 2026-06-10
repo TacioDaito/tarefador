@@ -1,5 +1,3 @@
-import { toRaw } from 'vue'
-
 export const useTaskFilterHelper = (getTasks, updateRows) => {
   const filterOptions = [
     { label: 'Completada', value: 'completed' },

@@ -11,6 +11,7 @@ Route::get('/', function () {
 
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/user', [UserController::class, 'store'])->name('user.store');
+Route::post('/contact', [App\Http\Controllers\ContactController::class, 'send'])->name('contact');
 
 Route::middleware(['auth:sanctum'])->group(function () {
 

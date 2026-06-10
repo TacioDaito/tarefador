@@ -1,5 +1,3 @@
-import { ref } from 'vue'
-
 export const useSignUpAction = () => {
   const name = ref('')
   const email = ref('')
