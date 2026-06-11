@@ -1,4 +1,34 @@
-@import "tailwindcss";
+@import 'tailwindcss';
+
+:root {
+  --bg-surface: theme(colors.zinc.50);
+  --bg-surface-raised: theme(colors.zinc.50 / 0.8);
+  --bg-surface-contact: theme(colors.zinc.200);
+  --text-heading: theme(colors.zinc.900);
+  --text-nav: theme(colors.zinc.700);
+  --text-body: theme(colors.zinc.700);
+  --svg-wave: theme(colors.zinc.50);
+  --svg-wave-dark: theme(colors.zinc.200);
+  --hero-from: theme(colors.emerald.400);
+  --hero-via: theme(colors.emerald.600);
+  --hero-to: theme(colors.emerald.800);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-surface: theme(colors.zinc.800);
+    --bg-surface-raised: theme(colors.zinc.900 / 0.8);
+    --bg-surface-contact: theme(colors.zinc.900);
+    --text-heading: theme(colors.zinc.100);
+    --text-nav: theme(colors.zinc.200);
+    --text-body: theme(colors.zinc.300);
+    --svg-wave: theme(colors.zinc.800);
+    --svg-wave-dark: theme(colors.zinc.900);
+    --hero-from: theme(colors.emerald.600);
+    --hero-via: theme(colors.emerald.800);
+    --hero-to: theme(colors.emerald.950);
+  }
+}
 
 html {
   scroll-behavior: smooth;

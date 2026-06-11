@@ -5,36 +5,36 @@ const { name, email, message, loading, success, response, send } = useContactAct
 <template>
   <div>
     <nav
-      class="fixed top-2 left-1/2 -translate-x-1/2 w-2xl rounded-2xl z-50 grid grid-cols-3 items-center px-6 py-3 bg-zinc-900/80 shadow-md">
-      <span class="text-xl font-bold text-zinc-100 justify-self-start">Tarefador</span>
+      class="fixed top-2 left-1/2 -translate-x-1/2 w-2xl rounded-2xl z-50 grid grid-cols-3 items-center px-6 py-3 bg-(--bg-surface-raised) shadow-md">
+      <span class="text-xl font-bold text-(--text-heading) justify-self-start">Tarefador</span>
       <div class="flex items-center gap-6 justify-self-center">
-        <a href="#inicio" class="text-zinc-200 hover:text-emerald-400 transition-colors duration-200">Início</a>
+        <a href="#inicio" class="text-(--text-nav) hover:text-emerald-400 transition-colors duration-200">Início</a>
         <a href="#funcionalidades"
-          class="text-zinc-200 hover:text-emerald-400 transition-colors duration-200">Recursos</a>
+          class="text-(--text-nav) hover:text-emerald-400 transition-colors duration-200">Recursos</a>
         <a href="#contato"
-          class="text-zinc-200 hover:text-emerald-400 transition-colors duration-200">Contato</a>
+          class="text-(--text-nav) hover:text-emerald-400 transition-colors duration-200">Contato</a>
       </div>
       <div class="justify-self-end">
-        <Button label="Entrar" size="small" outlined @click="navigateTo('/login')" />
+        <Button label="Entrar" size="small" severity="primary" outlined @click="navigateTo('/login')" />
       </div>
     </nav>
 
     <main>
       <!-- ==================== SECAO HERO ==================== -->
       <section id="inicio" class="relative min-h-screen flex items-center justify-center overflow-hidden 
-          bg-linear-to-br from-emerald-600 via-emerald-800 to-emerald-950 pt-16">
+          bg-linear-to-br from-(--hero-from) via-(--hero-via) to-(--hero-to) pt-16">
 
         <!-- Conteudo Hero -->
         <div class="relative z-10 text-center px-4 max-w-3xl mx-auto">
-          <h1 class="text-4xl md:text-6xl font-bold text-zinc-100 mb-4 leading-tight">
+          <h1 class="text-4xl md:text-6xl font-bold text-(--text-heading) mb-4 leading-tight">
             Crie Fluxos de Trabalho Melhores
           </h1>
-          <p class="text-lg md:text-xl text-zinc-300 opacity-80 mb-8 max-w-xl mx-auto">
+          <p class="text-lg md:text-xl text-(--text-body) opacity-80 mb-8 max-w-xl mx-auto">
             Gerencie tarefas, colabore com sua equipe e entregue projetos mais rapido do que nunca.
           </p>
           <div class="flex flex-col items-center gap-4">
             <Button label="Começar" size="large" severity="primary" @click="navigateTo('/login')" />
-            <p class="text-sm text-zinc-300 opacity-60 mt-2">
+            <p class="text-sm text-(--text-body) opacity-60 mt-2">
               Simples e fácil
             </p>
           </div>
@@ -42,19 +42,19 @@ const { name, email, message, loading, success, response, send } = useContactAct
 
         <div class="absolute bottom-0 left-0 w-full overflow-hidden leading-0">
           <svg viewBox="0 0 1440 850" preserveAspectRatio="none" class="w-full h-160 bg-transparent opacity-10">
-            <path d="M 0 832 C 127 610 1381 906 1444 0 L 1440 850 L 0 850 Z" fill="black" />
+            <path d="M 0 832 C 127 610 1381 906 1444 0 L 1440 850 L 0 850 Z" fill="var(--svg-wave-dark)" />
           </svg>
         </div>
 
         <div class="absolute bottom-0 left-0 w-full overflow-hidden leading-0">
           <svg viewBox="0 0 1440 850" preserveAspectRatio="none" class="w-full h-120 bg-transparent opacity-20">
-            <path d="M 0 832 C 127 610 1381 906 1444 0 L 1440 850 L 0 850 Z" fill="black" />
+            <path d="M 0 832 C 127 610 1381 906 1444 0 L 1440 850 L 0 850 Z" fill="var(--svg-wave-dark)" />
           </svg>
         </div>
 
         <div class="absolute bottom-0 left-0 w-full overflow-hidden leading-0">
           <svg viewBox="0 0 1440 850" preserveAspectRatio="none" class="w-full h-60 bg-transparent">
-            <path d="M 0 832 C 127 610 1381 906 1444 0 L 1440 850 L 0 850 Z" fill="var(--color-zinc-900)" />
+            <path d="M 0 832 C 127 610 1381 906 1444 0 L 1440 850 L 0 850 Z" fill="var(--svg-wave)" />
           </svg>
         </div>
 
@@ -62,14 +62,14 @@ const { name, email, message, loading, success, response, send } = useContactAct
 
       <!-- ==================== SECAO RECURSOS ==================== -->
       <section id="funcionalidades"
-        class="relative min-h-screen flex items-center justify-center py-20 px-4 bg-zinc-900">
+        class="relative min-h-screen flex items-center justify-center py-20 px-4 bg-(--bg-surface)">
 
         <div class="max-w-6xl mx-auto w-full">
           <div class="text-center mb-16">
-            <h2 class="text-3xl md:text-4xl font-bold text-zinc-100 mb-3">
+            <h2 class="text-3xl md:text-4xl font-bold text-(--text-heading) mb-3">
               Tudo que Você Precisa
             </h2>
-            <p class="text-zinc-300 text-lg max-w-lg mx-auto">
+            <p class="text-(--text-body) text-lg max-w-lg mx-auto">
               Recursos poderosos para manter seus projetos no rumo certo.
             </p>
           </div>
@@ -83,10 +83,10 @@ const { name, email, message, loading, success, response, send } = useContactAct
                 </div>
               </template>
               <template #title>
-                <div class="text-center text-xl font-semibold text-zinc-100">Gerenciamento de Tarefas</div>
+                <div class="text-center text-xl font-semibold text-(--text-heading)">Gerenciamento de Tarefas</div>
               </template>
               <template #content>
-                <p class="text-center text-zinc-300 leading-relaxed">
+                <p class="text-center text-(--text-body) leading-relaxed">
                   Crie, atribua e acompanhe tarefas com facilidade. Fique por dentro dos prazos e nunca perca o ritmo
                   com
                   atualizações de status em tempo real.
@@ -102,10 +102,10 @@ const { name, email, message, loading, success, response, send } = useContactAct
                 </div>
               </template>
               <template #title>
-                <div class="text-center text-xl font-semibold text-zinc-100">Colaboração em Equipe</div>
+                <div class="text-center text-xl font-semibold text-(--text-heading)">Colaboração em Equipe</div>
               </template>
               <template #content>
-                <p class="text-center text-zinc-300 leading-relaxed">
+                <p class="text-center text-(--text-body) leading-relaxed">
                   Trabalhem juntos em tempo real. Compartilhem comentários, anexem arquivos e mantenham todos na mesma
                   página durante todo o ciclo de vida do projeto.
                 </p>
@@ -120,10 +120,10 @@ const { name, email, message, loading, success, response, send } = useContactAct
                 </div>
               </template>
               <template #title>
-                <div class="text-center text-xl font-semibold text-zinc-100">Análises</div>
+                <div class="text-center text-xl font-semibold text-(--text-heading)">Análises</div>
               </template>
               <template #content>
-                <p class="text-center text-zinc-300 leading-relaxed">
+                <p class="text-center text-(--text-body) leading-relaxed">
                   Obtenha insights com painéis de análise detalhados. Acompanhe o progresso, meça a velocidade e tome
                   decisões baseadas em dados com confiança.
                 </p>
@@ -134,19 +134,19 @@ const { name, email, message, loading, success, response, send } = useContactAct
 
         <div class="absolute bottom-0 left-0 w-full overflow-hidden leading-0">
           <svg viewBox="0 0 1440 442" preserveAspectRatio="none" class="w-full h-20 md:h-40 bg-transparent">
-            <path d="M 0 86 C 11 286 564 540 1440 0 L 1440 442 L 0 442 Z" fill="var(--color-zinc-800)" />
+            <path d="M 0 86 C 11 286 564 540 1440 0 L 1440 442 L 0 442 Z" fill="var(--svg-wave-dark)" />
           </svg>
         </div>
 
       </section>
 
       <!-- ==================== SECAO CONTATO ==================== -->
-      <section id="contato" class="relative min-h-screen flex items-center py-20 px-4 bg-zinc-800">
+      <section id="contato" class="relative min-h-screen flex items-center py-20 px-4 bg-(--bg-surface-contact)">
         <div class="max-w-lg mx-auto w-full flex flex-col items-center text-center">
-          <h2 class="text-3xl md:text-4xl font-bold text-zinc-100 mb-3">
+          <h2 class="text-3xl md:text-4xl font-bold text-(--text-heading) mb-3">
             Entre em Contato
           </h2>
-          <p class="text-zinc-300 mb-10">
+          <p class="text-(--text-body) mb-10">
             Tem uma pergunta ou quer colaborar? Envie-nos uma mensagem abaixo.
           </p>
 
@@ -161,7 +161,7 @@ const { name, email, message, loading, success, response, send } = useContactAct
             </Message>
           </form>
 
-          <p class="absolute bottom-4 text-sm text-zinc-300">
+          <p class="absolute bottom-4 text-sm text-(--text-body)">
             &copy; 2026
             <a href="https://taciodaito.github.io/portfolio/" target="_blank" rel="noopener noreferrer"
               class="text-emerald-400 hover:text-(--p-primary-700) underline underline-offset-2">
