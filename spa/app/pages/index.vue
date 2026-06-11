@@ -29,12 +29,12 @@ const { name, email, message, loading, success, response, send } = useContactAct
           <h1 class="text-4xl md:text-6xl font-bold text-(--text-heading) mb-4 leading-tight">
             Crie Fluxos de Trabalho Melhores
           </h1>
-          <p class="text-lg md:text-xl text-(--text-body) opacity-80 mb-8 max-w-xl mx-auto">
+          <p class="font-medium text-lg md:text-xl text-(--text-body) opacity-80 mb-8 max-w-xl mx-auto">
             Gerencie tarefas, colabore com sua equipe e entregue projetos mais rapido do que nunca.
           </p>
           <div class="flex flex-col items-center gap-4">
             <Button label="Começar" size="large" severity="primary" @click="navigateTo('/login')" />
-            <p class="text-sm text-(--text-body) opacity-60 mt-2">
+            <p class="font-medium text-sm text-(--text-body) opacity-60 mt-2">
               Simples e fácil
             </p>
           </div>

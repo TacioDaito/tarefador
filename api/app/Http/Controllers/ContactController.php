@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ContactRequest;
-use App\Mail\ContactMailable;
+use App\Services\Contracts\ContactServiceInterface;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Support\Facades\Mail;
 
 class ContactController extends Controller
 {
+    public function __construct(
+        private readonly ContactServiceInterface $contactService,
+    ) {}
+
     /**
      * Send a contact email.
      *
@@ -17,14 +20,6 @@ class ContactController extends Controller
      */
     public function send(ContactRequest $request): JsonResponse
     {
-        $data = $request->validated();
-
-        Mail::to(config('mail.from.address'))->send(new ContactMailable(
-            senderName: $data['name'],
-            senderEmail: $data['email'],
-            messageContent: $data['message'],
-        ));
-
-        return jsonResponse(['message' => 'Message sent successfully']);
+        return $this->contactService->send($request->validated());
     }
 }
