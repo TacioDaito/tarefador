@@ -1,5 +1,3 @@
-import { unref } from 'vue'
-
 export const useLoginAction = (emailRef = null, passwordRef = null) => {
   const { user, isAuthenticated, loading, message } = useAuthState()
   const { login: sanctumLogin } = useSanctumAuth()
