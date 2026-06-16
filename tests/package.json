@@ -1,0 +1,9 @@
+{
+  "name": "tarefador-e2e-tests",
+  "private": true,
+  "type": "module",
+  "devDependencies": {
+    "@playwright/test": "^1.60.0",
+    "dotenv": "^17.4.2"
+  }
+}

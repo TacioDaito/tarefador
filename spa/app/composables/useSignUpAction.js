@@ -4,7 +4,7 @@ export const useSignUpAction = () => {
   const password = ref('')
   const confirmPassword = ref('')
   const signUpLoading = ref(false)
-  const signUpMessage = ref('')
+  const { message: signUpMessage } = useAuthState()
   const client = useSanctumClient()
   const { login } = useLoginAction(email, password)
 
